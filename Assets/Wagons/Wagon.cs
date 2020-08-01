@@ -5,6 +5,8 @@ using UnityEngine;
 public class Wagon : MonoBehaviour
 {
     public float speed;
+    private const float distanceDiff = 0.125f;
+
     public RailroadSegment startSegment;
     private RailroadSegment currentSegment;
 
@@ -17,15 +19,22 @@ public class Wagon : MonoBehaviour
     {
         if (currentSegment != null)
         {
-            if (transform.position == currentSegment.endPoint)
+            if (Vector3.Distance(transform.position, currentSegment.endPoint) < distanceDiff)
             {
-                currentSegment = GetNewSegment();
+                currentSegment = currentSegment.GetNextRailroadSegment();
+                
+                if (currentSegment != null)
+                {
+                    transform.rotation = currentSegment.transform.rotation;
+                    
+                }
             }
         }
         else
         {
             currentSegment = startSegment;
-            transform.position = startSegment.startPoint;
+            transform.position = currentSegment.startPoint;
+            transform.rotation = currentSegment.transform.rotation;
         }
 
         if (currentSegment != null)
@@ -37,11 +46,6 @@ public class Wagon : MonoBehaviour
     private void Move()
     {
         var direction = (currentSegment.endPoint - transform.position).normalized;
-        transform.Translate(direction * Time.deltaTime * speed);
-    }
-
-    private RailroadSegment GetNewSegment()
-    {
-        return RailNetworkManager.Instance.GetNewRailroadSegment(currentSegment);
+        transform.position += direction * Time.deltaTime * speed;
     }
 }

@@ -27,6 +27,6 @@ public class RailNetworkManager : MonoBehaviour
             }
         }
 
-        return current.nextSegment;
+        return current.nextSegment1;
     }
 }

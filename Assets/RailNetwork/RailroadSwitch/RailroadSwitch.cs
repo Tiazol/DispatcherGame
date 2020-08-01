@@ -15,10 +15,16 @@ public class RailroadSwitch : MonoBehaviour
         ActiveRailroadSegment = endSegment1;
     }
 
-    private void OnDrawGizmos()
+    private void Start()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawSphere(startSegment.endPoint, 0.1f);
+        if (ActiveRailroadSegment == endSegment1)
+        {
+            endSegment2.Disable();
+        }
+        else
+        {
+            endSegment1.Disable();
+        }
     }
 
     public bool HasThisStartSegment(RailroadSegment segment)
@@ -29,5 +35,16 @@ public class RailroadSwitch : MonoBehaviour
     public void SwitchActiveRailroadSegment()
     {
         ActiveRailroadSegment = ActiveRailroadSegment == endSegment1 ? endSegment2 : endSegment1;
+
+        if (ActiveRailroadSegment == endSegment1)
+        {
+            endSegment1.Enable();
+            endSegment2.Disable();
+        }
+        else
+        {
+            endSegment1.Disable();
+            endSegment2.Enable();
+        }
     }
 }
