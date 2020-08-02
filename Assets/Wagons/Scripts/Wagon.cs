@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Wagon : MonoBehaviour
 {
-    public float speed = 1.0f;
+    public float Speed { get; set; }
     private const float distanceDiff = 0.0625f;
     private const float rotateDiff = 0.1f;
     private Quaternion rotateStep = Quaternion.Euler(1f, 1f, 1f);
@@ -53,7 +53,7 @@ public class Wagon : MonoBehaviour
             Move();
         }
 
-        if (WagonStop.Instance.CheckPosition(transform.position.y))
+        if (WagonStop.Instance.CheckPosition(this))
         {
             Stop();
         }
@@ -62,7 +62,7 @@ public class Wagon : MonoBehaviour
     private void Move()
     {
         var direction = (currentSegment.endPoint - transform.position).normalized;
-        transform.position += direction * Time.deltaTime * speed;
+        transform.position += direction * Time.deltaTime * Speed;
     }
 
     private IEnumerator Rotate()
