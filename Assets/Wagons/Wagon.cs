@@ -5,10 +5,13 @@ using UnityEngine;
 public class Wagon : MonoBehaviour
 {
     public float speed;
-    private const float distanceDiff = 0.125f;
+    private const float distanceDiff = 0.0625f;
+    private const float rotateDiff = 0.1f;
+    private Quaternion rotateStep = Quaternion.Euler(1f, 1f, 1f);
 
     public RailroadSegment startSegment;
     private RailroadSegment currentSegment;
+    private bool isMoving = true;
 
     private void Start()
     {
@@ -17,6 +20,11 @@ public class Wagon : MonoBehaviour
 
     private void Update()
     {
+        if (!isMoving)
+        {
+            return;
+        }
+
         if (currentSegment != null)
         {
             if (Vector3.Distance(transform.position, currentSegment.endPoint) < distanceDiff)
@@ -26,7 +34,10 @@ public class Wagon : MonoBehaviour
                 if (currentSegment != null)
                 {
                     transform.rotation = currentSegment.transform.rotation;
-                    
+                    //if (Quaternion.Dot(transform.rotation, currentSegment.transform.rotation) < rotateDiff)
+                    //{
+                    //    StartCoroutine(Rotate());
+                    //}
                 }
             }
         }
@@ -41,11 +52,27 @@ public class Wagon : MonoBehaviour
         {
             Move();
         }
+
+        if (WagonStop.Instance.CheckPosition(transform.position.y))
+        {
+            Stop();
+        }
     }
 
     private void Move()
     {
         var direction = (currentSegment.endPoint - transform.position).normalized;
         transform.position += direction * Time.deltaTime * speed;
+    }
+
+    private IEnumerator Rotate()
+    {
+        transform.Rotate(rotateStep.eulerAngles*2);
+        yield return null;
+    }
+
+    private void Stop()
+    {
+        Destroy(gameObject);
     }
 }
