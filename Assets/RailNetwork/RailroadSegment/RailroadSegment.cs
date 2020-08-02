@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,9 +15,11 @@ public class RailroadSegment : MonoBehaviour
     public RailroadSegment nextSegment2;
     public RailroadSegment ActiveRailroadSegment { get; set; }
 
-    public bool isActive;
+    private bool isActive;
 
     private SpriteRenderer sr;
+
+    public event Action<bool> StatusChanged;
 
     private void Awake()
     {
@@ -27,6 +30,31 @@ public class RailroadSegment : MonoBehaviour
     {
         isActive = true;
         ActiveRailroadSegment = nextSegment1;
+
+        // 1. Подписка
+        prevSegment.StatusChanged += isActive =>
+        {
+            if (!isActive)
+            {
+                Disable();
+            }
+            else
+            {
+                if (this == prevSegment.ActiveRailroadSegment)
+                {
+                    Enable();
+                }
+            }
+        };
+
+        // 2. Отключение второй ветки в стрелке
+        if (nextSegment2 != null)
+        {
+            nextSegment2.Disable();
+        }
+
+        // 3. Сообщение о своем состоянии
+        StatusChanged?.Invoke(isActive);
     }
 
     private void Update()
@@ -62,12 +90,14 @@ public class RailroadSegment : MonoBehaviour
     {
         isActive = true;
         sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1.0f);
+        StatusChanged?.Invoke(isActive);
     }
 
     public void Disable()
     {
         isActive = false;
         sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.5f);
+        StatusChanged?.Invoke(isActive);
     }
 
     public void SwitchActiveRailroadSegment()

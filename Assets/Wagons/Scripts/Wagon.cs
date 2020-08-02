@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Wagon : MonoBehaviour
 {
-    public float speed;
+    public float speed = 1.0f;
     private const float distanceDiff = 0.0625f;
     private const float rotateDiff = 0.1f;
     private Quaternion rotateStep = Quaternion.Euler(1f, 1f, 1f);
