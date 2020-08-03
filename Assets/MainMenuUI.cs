@@ -12,13 +12,13 @@ public class MainMenuUI : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < GameManager.Instance.TotalLevels; i++)
+        for (int i = 1; i <= GameManager.Instance.TotalLevels; i++)
         {
-            var j = i; // замыкание
+            var level = i; // замыкание
             var button = Instantiate(levelButtonPrefab, levelButtons.transform);
-            var text = button.GetComponentInChildren<Text>();
-            text.text = (j + 1).ToString();
-            button.onClick.AddListener(() => GameManager.Instance.LoadScene(j + 1));
+            button.GetComponentInChildren<Text>().text = level.ToString();
+            button.onClick.AddListener(() => GameManager.Instance.LoadLevel(level));
+            button.interactable = level <= GameManager.Instance.UnlockedLevels;
         }
     }
 

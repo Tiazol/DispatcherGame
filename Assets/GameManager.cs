@@ -33,11 +33,11 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         Checkpoints = new Dictionary<GameObject, Checkpoint>();
+        UnlockedLevels = PlayerPrefs.HasKey(pp_unlockedLevels) ? PlayerPrefs.GetInt(pp_unlockedLevels) : 1;
     }
 
     private void Start()
     {
-        UnlockedLevels = PlayerPrefs.HasKey(pp_unlockedLevels) ? PlayerPrefs.GetInt(pp_unlockedLevels) : 1;
     }
 
     private void Update()
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void LoadScene(int index)
+    public void LoadLevel(int index)
     {
         SceneManager.LoadScene(index);
     }
