@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -6349997435093271993}
   - component: {fileID: 1407409913192355415}
   m_Layer: 0
-  m_Name: WagonBlue
+  m_Name: Wagon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,8 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startSegment: {fileID: 0}
   sprites:
-  - {fileID: 21300000, guid: 30318576e27f70c4885c33d395c4b59d, type: 3}
-  - {fileID: 21300000, guid: ba21610156948fd41a5602808a042afa, type: 3}
-  - {fileID: 21300000, guid: f6a8d6c2d6b46324e91786385e6a5799, type: 3}
-  - {fileID: 21300000, guid: 97d9c0cdf23dd0041a222d26b2e2074b, type: 3}
-  - {fileID: 21300000, guid: 30318576e27f70c4885c33d395c4b59d, type: 3}
+  - {fileID: 6054132210127953389, guid: 1cdb078fc5c5bcd408cc3bf220219015, type: 3}
+  - {fileID: -2238958045086426632, guid: 1cdb078fc5c5bcd408cc3bf220219015, type: 3}
+  - {fileID: 6196545459724446523, guid: 1cdb078fc5c5bcd408cc3bf220219015, type: 3}
+  - {fileID: 1530470453883059196, guid: 1cdb078fc5c5bcd408cc3bf220219015, type: 3}

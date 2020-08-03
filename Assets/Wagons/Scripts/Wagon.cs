@@ -73,7 +73,7 @@ public class Wagon : MonoBehaviour
         {
             Debug.Log(2);
             var checkpoint = GameManager.Instance.Checkpoints[collision.gameObject];
-            if (checkpoint.wagonType == wagonType)
+            if (checkpoint.WType == wagonType)
             {
                 GameManager.Instance.Score++;
             }
@@ -111,5 +111,5 @@ public class Wagon : MonoBehaviour
 
 public enum WagonType
 {
-    Red, Orange, Green, Blue, Purple
+    Red, Green, Blue, Purple
 }

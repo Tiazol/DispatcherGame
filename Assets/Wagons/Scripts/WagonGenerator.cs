@@ -16,8 +16,6 @@ public class WagonGenerator : MonoBehaviour
 
     private void GenerateWagon()
     {
-        //var index = Random.Range(0, wagonPrefabs.Length); // warning! max int is EXCLUSIVE!
-
         var typeCount = System.Enum.GetNames(typeof(WagonType)).Length;
         var typeIndex = Random.Range(0, typeCount); // warning! max int is EXCLUSIVE!
         var wagon = Instantiate(wagonPrefab, startRailroadSegment.startPoint, Quaternion.identity, transform);
