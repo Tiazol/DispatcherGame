@@ -48,7 +48,14 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                Quit();
+                if (SceneManager.GetActiveScene().handle == 0)
+                {
+                    Quit();
+                }
+                else
+                {
+                    GameUI.Instance.ShowQuitConfirmation();
+                }
             }
         }
     }

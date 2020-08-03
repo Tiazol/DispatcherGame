@@ -5,8 +5,14 @@ using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
+    public static GameUI Instance { get; private set; }
     public Text scoreText;
     public GameObject quitConfirmation;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
