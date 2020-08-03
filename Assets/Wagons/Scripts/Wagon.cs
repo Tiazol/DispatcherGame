@@ -8,10 +8,10 @@ public class Wagon : MonoBehaviour
     private const float distanceDiff = 0.0625f;
     private const float rotateDiff = 0.1f;
     private Quaternion rotateStep = Quaternion.Euler(1f, 1f, 1f);
-
     public RailroadSegment startSegment;
     private RailroadSegment currentSegment;
     private bool isMoving = true;
+    public WagonType wagonType;
 
     private void Start()
     {
@@ -75,4 +75,9 @@ public class Wagon : MonoBehaviour
     {
         Destroy(gameObject);
     }
+}
+
+public enum WagonType
+{
+    Red, Orange, Green, Blue, Purple
 }
