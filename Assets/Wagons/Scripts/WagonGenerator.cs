@@ -8,6 +8,7 @@ public class WagonGenerator : MonoBehaviour
     public float wagonGeneratorInterval;
     public float wagonSpeed;
     public RailroadSegment startRailroadSegment;
+    public int totalWagonsCount;
 
     private void Start()
     {
@@ -16,11 +17,16 @@ public class WagonGenerator : MonoBehaviour
 
     private void GenerateWagon()
     {
+        if (totalWagonsCount < 1)
+        {
+            return;
+        }
         var typeCount = System.Enum.GetNames(typeof(WagonType)).Length;
         var typeIndex = Random.Range(0, typeCount); // warning! max int is EXCLUSIVE!
         var wagon = Instantiate(wagonPrefab, startRailroadSegment.startPoint, Quaternion.identity, transform);
         wagon.startSegment = startRailroadSegment;
         wagon.Speed = wagonSpeed;
         wagon.SetWagonType(typeIndex);
+        totalWagonsCount--;
     }
 }
