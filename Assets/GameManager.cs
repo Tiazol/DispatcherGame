@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public int UnlockedLevels { get; private set; }
     public int TotalLevels { get; } = 15;
 
+    public bool IsPaused { get; private set; }
+
     public event Action ScoreChanged;
     private int score;
     public int Score
@@ -54,6 +56,18 @@ public class GameManager : MonoBehaviour
     public void LoadLevel(int index)
     {
         SceneManager.LoadScene(index);
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
+        IsPaused = true;
+    }
+
+    public void Unpause()
+    {
+        Time.timeScale = 1;
+        IsPaused = false;
     }
 
     public void Quit()
