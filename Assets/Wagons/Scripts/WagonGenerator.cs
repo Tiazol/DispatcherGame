@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WagonGenerator : MonoBehaviour
 {
-    public Wagon[] wagonPrefabs;
+    public Wagon wagonPrefab;
     public float wagonGeneratorInterval;
     public float wagonSpeed;
     public RailroadSegment startRailroadSegment;
@@ -16,9 +16,13 @@ public class WagonGenerator : MonoBehaviour
 
     private void GenerateWagon()
     {
-        var index = Random.Range(0, wagonPrefabs.Length); // warning! max int is EXCLUSIVE!
-        var wagon = Instantiate(wagonPrefabs[index], startRailroadSegment.startPoint, Quaternion.identity, transform);
+        //var index = Random.Range(0, wagonPrefabs.Length); // warning! max int is EXCLUSIVE!
+
+        var typeCount = System.Enum.GetNames(typeof(WagonType)).Length;
+        var typeIndex = Random.Range(0, typeCount); // warning! max int is EXCLUSIVE!
+        var wagon = Instantiate(wagonPrefab, startRailroadSegment.startPoint, Quaternion.identity, transform);
         wagon.startSegment = startRailroadSegment;
         wagon.Speed = wagonSpeed;
+        wagon.SetWagonType(typeIndex);
     }
 }

@@ -106,7 +106,7 @@ public class RailroadSegment : MonoBehaviour
     {
         isActive = false;
         isShowing = false;
-        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.5f);
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.25f);
         StatusChanged?.Invoke(isActive);
     }
 

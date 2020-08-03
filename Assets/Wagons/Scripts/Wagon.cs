@@ -11,7 +11,14 @@ public class Wagon : MonoBehaviour
     public RailroadSegment startSegment;
     private RailroadSegment currentSegment;
     private bool isMoving = true;
-    public WagonType wagonType;
+    private WagonType wagonType;
+    private SpriteRenderer sr;
+    public Sprite[] sprites;
+
+    private void Awake()
+    {
+        sr = GetComponent<SpriteRenderer>();
+    }
 
     private void Start()
     {
@@ -53,8 +60,27 @@ public class Wagon : MonoBehaviour
             Move();
         }
 
-        if (WagonStop.Instance.CheckPosition(this))
+        //if (WagonStop.Instance.CheckPosition(this))
+        //{
+        //    Stop();
+        //}
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(1);
+        if (GameManager.Instance.Checkpoints.ContainsKey(collision.gameObject))
         {
+            Debug.Log(2);
+            var checkpoint = GameManager.Instance.Checkpoints[collision.gameObject];
+            if (checkpoint.wagonType == wagonType)
+            {
+                GameManager.Instance.Score++;
+            }
+            else
+            {
+                GameManager.Instance.Score--;
+            }
             Stop();
         }
     }
@@ -74,6 +100,12 @@ public class Wagon : MonoBehaviour
     private void Stop()
     {
         Destroy(gameObject);
+    }
+
+    public void SetWagonType(int index)
+    {
+        wagonType = (WagonType)index;
+        sr.sprite = sprites[index];
     }
 }
 
