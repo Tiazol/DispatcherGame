@@ -12,7 +12,7 @@ public class MainMenuUI : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 1; i <= GameManager.Instance.TotalLevels; i++)
+        for (int i = 1; i <= GameManager.Instance.TotalLevelsCount; i++)
         {
             var level = i; // замыкание
             var button = Instantiate(levelButtonPrefab, levelButtons.transform);

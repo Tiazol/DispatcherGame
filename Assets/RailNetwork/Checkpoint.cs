@@ -9,6 +9,7 @@ public class Checkpoint : MonoBehaviour
     public Sprite[] sprites;
     public WagonType WType { get; set; }
     private SpriteRenderer sr;
+    public event System.Action WagonCatched;
 
     private void Awake()
     {
@@ -22,8 +23,14 @@ public class Checkpoint : MonoBehaviour
         {
             WType = (WagonType)Random.Range(0, System.Enum.GetNames(typeof(WagonType)).Length);
         }
-        while (WagonStop.Instance.UsedWagonTypes.Contains(WType));
-        WagonStop.Instance.UsedWagonTypes.Add(WType);
+        while (CheckpointsManager.Instance.UsedWagonTypes.Contains(WType));
+        CheckpointsManager.Instance.UsedWagonTypes.Add(WType);
         sr.sprite = sprites[(int)WType];
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("wagon catched");
+        WagonCatched?.Invoke();
     }
 }

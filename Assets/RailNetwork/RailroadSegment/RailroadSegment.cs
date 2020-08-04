@@ -17,16 +17,16 @@ public class RailroadSegment : MonoBehaviour
     public RailroadSegment prevSegment;
     public RailroadSegment nextSegment1;
     public RailroadSegment nextSegment2;
-    public RailroadSegment ActiveRailroadSegment { get; set; }
+    public RailroadSegment SelectedRailroadSegment { get; set; }
 
-    private bool isActive;
+    private bool isSelected;
     private bool isShowing;
 
     private SpriteShapeRenderer ssr;
     private SpriteShapeController ssc;
 
     public event Action<bool> StatusChanged;
-    public event Action<bool> ActiveRailroadSegmentChanged;
+    public event Action<bool> SelectedRailroadSegmentChanged;
 
     private void Awake()
     {
@@ -41,27 +41,32 @@ public class RailroadSegment : MonoBehaviour
         Points = new List<Vector3>();
         CalculatePoints();
 
-        isActive = true;
-        isShowing = true;
-        ActiveRailroadSegment = nextSegment1;
-        ActiveRailroadSegmentChanged?.Invoke(false);
+        // можно упростить?
+        isSelected = prevSegment == null ? true : false;
+        isShowing = prevSegment == null ? true : false;
+
+        SelectedRailroadSegment = nextSegment1;
+        SelectedRailroadSegmentChanged?.Invoke(false);
 
         // 1. Подписка
-        prevSegment.StatusChanged += isActive =>
+        if (prevSegment != null)
         {
-            if (!isActive)
+            prevSegment.StatusChanged += isActive =>
             {
-                Disable();
-            }
-            else
-            {
-                if (this == prevSegment.ActiveRailroadSegment)
+                if (!isActive)
                 {
-                    Enable();
+                    Disable();
                 }
-            }
-        };
+                else
+                {
+                    if (this == prevSegment.SelectedRailroadSegment)
+                    {
+                        Enable();
+                    }
+                }
+            };
 
+        }
         // 2. Отключение второй ветки в стрелке
         if (nextSegment2 != null)
         {
@@ -69,7 +74,7 @@ public class RailroadSegment : MonoBehaviour
         }
 
         // 3. Сообщение о своем состоянии
-        StatusChanged?.Invoke(isActive);
+        StatusChanged?.Invoke(isSelected);
     }
 
     //private void OnDrawGizmos()
@@ -102,7 +107,7 @@ public class RailroadSegment : MonoBehaviour
 
     public void Enable()
     {
-        if (prevSegment.isShowing)
+        if (prevSegment != null && prevSegment.isShowing || prevSegment == null)
         {
             var color = ssr.color;
             color.a = 1.0f;
@@ -111,20 +116,20 @@ public class RailroadSegment : MonoBehaviour
             isShowing = true;
         }
 
-        isActive = true;
-        StatusChanged?.Invoke(isActive);
+        isSelected = true;
+        StatusChanged?.Invoke(isSelected);
     }
 
     public void Disable()
     {
-        isActive = false;
+        isSelected = false;
         isShowing = false;
 
         var color = ssr.color;
         color.a = 0.25f;
         ssr.color = color;
 
-        StatusChanged?.Invoke(isActive);
+        StatusChanged?.Invoke(isSelected);
     }
 
     public void SwitchActiveRailroadSegment()
@@ -135,18 +140,18 @@ public class RailroadSegment : MonoBehaviour
             return;
         }
 
-        ActiveRailroadSegment = ActiveRailroadSegment == nextSegment1 ? nextSegment2 : nextSegment1;
+        SelectedRailroadSegment = SelectedRailroadSegment == nextSegment1 ? nextSegment2 : nextSegment1;
 
-        if (ActiveRailroadSegment == nextSegment1)
+        if (SelectedRailroadSegment == nextSegment1)
         {
-            ActiveRailroadSegmentChanged?.Invoke(false);
+            SelectedRailroadSegmentChanged?.Invoke(false);
         }
         else
         {
-            ActiveRailroadSegmentChanged?.Invoke(true);
+            SelectedRailroadSegmentChanged?.Invoke(true);
         }
 
-        if (ActiveRailroadSegment == nextSegment1)
+        if (SelectedRailroadSegment == nextSegment1)
         {
             nextSegment1.Enable();
             nextSegment2.Disable();
@@ -160,6 +165,6 @@ public class RailroadSegment : MonoBehaviour
 
     public RailroadSegment GetNextRailroadSegment()
     {
-        return ActiveRailroadSegment;
+        return SelectedRailroadSegment;
     }
 }

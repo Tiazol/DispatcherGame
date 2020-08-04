@@ -6,9 +6,9 @@ public class RollingStockContainer : MonoBehaviour
 {
     public static RollingStockContainer Instance { get; private set; }
 
-    public WagonStop firstStopper;
-    public WagonStop secondStopper;
-    public WagonStop lastStopper;
+    public CheckpointsManager firstStopper;
+    public CheckpointsManager secondStopper;
+    public CheckpointsManager lastStopper;
 
     public bool CheckPosition(float coordY)
     {

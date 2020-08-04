@@ -8,6 +8,7 @@ public class GameUI : MonoBehaviour
     public static GameUI Instance { get; private set; }
     public Text scoreText;
     public GameObject quitConfirmation;
+    public GameObject levelCompletedDialog;
 
     private void Awake()
     {
@@ -18,6 +19,7 @@ public class GameUI : MonoBehaviour
     {
         scoreText.text = "Score: " + GameManager.Instance.Score;
         GameManager.Instance.ScoreChanged += () => scoreText.text = "Score: " + GameManager.Instance.Score;
+        CheckpointsManager.Instance.AllWagonsPassed += ShowLevelCompletedDialog;
     }
 
     public void ShowQuitConfirmation()
@@ -30,6 +32,18 @@ public class GameUI : MonoBehaviour
     {
         GameManager.Instance.Unpause();
         quitConfirmation.SetActive(false);
+    }
+
+    public void ShowLevelCompletedDialog()
+    {
+        GameManager.Instance.Pause();
+        levelCompletedDialog.SetActive(true);
+    }
+
+    public void LoadNextLevel()
+    {
+        GameManager.Instance.Unpause();
+        GameManager.Instance.LoadNextLevel();
     }
 
     public void QuitToMainMenu()

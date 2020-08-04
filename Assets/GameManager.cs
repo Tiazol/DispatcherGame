@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public Dictionary<GameObject, RailroadSegment> RailroadSegments { get; private set; }
 
     public int UnlockedLevels { get; private set; }
-    public int TotalLevels { get; } = 15;
+    public int TotalLevelsCount { get; } = 1;
 
     public bool IsPaused { get; private set; }
 
@@ -40,6 +40,20 @@ public class GameManager : MonoBehaviour
         UnlockedLevels = PlayerPrefs.HasKey(pp_unlockedLevels) ? PlayerPrefs.GetInt(pp_unlockedLevels) : 1;
     }
 
+    private void Start()
+    {
+        CheckpointsManager.Instance.AllWagonsPassed += RecalculateUnlockedLevels;
+    }
+
+    private void RecalculateUnlockedLevels()
+    {
+        var scene = SceneManager.GetActiveScene().handle;
+        if (scene > UnlockedLevels)
+        {
+            UnlockedLevels = scene;
+        }
+    }
+
     private void Update()
     {
         if (Application.platform == RuntimePlatform.Android)
@@ -61,6 +75,13 @@ public class GameManager : MonoBehaviour
     public void LoadLevel(int index)
     {
         SceneManager.LoadScene(index);
+    }
+
+    public void LoadNextLevel()
+    {
+        var currentScene = SceneManager.GetActiveScene().handle;
+        var newScene = currentScene < TotalLevelsCount ? currentScene + 1 : 0;
+        SceneManager.LoadScene(newScene);
     }
 
     public void Pause()
