@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
     public Dictionary<GameObject, Checkpoint> Checkpoints { get; private set; }
+    public Dictionary<GameObject, RailroadSegment> RailroadSegments { get; private set; }
 
     public int UnlockedLevels { get; private set; }
     public int TotalLevels { get; } = 15;
@@ -35,11 +36,8 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         Checkpoints = new Dictionary<GameObject, Checkpoint>();
+        RailroadSegments = new Dictionary<GameObject, RailroadSegment>();
         UnlockedLevels = PlayerPrefs.HasKey(pp_unlockedLevels) ? PlayerPrefs.GetInt(pp_unlockedLevels) : 1;
-    }
-
-    private void Start()
-    {
     }
 
     private void Update()

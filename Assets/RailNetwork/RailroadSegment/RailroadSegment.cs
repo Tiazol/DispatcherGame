@@ -2,13 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class RailroadSegment : MonoBehaviour
 {
     public Vector3 startPoint;
     public Vector3 endPoint;
+
+    public List<Vector3> Points { get; private set; }
 
     public RailroadSegment prevSegment;
     public RailroadSegment nextSegment1;
@@ -18,18 +22,25 @@ public class RailroadSegment : MonoBehaviour
     private bool isActive;
     private bool isShowing;
 
-    private SpriteRenderer sr;
+    private SpriteShapeRenderer ssr;
+    private SpriteShapeController ssc;
 
     public event Action<bool> StatusChanged;
     public event Action<bool> ActiveRailroadSegmentChanged;
 
     private void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
+        ssr = GetComponent<SpriteShapeRenderer>();
+        ssc = GetComponent<SpriteShapeController>();
     }
 
     private void Start()
     {
+        GameManager.Instance.RailroadSegments.Add(gameObject, this);
+
+        Points = new List<Vector3>();
+        CalculatePoints();
+
         isActive = true;
         isShowing = true;
         ActiveRailroadSegment = nextSegment1;
@@ -61,40 +72,42 @@ public class RailroadSegment : MonoBehaviour
         StatusChanged?.Invoke(isActive);
     }
 
-    private void Update()
-    {
-        CalculatePoints();
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    sr = GetComponent<SpriteRenderer>();
+    //    ssc = GetComponent<SpriteShapeController>();
 
-    private void OnDrawGizmos()
-    {
-        sr = GetComponent<SpriteRenderer>();
+    //    CalculatePoints();
 
-        CalculatePoints();
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(startPoint, 0.125f);
-        Gizmos.color = Color.blue;
-        Gizmos.DrawSphere(endPoint, 0.125f);
-    }
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawSphere(startPoint, 0.125f);
+    //    Gizmos.color = Color.blue;
+    //    Gizmos.DrawSphere(endPoint, 0.125f);
+    //}
 
     private void CalculatePoints()
     {
-        startPoint = new Vector3(
-            transform.position.x + sr.size.y / 2 * Mathf.Sin(transform.rotation.eulerAngles.z * Mathf.PI / 180),
-            transform.position.y - sr.size.y / 2 * Mathf.Cos(transform.rotation.eulerAngles.z * Mathf.PI / 180),
-            transform.position.z);
-        endPoint = new Vector3(
-            transform.position.x - sr.size.y / 2 * Mathf.Sin(transform.rotation.eulerAngles.z * Mathf.PI / 180),
-            transform.position.y + sr.size.y / 2 * Mathf.Cos(transform.rotation.eulerAngles.z * Mathf.PI / 180),
-            transform.position.z);
+        var pointsCount = ssc.spline.GetPointCount();
+
+        for (int i = 0; i < pointsCount; i++)
+        {
+            Points.Add(ssc.spline.GetPosition(i));
+        }
+
+        Points.Reverse();
+
+        startPoint = Points[0];
+        endPoint = Points[Points.Count - 1];
     }
 
     public void Enable()
     {
         if (prevSegment.isShowing)
         {
-            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1.0f);
+            var color = ssr.color;
+            color.a = 1.0f;
+            ssr.color = color;
+
             isShowing = true;
         }
 
@@ -106,7 +119,11 @@ public class RailroadSegment : MonoBehaviour
     {
         isActive = false;
         isShowing = false;
-        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.25f);
+
+        var color = ssr.color;
+        color.a = 0.25f;
+        ssr.color = color;
+
         StatusChanged?.Invoke(isActive);
     }
 
