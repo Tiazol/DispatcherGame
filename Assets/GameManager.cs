@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public Dictionary<GameObject, RailroadSegment> RailroadSegments { get; private set; }
 
     public int UnlockedLevels { get; private set; }
-    public int TotalLevelsCount { get; } = 1;
+    public int TotalLevelsCount { get; } = 3;
 
     public bool IsPaused { get; private set; }
 

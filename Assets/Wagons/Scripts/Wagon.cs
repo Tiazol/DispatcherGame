@@ -1,38 +1,32 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Wagon : MonoBehaviour
 {
-    public float Speed { get; set; }
+    public float Speed { get; set; } // Задается в WagonGenerator
 
     private const float distanceDiff = 0.0625f;
-    private const float rotateDiff = 0.1f;
-    private Quaternion rotateStep = Quaternion.Euler(1f, 1f, 1f);
 
     public RailroadSegment startSegment;
     private RailroadSegment currentSegment;
-    private Vector3 currentPoint;
-    private WagonType wagonType;
 
-    private Rigidbody2D rb;
+    private WagonType wagonType;
 
     private SpriteRenderer sr;
     public Sprite[] sprites;
 
-    private int pointIndex;
+    private float distance;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
     {
-        pointIndex = 0;
         currentSegment = startSegment;
-        currentPoint = startSegment.Points[pointIndex];
     }
 
     private void FixedUpdate()
@@ -59,29 +53,23 @@ public class Wagon : MonoBehaviour
 
     private void Move()
     {
-        var direction = (currentPoint - transform.position).normalized;
-
-        //TODO: переделать физику движения в будущем
-        transform.position += direction * Time.deltaTime * Speed;
-
-        if (Vector3.Distance(currentPoint, transform.position) < distanceDiff)
+        if (Mathf.Abs(distance - currentSegment.pathCreator.path.length) < distanceDiff)
         {
-            if (currentPoint != currentSegment.Points[currentSegment.Points.Count - 1])
+            currentSegment = currentSegment.GetNextRailroadSegment();
+            distance = 0;
+
+            if (currentSegment == null)
             {
-                currentPoint = currentSegment.Points[pointIndex++];
-            }
-            else
-            {
-                pointIndex = 0;
-                currentSegment = currentSegment.GetNextRailroadSegment();
-                if (currentSegment == null)
-                {
-                    currentSegment = startSegment;
-                    transform.position = currentSegment.startPoint;
-                }
-                currentPoint = currentSegment.Points[pointIndex];
+                currentSegment = startSegment;
             }
         }
+
+        transform.position = currentSegment.pathCreator.path.GetPointAtDistance(distance);
+
+        var rot = currentSegment.pathCreator.path.GetRotationAtDistance(distance);
+        transform.rotation = Quaternion.Euler(0, rot.eulerAngles.y + 90, rot.eulerAngles.x + 90);
+
+        distance += Time.deltaTime * Speed;
     }
 
     private void Stop()

@@ -1,5 +1,89 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &596716478623189290
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2186389364555739491}
+  - component: {fileID: 5640168131546095414}
+  m_Layer: 0
+  m_Name: PathCreator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2186389364555739491
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596716478623189290}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.002996415, y: 0.50145274, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4949247202852301782}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5640168131546095414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596716478623189290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e5ac92bc18f545cc84cd886ece82b4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  editorData:
+    _bezierPath:
+      points:
+      - {x: -0.002957153, y: -1.5014104, z: 0}
+      - {x: -0.0029534616, y: -1.4712756, z: 0}
+      - {x: -0.0029438497, y: 1.4686267, z: 0}
+      - {x: -0.0029378256, y: 1.4984715, z: 0}
+      isClosed: 0
+      space: 1
+      controlMode: 0
+      autoControlLength: 0.3
+      boundsUpToDate: 0
+      bounds:
+        m_Center: {x: 0.021386445, y: 0, z: -0.008497}
+        m_Extent: {x: 0.2860503, y: 0, z: 1.4988625}
+      perAnchorNormalsAngle:
+      - 0
+      - 0
+      globalNormalsAngle: 0
+      flipNormals: 0
+    vertexPathUpToDate: 1
+    vertexPathMaxAngleError: 0.3
+    vertexPathMinVertexSpacing: 0.01
+    showTransformTool: 1
+    showPathBounds: 0
+    showPerSegmentBounds: 0
+    displayAnchorPoints: 1
+    displayControlPoints: 1
+    bezierHandleScale: 1
+    globalDisplaySettingsFoldout: 0
+    keepConstantHandleSize: 1
+    showNormalsInVertexMode: 0
+    showBezierPathInVertexMode: 0
+    showDisplayOptions: 0
+    showPathOptions: 1
+    showVertexPathDisplayOptions: 1
+    showVertexPathOptions: 0
+    showNormals: 0
+    showNormalsHelpInfo: 0
+    tabIndex: 0
+  initialized: 1
 --- !u!1 &4949247202852301771
 GameObject:
   m_ObjectHideFlags: 0
@@ -29,7 +113,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2186389364555739491}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -79,8 +164,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 151012afacd48454c9608bd2ae0e2a04, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0.49999997, y: 0.5000032, z: -0.00005}
-    m_Extent: {x: 0.59999996, y: 1.5000044, z: 0.00005}
+    m_Center: {x: 0.000018954277, y: 0.50000346, z: -0.00005}
+    m_Extent: {x: 0.10001895, y: 1.5000046, z: 0.00005}
 --- !u!114 &4949247202852301780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,7 +228,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPoint: {x: 1, y: 2, z: 0}
   endPoint: {x: 0, y: -1, z: 0}
-  points: []
   prevSegment: {fileID: 0}
   nextSegment1: {fileID: 0}
   nextSegment2: {fileID: 0}
+  ssc: {fileID: 0}
+  pathCreator: {fileID: 5640168131546095414}
+  pathCreator2: {fileID: 0}

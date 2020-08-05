@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PathCreation;
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +11,6 @@ using UnityEngine.U2D;
 
 public class RailroadSegment : MonoBehaviour
 {
-    public Vector3 startPoint;
-    public Vector3 endPoint;
-
-    public List<Vector3> Points { get; private set; }
-
     public RailroadSegment prevSegment;
     public RailroadSegment nextSegment1;
     public RailroadSegment nextSegment2;
@@ -23,23 +20,20 @@ public class RailroadSegment : MonoBehaviour
     private bool isShowing;
 
     private SpriteShapeRenderer ssr;
-    private SpriteShapeController ssc;
 
     public event Action<bool> StatusChanged;
     public event Action<bool> SelectedRailroadSegmentChanged;
 
+    public PathCreator pathCreator;
+
     private void Awake()
     {
         ssr = GetComponent<SpriteShapeRenderer>();
-        ssc = GetComponent<SpriteShapeController>();
     }
 
     private void Start()
     {
         GameManager.Instance.RailroadSegments.Add(gameObject, this);
-
-        Points = new List<Vector3>();
-        CalculatePoints();
 
         // можно упростить?
         isSelected = prevSegment == null ? true : false;
@@ -77,32 +71,15 @@ public class RailroadSegment : MonoBehaviour
         StatusChanged?.Invoke(isSelected);
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    sr = GetComponent<SpriteRenderer>();
-    //    ssc = GetComponent<SpriteShapeController>();
-
-    //    CalculatePoints();
-
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawSphere(startPoint, 0.125f);
-    //    Gizmos.color = Color.blue;
-    //    Gizmos.DrawSphere(endPoint, 0.125f);
-    //}
-
-    private void CalculatePoints()
+    private void OnDrawGizmos()
     {
-        var pointsCount = ssc.spline.GetPointCount();
+        var startP = pathCreator.path.GetPoint(0);
+        var endP = pathCreator.path.GetPoint(pathCreator.path.NumPoints - 1);
 
-        for (int i = 0; i < pointsCount; i++)
-        {
-            Points.Add(ssc.spline.GetPosition(i));
-        }
-
-        Points.Reverse();
-
-        startPoint = Points[0];
-        endPoint = Points[Points.Count - 1];
+        Gizmos.color = Color.blue;
+        Gizmos.DrawSphere(startP, 0.125f);
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(endP, 0.125f);
     }
 
     public void Enable()

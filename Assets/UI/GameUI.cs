@@ -17,8 +17,8 @@ public class GameUI : MonoBehaviour
 
     private void Start()
     {
-        scoreText.text = "Score: " + GameManager.Instance.Score;
-        GameManager.Instance.ScoreChanged += () => scoreText.text = "Score: " + GameManager.Instance.Score;
+        //scoreText.text = "Score: " + GameManager.Instance.Score;
+        //GameManager.Instance.ScoreChanged += () => scoreText.text = "Score: " + GameManager.Instance.Score;
         CheckpointsManager.Instance.AllWagonsPassed += ShowLevelCompletedDialog;
     }
 
