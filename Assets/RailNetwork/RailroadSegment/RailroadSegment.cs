@@ -71,16 +71,16 @@ public class RailroadSegment : MonoBehaviour
         StatusChanged?.Invoke(isSelected);
     }
 
-    private void OnDrawGizmos()
-    {
-        var startP = pathCreator.path.GetPoint(0);
-        var endP = pathCreator.path.GetPoint(pathCreator.path.NumPoints - 1);
+    //private void OnDrawGizmos()
+    //{
+    //    var startP = pathCreator.path.GetPoint(0);
+    //    var endP = pathCreator.path.GetPoint(pathCreator.path.NumPoints - 1);
 
-        Gizmos.color = Color.blue;
-        Gizmos.DrawSphere(startP, 0.125f);
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(endP, 0.125f);
-    }
+    //    Gizmos.color = Color.blue;
+    //    Gizmos.DrawSphere(startP, 0.125f);
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawSphere(endP, 0.125f);
+    //}
 
     public void Enable()
     {
