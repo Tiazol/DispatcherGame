@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class GameUI : MonoBehaviour
 {
     public static GameUI Instance { get; private set; }
-    public Text scoreText;
     public GameObject quitConfirmation;
     public GameObject levelCompletedDialog;
+    private ProgressManager scoreManager;
 
     private void Awake()
     {
@@ -17,9 +17,8 @@ public class GameUI : MonoBehaviour
 
     private void Start()
     {
-        //scoreText.text = "Score: " + GameManager.Instance.Score;
-        //GameManager.Instance.ScoreChanged += () => scoreText.text = "Score: " + GameManager.Instance.Score;
         CheckpointsManager.Instance.AllWagonsPassed += ShowLevelCompletedDialog;
+        scoreManager = GetComponent<ProgressManager>();
     }
 
     public void ShowQuitConfirmation()
@@ -37,6 +36,7 @@ public class GameUI : MonoBehaviour
     public void ShowLevelCompletedDialog()
     {
         GameManager.Instance.Pause();
+        scoreManager.GenerateScore();
         levelCompletedDialog.SetActive(true);
     }
 

@@ -39,14 +39,12 @@ public class Wagon : MonoBehaviour
         if (GameManager.Instance.Checkpoints.ContainsKey(collision.gameObject))
         {
             var checkpoint = GameManager.Instance.Checkpoints[collision.gameObject];
-            if (checkpoint.WType == wagonType)
+
+            if (checkpoint.WType != wagonType)
             {
-                GameManager.Instance.Score++;
+                GameManager.Instance.WrongWagons++;
             }
-            else
-            {
-                GameManager.Instance.Score--;
-            }
+
             Stop();
         }
     }
