@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public bool IsPaused { get; private set; }
+    public bool GamePaused { get; private set; }
 
     private void Awake()
     {
@@ -38,6 +38,12 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(index);
     }
 
+    public void LoadThisLevel()
+    {
+        var currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentScene);
+    }
+
     public void LoadNextLevel()
     {
         var currentScene = SceneManager.GetActiveScene().buildIndex;
@@ -50,16 +56,16 @@ public class GameManager : MonoBehaviour
         return SceneManager.GetActiveScene().buildIndex;
     }
 
-    public void Pause()
+    public void PauseGame()
     {
         Time.timeScale = 0;
-        IsPaused = true;
+        GamePaused = true;
     }
 
-    public void Unpause()
+    public void ResumeGame()
     {
         Time.timeScale = 1;
-        IsPaused = false;
+        GamePaused = false;
     }
 
     public void Quit()

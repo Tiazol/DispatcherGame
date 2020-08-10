@@ -18,13 +18,13 @@ public class ProgressManager : MonoBehaviour
     public Dictionary<int, (bool, int)> Progress { get; private set; }
     public int UnlockedLevels { get; private set; }
     public int WrongWagons { get; set; }
+    public int StarsCount { get; private set; }
 
     private void Awake()
     {
         Instance = this;
 
         LoadProgress();
-
         CalculateUnlockedLevels();
     }
 
@@ -53,38 +53,37 @@ public class ProgressManager : MonoBehaviour
     {
         var successfulWagons = WagonGenerator.Instance.totalWagonsCount - ProgressManager.Instance.WrongWagons;
         var result = (float)successfulWagons / WagonGenerator.Instance.totalWagonsCount;
-        int score;
 
         if (result < 0.5f)
         {
-            score = 0;
+            StarsCount = 0;
         }
         else if (result >= 0.5f && result < 0.75f)
         {
-            score = 1;
+            StarsCount = 1;
         }
         else if (result >= 0.75f && result < 1.0f)
         {
-            score = 2;
+            StarsCount = 2;
         }
         else
         {
-            score = 3;
+            StarsCount = 3;
         }
 
         var currentLevel = GameManager.Instance.GetCurrentLevelNumber();
 
         if (Progress.ContainsKey(currentLevel))
         {
-            if (Progress[currentLevel].Item2 < score)
+            if (Progress[currentLevel].Item2 < StarsCount)
             {
                 Progress.Remove(currentLevel);
-                Progress.Add(currentLevel, (true, score));
+                Progress.Add(currentLevel, (true, StarsCount));
             }
         }
         else
         {
-            Progress.Add(currentLevel, (true, score));
+            Progress.Add(currentLevel, (true, StarsCount));
         }
 
         if (Progress.ContainsKey(currentLevel + 1))
@@ -101,7 +100,7 @@ public class ProgressManager : MonoBehaviour
         }
 
         SaveProgress();
-        ShowProgress(score);
+        ShowProgress(StarsCount);
     }
 
     private void SaveProgress()
@@ -157,7 +156,6 @@ public class ProgressManager : MonoBehaviour
 
     public int GetScoreOfLevel(int level)
     {
-
         return Progress.ContainsKey(level) ? Progress[level].Item2 : 0;
     }
 }
