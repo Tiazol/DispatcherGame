@@ -53,15 +53,19 @@ public class RailroadManager : MonoBehaviour
 
     private void SetProperties()
     {
+        // set start conditions
+
         foreach (var segment in segments)
         {
-            // set start conditions
 
             segment.IsVisible = true;
             segment.SelectedRailroadSegment = segment.NextSegment1;
+        }
 
-            // hide all next2
+        // hide all next2
 
+        foreach (var segment in segments)
+        {
             if (segment.NextSegment2 != null)
             {
                 segment.NextSegment2.Hide();

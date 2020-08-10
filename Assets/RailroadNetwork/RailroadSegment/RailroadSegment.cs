@@ -43,7 +43,7 @@ public class RailroadSegment : MonoBehaviour
     public event Action<bool> VisibilityChanged;
     public event Action<bool> SelectedRailroadSegmentChanged;
 
-    private bool isVisible;
+    [SerializeField] private bool isVisible;
     private RailroadSegment selectedRailroadSegment;
     private SpriteShapeRenderer ssr;
     private PathCreator pathCreator;
@@ -98,7 +98,6 @@ public class RailroadSegment : MonoBehaviour
         ssr.color = color;
 
         IsVisible = false;
-        VisibilityChanged?.Invoke(IsVisible);
 
         if (NextSegment1 != null)
         {
