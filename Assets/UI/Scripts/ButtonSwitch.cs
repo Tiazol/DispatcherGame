@@ -14,11 +14,8 @@ public class ButtonSwitch : MonoBehaviour
     {
         button = GetComponent<Button>();
         text = GetComponentInChildren<Text>();
-    }
 
-    private void Start()
-    {
         var segment = (RailroadSegment)button.onClick.GetPersistentTarget(0);
-        segment.SelectedRailroadSegmentChanged += isTrue => text.text = isTrue ? secondState : firstState;
+        segment.SelectedRailroadSegmentChanged += isNext1 => text.text = isNext1 ? firstState : secondState;
     }
 }

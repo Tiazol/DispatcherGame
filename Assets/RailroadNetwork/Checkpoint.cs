@@ -18,12 +18,11 @@ public class Checkpoint : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.Checkpoints.Add(gameObject, this);
         do
         {
             WType = (WagonType)Random.Range(0, System.Enum.GetNames(typeof(WagonType)).Length);
         }
-        while (CheckpointsManager.Instance.UsedWagonTypes.Contains(WType));
+        while (CheckpointsManager.Instance.UsedWagonTypes.Contains(WType)); // переписать инстанс в поиск в родителях?
         CheckpointsManager.Instance.UsedWagonTypes.Add(WType);
         sr.sprite = sprites[(int)WType];
     }

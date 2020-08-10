@@ -36,13 +36,13 @@ public class Wagon : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (GameManager.Instance.Checkpoints.ContainsKey(collision.gameObject))
+        if (CheckpointsManager.Instance.Checkpoints.ContainsKey(collision.gameObject))
         {
-            var checkpoint = GameManager.Instance.Checkpoints[collision.gameObject];
+            var checkpoint = CheckpointsManager.Instance.Checkpoints[collision.gameObject];
 
             if (checkpoint.WType != wagonType)
             {
-                GameManager.Instance.WrongWagons++;
+                ProgressManager.Instance.WrongWagons++;
             }
 
             Stop();
@@ -51,7 +51,7 @@ public class Wagon : MonoBehaviour
 
     private void Move()
     {
-        if (Mathf.Abs(distance - currentSegment.pathCreator.path.length) < distanceDiff)
+        if (Mathf.Abs(distance - currentSegment.Length) < distanceDiff)
         {
             currentSegment = currentSegment.GetNextRailroadSegment();
             distance = 0;
@@ -62,9 +62,9 @@ public class Wagon : MonoBehaviour
             }
         }
 
-        transform.position = currentSegment.pathCreator.path.GetPointAtDistance(distance);
+        transform.position = currentSegment.GetPointAtDistance(distance);
 
-        var rot = currentSegment.pathCreator.path.GetRotationAtDistance(distance);
+        var rot = currentSegment.GetRotationAtDistance(distance);
         transform.rotation = Quaternion.Euler(0, rot.eulerAngles.y + 90, rot.eulerAngles.x + 90);
 
         distance += Time.deltaTime * Speed;

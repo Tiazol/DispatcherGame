@@ -7,18 +7,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public Dictionary<GameObject, RailroadSegment> RailroadSegments { get; private set; }
-    public Dictionary<GameObject, Checkpoint> Checkpoints { get; private set; }
 
     public bool IsPaused { get; private set; }
-
-    public int WrongWagons { get; set; }
 
     private void Awake()
     {
         Instance = this;
-        RailroadSegments = new Dictionary<GameObject, RailroadSegment>();
-        Checkpoints = new Dictionary<GameObject, Checkpoint>();
     }
 
     private void Update()

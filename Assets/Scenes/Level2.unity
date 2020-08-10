@@ -153,7 +153,7 @@ PrefabInstance:
     - target: {fileID: 4949247202852301771, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}
       propertyPath: m_Name
-      value: LinearSegment 1111
+      value: Segment1111
       objectReference: {fileID: 0}
     - target: {fileID: 4949247202852301776, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}
@@ -208,7 +208,7 @@ PrefabInstance:
     - target: {fileID: 4949247202852301782, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4949247202852301782, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}
@@ -237,7 +237,7 @@ PrefabInstance:
     - target: {fileID: 178863268701594247, guid: b2da6c2438b0f674aa7407d36f617f78,
         type: 3}
       propertyPath: m_Name
-      value: TurnLeftSegment 111
+      value: Segment111
       objectReference: {fileID: 0}
     - target: {fileID: 178863268701594266, guid: b2da6c2438b0f674aa7407d36f617f78,
         type: 3}
@@ -277,7 +277,7 @@ PrefabInstance:
     - target: {fileID: 178863268701594266, guid: b2da6c2438b0f674aa7407d36f617f78,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 178863268701594266, guid: b2da6c2438b0f674aa7407d36f617f78,
         type: 3}
@@ -662,7 +662,7 @@ PrefabInstance:
     - target: {fileID: 6274943485746756382, guid: 4f833c6be975b164d9a1ea8e2b0f30ee,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SwitchActiveRailroadSegment
+      value: SwitchSelectedRailroadSegment
       objectReference: {fileID: 0}
     - target: {fileID: 6274943485746756383, guid: 4f833c6be975b164d9a1ea8e2b0f30ee,
         type: 3}
@@ -982,7 +982,7 @@ PrefabInstance:
     - target: {fileID: 6274943485746756382, guid: 4f833c6be975b164d9a1ea8e2b0f30ee,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SwitchActiveRailroadSegment
+      value: SwitchSelectedRailroadSegment
       objectReference: {fileID: 0}
     - target: {fileID: 6274943485746756383, guid: 4f833c6be975b164d9a1ea8e2b0f30ee,
         type: 3}
@@ -1006,6 +1006,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1161930249}
+  - component: {fileID: 1161930250}
   m_Layer: 0
   m_Name: RailroadSegments
   m_TagString: Untagged
@@ -1026,16 +1027,28 @@ Transform:
   m_Children:
   - {fileID: 1368454828}
   - {fileID: 1744342437}
-  - {fileID: 1794919244}
   - {fileID: 989399877}
-  - {fileID: 461898168}
-  - {fileID: 280547292}
-  - {fileID: 1028565034}
+  - {fileID: 1794919244}
   - {fileID: 1690743464}
+  - {fileID: 280547292}
+  - {fileID: 461898168}
   - {fileID: 1751197393}
+  - {fileID: 1028565034}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1161930250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161930248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd3ebab3e67da9e438341c10225ab098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1232349803
 GameObject:
   m_ObjectHideFlags: 0
@@ -1089,7 +1102,7 @@ PrefabInstance:
     - target: {fileID: 5553101514313386370, guid: 490d38f358dc7e142894913aa9b888ac,
         type: 3}
       propertyPath: m_Name
-      value: TurnRightSegment 12
+      value: Segment12
       objectReference: {fileID: 0}
     - target: {fileID: 5553101514313386393, guid: 490d38f358dc7e142894913aa9b888ac,
         type: 3}
@@ -1104,7 +1117,7 @@ PrefabInstance:
     - target: {fileID: 5553101514313386399, guid: 490d38f358dc7e142894913aa9b888ac,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5553101514313386399, guid: 490d38f358dc7e142894913aa9b888ac,
         type: 3}
@@ -1139,7 +1152,7 @@ PrefabInstance:
     - target: {fileID: 5553101514313386399, guid: 490d38f358dc7e142894913aa9b888ac,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5553101514313386399, guid: 490d38f358dc7e142894913aa9b888ac,
         type: 3}
@@ -1178,7 +1191,7 @@ PrefabInstance:
     - target: {fileID: 4949247202852301771, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}
       propertyPath: m_Name
-      value: LinearSegment 121
+      value: Segment121
       objectReference: {fileID: 0}
     - target: {fileID: 4949247202852301776, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}
@@ -1267,7 +1280,7 @@ PrefabInstance:
     - target: {fileID: 4949247202852301771, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}
       propertyPath: m_Name
-      value: LinearSegment 1
+      value: Segment1
       objectReference: {fileID: 0}
     - target: {fileID: 4949247202852301776, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}
@@ -1385,7 +1398,7 @@ PrefabInstance:
     - target: {fileID: 4949247202852301771, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}
       propertyPath: m_Name
-      value: LinearSegment 1211
+      value: Segment1211
       objectReference: {fileID: 0}
     - target: {fileID: 4949247202852301776, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}
@@ -1435,7 +1448,7 @@ PrefabInstance:
     - target: {fileID: 4949247202852301782, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4949247202852301782, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}
@@ -1574,7 +1587,7 @@ PrefabInstance:
     - target: {fileID: 4949247202852301771, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}
       propertyPath: m_Name
-      value: LinearSegment 112
+      value: Segment112
       objectReference: {fileID: 0}
     - target: {fileID: 4949247202852301776, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}
@@ -1634,7 +1647,7 @@ PrefabInstance:
     - target: {fileID: 4949247202852301782, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4949247202852301782, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}
@@ -1686,7 +1699,7 @@ PrefabInstance:
     - target: {fileID: 4949247202852301771, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}
       propertyPath: m_Name
-      value: LinearSegment 11
+      value: Segment11
       objectReference: {fileID: 0}
     - target: {fileID: 4949247202852301776, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}
@@ -1786,7 +1799,7 @@ PrefabInstance:
     - target: {fileID: 4949247202852301771, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}
       propertyPath: m_Name
-      value: LinearSegment 1121
+      value: Segment1121
       objectReference: {fileID: 0}
     - target: {fileID: 4949247202852301776, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}
@@ -1836,7 +1849,7 @@ PrefabInstance:
     - target: {fileID: 4949247202852301782, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4949247202852301782, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}

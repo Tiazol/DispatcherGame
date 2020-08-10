@@ -34,7 +34,7 @@ public class WagonGenerator : MonoBehaviour
         {
             typeIndex = Random.Range(0, typeCount); // warning! max int is EXCLUSIVE!
         } while (!CheckpointsManager.Instance.UsedWagonTypes.Contains((WagonType)typeIndex));
-        var wagon = Instantiate(wagonPrefab, startRailroadSegment.pathCreator.path.GetPoint(0), Quaternion.identity, transform);
+        var wagon = Instantiate(wagonPrefab, startRailroadSegment.GetPoint(0), Quaternion.identity, transform);
         wagon.startSegment = startRailroadSegment;
         wagon.Speed = wagonSpeed;
         wagon.SetWagonType(typeIndex);

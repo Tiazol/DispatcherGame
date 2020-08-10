@@ -3,6 +3,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -11,132 +12,124 @@ using UnityEngine.U2D;
 
 public class RailroadSegment : MonoBehaviour
 {
-    public RailroadSegment prevSegment;
-    public RailroadSegment nextSegment1;
-    public RailroadSegment nextSegment2;
-    public RailroadSegment SelectedRailroadSegment { get; set; }
+    public RailroadSegment PrevSegment { get; set; }
+    public RailroadSegment NextSegment1 { get; set; }
+    public RailroadSegment NextSegment2 { get; set; }
+    public RailroadSegment SelectedRailroadSegment
+    {
+        get => selectedRailroadSegment;
+        set
+        {
+            selectedRailroadSegment = value;
+            SelectedRailroadSegmentChanged?.Invoke(value == NextSegment1);
+        }
+    }
 
-    private bool isSelected;
-    private bool isShowing;
+    public bool IsVisible
+    {
+        get => isVisible;
+        set
+        {
+            isVisible = value;
+            VisibilityChanged?.Invoke(isVisible);
+        }
+    }
 
-    private SpriteShapeRenderer ssr;
+    public float Length => pathCreator.path.length;
+    public Vector3 GetPoint(int index) => pathCreator.path.GetPoint(index);
+    public Vector3 GetPointAtDistance(float distance) => pathCreator.path.GetPointAtDistance(distance);
+    public Quaternion GetRotationAtDistance(float distance) => pathCreator.path.GetRotationAtDistance(distance);
 
-    public event Action<bool> StatusChanged;
+    public event Action<bool> VisibilityChanged;
     public event Action<bool> SelectedRailroadSegmentChanged;
 
-    public PathCreator pathCreator;
+    private bool isVisible;
+    private RailroadSegment selectedRailroadSegment;
+    private SpriteShapeRenderer ssr;
+    private PathCreator pathCreator;
 
     private void Awake()
     {
         ssr = GetComponent<SpriteShapeRenderer>();
+        pathCreator = GetComponentInChildren<PathCreator>();
     }
 
-    private void Start()
+    private void OnDrawGizmos()
     {
-        GameManager.Instance.RailroadSegments.Add(gameObject, this);
-
-        // можно упростить?
-        isSelected = prevSegment == null ? true : false;
-        isShowing = prevSegment == null ? true : false;
-
-        SelectedRailroadSegment = nextSegment1;
-        SelectedRailroadSegmentChanged?.Invoke(false);
-
-        // 1. Подписка
-        if (prevSegment != null)
+        if (false)
         {
-            prevSegment.StatusChanged += isActive =>
+            var startP = pathCreator.path.GetPoint(0);
+            var endP = pathCreator.path.GetPoint(pathCreator.path.NumPoints - 1);
+
+            Gizmos.color = Color.blue;
+            Gizmos.DrawSphere(startP, 0.125f);
+            Gizmos.color = Color.red;
+            Gizmos.DrawSphere(endP, 0.125f);
+        }
+    }
+
+    public void Show()
+    {
+        if (PrevSegment.IsVisible)
+        {
+            if (PrevSegment.SelectedRailroadSegment == this)
             {
-                if (!isActive)
-                {
-                    Disable();
-                }
-                else
-                {
-                    if (this == prevSegment.SelectedRailroadSegment)
-                    {
-                        Enable();
-                    }
-                }
-            };
+                var color = new Color(ssr.color.r, ssr.color.g, ssr.color.b, 1.0f);
+                ssr.color = color;
 
-        }
-        // 2. Отключение второй ветки в стрелке
-        if (nextSegment2 != null)
-        {
-            nextSegment2.Disable();
-        }
+                IsVisible = true;
 
-        // 3. Сообщение о своем состоянии
-        StatusChanged?.Invoke(isSelected);
+                if (NextSegment1 != null)
+                {
+                    NextSegment1.Show();
+                }
+
+                if (NextSegment2 != null)
+                {
+                    NextSegment2.Show();
+                }
+            }
+        }
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    var startP = pathCreator.path.GetPoint(0);
-    //    var endP = pathCreator.path.GetPoint(pathCreator.path.NumPoints - 1);
-
-    //    Gizmos.color = Color.blue;
-    //    Gizmos.DrawSphere(startP, 0.125f);
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawSphere(endP, 0.125f);
-    //}
-
-    public void Enable()
+    public void Hide()
     {
-        if (prevSegment != null && prevSegment.isShowing || prevSegment == null)
-        {
-            var color = ssr.color;
-            color.a = 1.0f;
-            ssr.color = color;
-
-            isShowing = true;
-        }
-
-        isSelected = true;
-        StatusChanged?.Invoke(isSelected);
-    }
-
-    public void Disable()
-    {
-        isSelected = false;
-        isShowing = false;
-
-        var color = ssr.color;
-        color.a = 0.25f;
+        var color = new Color(ssr.color.r, ssr.color.g, ssr.color.b, 0.25f);
         ssr.color = color;
 
-        StatusChanged?.Invoke(isSelected);
+        IsVisible = false;
+        VisibilityChanged?.Invoke(IsVisible);
+
+        if (NextSegment1 != null)
+        {
+            NextSegment1.Hide();
+        }
+
+        if (NextSegment2 != null)
+        {
+            NextSegment2.Hide();
+        }
     }
 
-    public void SwitchActiveRailroadSegment()
+    public void SwitchSelectedRailroadSegment()
     {
-        if (nextSegment2 == null)
+        if (NextSegment2 == null)
         {
             Debug.LogError("This segment doesn't have Next Segment 2");
             return;
         }
 
-        SelectedRailroadSegment = SelectedRailroadSegment == nextSegment1 ? nextSegment2 : nextSegment1;
+        SelectedRailroadSegment = SelectedRailroadSegment == NextSegment1 ? NextSegment2 : NextSegment1;
 
-        if (SelectedRailroadSegment == nextSegment1)
+        if (SelectedRailroadSegment == NextSegment1)
         {
-            SelectedRailroadSegmentChanged?.Invoke(false);
+            NextSegment1.Show();
+            NextSegment2.Hide();
         }
         else
         {
-            SelectedRailroadSegmentChanged?.Invoke(true);
-        }
-
-        if (SelectedRailroadSegment == nextSegment1)
-        {
-            nextSegment1.Enable();
-            nextSegment2.Disable();
-        }
-        else
-        {
-            nextSegment1.Disable();
-            nextSegment2.Enable();
+            NextSegment1.Hide();
+            NextSegment2.Show();
         }
     }
 

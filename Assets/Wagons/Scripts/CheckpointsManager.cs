@@ -8,22 +8,25 @@ using UnityEngine;
 public class CheckpointsManager : MonoBehaviour
 {
     public static CheckpointsManager Instance { get; private set; }
+
+    public Dictionary<GameObject, Checkpoint> Checkpoints { get; private set; }
     public List<WagonType> UsedWagonTypes { get; set; }
-    private int passedWagonsCount;
     public event Action AllWagonsPassed;
+
+    private int passedWagonsCount;
 
     private void Awake()
     {
         Instance = this;
-        UsedWagonTypes = new List<WagonType>();
-    }
 
-    private void Start()
-    {
-        var cp = GetComponentsInChildren<Checkpoint>();
-        for (int i = 0; i < cp.Length; i++)
+        Checkpoints = new Dictionary<GameObject, Checkpoint>();
+        UsedWagonTypes = new List<WagonType>();
+
+        var checkpoints = GetComponentsInChildren<Checkpoint>();
+        foreach (var checkpoint in checkpoints)
         {
-            cp[i].WagonCatched += WagonCatched;
+            Checkpoints.Add(checkpoint.gameObject, checkpoint);
+            checkpoint.WagonCatched += WagonCatched;
         }
     }
 

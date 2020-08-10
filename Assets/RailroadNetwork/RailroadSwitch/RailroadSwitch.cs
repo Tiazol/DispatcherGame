@@ -19,11 +19,11 @@ public class RailroadSwitch : MonoBehaviour
     {
         if (ActiveRailroadSegment == endSegment1)
         {
-            endSegment2.Disable();
+            endSegment2.Hide();
         }
         else
         {
-            endSegment1.Disable();
+            endSegment1.Hide();
         }
     }
 
@@ -38,13 +38,13 @@ public class RailroadSwitch : MonoBehaviour
 
         if (ActiveRailroadSegment == endSegment1)
         {
-            endSegment1.Enable();
-            endSegment2.Disable();
+            endSegment1.Show();
+            endSegment2.Hide();
         }
         else
         {
-            endSegment1.Disable();
-            endSegment2.Enable();
+            endSegment1.Hide();
+            endSegment2.Show();
         }
     }
 }

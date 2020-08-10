@@ -17,6 +17,7 @@ public class ProgressManager : MonoBehaviour
     public int TotalLevelsCount { get; } = 3;
     public Dictionary<int, (bool, int)> Progress { get; private set; }
     public int UnlockedLevels { get; private set; }
+    public int WrongWagons { get; set; }
 
     private void Awake()
     {
@@ -50,7 +51,7 @@ public class ProgressManager : MonoBehaviour
 
     public void GenerateScore()
     {
-        var successfulWagons = WagonGenerator.Instance.totalWagonsCount - GameManager.Instance.WrongWagons;
+        var successfulWagons = WagonGenerator.Instance.totalWagonsCount - ProgressManager.Instance.WrongWagons;
         var result = (float)successfulWagons / WagonGenerator.Instance.totalWagonsCount;
         int score;
 
@@ -133,7 +134,7 @@ public class ProgressManager : MonoBehaviour
 
     private void ShowProgress(int score)
     {
-        var successfulWagons = WagonGenerator.Instance.totalWagonsCount - GameManager.Instance.WrongWagons;
+        var successfulWagons = WagonGenerator.Instance.totalWagonsCount - ProgressManager.Instance.WrongWagons;
         scoreText.text = successfulWagons.ToString() + " / " + WagonGenerator.Instance.totalWagonsCount;
         switch (score)
         {
