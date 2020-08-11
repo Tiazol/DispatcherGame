@@ -72,4 +72,9 @@ public class RailroadManager : MonoBehaviour
             }
         }
     }
+
+    public RailroadSegment GetFirstRailroadSegment()
+    {
+        return names.FirstOrDefault(n => n.Value == "1").Key;
+    }
 }

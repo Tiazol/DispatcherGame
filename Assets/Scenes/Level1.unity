@@ -364,6 +364,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1629853195705226043, guid: cee7580fde3e06445822421956dd51b4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 163.33337
+      objectReference: {fileID: 0}
     - target: {fileID: 2309920440941558985, guid: cee7580fde3e06445822421956dd51b4,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -393,6 +398,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4763201777875171650, guid: cee7580fde3e06445822421956dd51b4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5597482619445785771, guid: cee7580fde3e06445822421956dd51b4,
         type: 3}
@@ -1092,7 +1102,7 @@ PrefabInstance:
     - target: {fileID: 6329736642450545263, guid: ede3097ddeb8a22489ca14f97989ee8b,
         type: 3}
       propertyPath: wagonSpeed
-      value: 0.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6329736642450545263, guid: ede3097ddeb8a22489ca14f97989ee8b,
         type: 3}
@@ -1657,6 +1667,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 434c9bb26407ca1469b6c1db9922f47a, type: 3}
+--- !u!1 &1655629574 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4511839498301661058, guid: cee7580fde3e06445822421956dd51b4,
+    type: 3}
+  m_PrefabInstance: {fileID: 375580060}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1655629579
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655629574}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5a5b09e4aeb3de3408d06cbfd643079b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1686872945 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4949247202852301776, guid: 434c9bb26407ca1469b6c1db9922f47a,
