@@ -18,10 +18,7 @@ public class RailroadManager : MonoBehaviour
 
         segments = GetComponentsInChildren<RailroadSegment>();
         names = new Dictionary<RailroadSegment, string>();
-    }
 
-    private void Start()
-    {
         AssignSegments();
         SetProperties();
     }

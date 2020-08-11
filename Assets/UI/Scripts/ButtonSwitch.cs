@@ -5,17 +5,47 @@ using UnityEngine.UI;
 
 public class ButtonSwitch : MonoBehaviour
 {
-    private Button button;
-    private Text text;
-    private const string firstState = "←";
-    private const string secondState = "→";
+    public Image[] switchGraphics;
+
+    private const string animator_SwitchToLeft = "SwitchToLeft";
+    private const string animator_SwitchToRight = "SwitchToRight";
+
+    private RailroadSegment segment;
+    private Animator animator;
+    private bool isAnimating;
 
     private void Awake()
     {
-        button = GetComponent<Button>();
-        text = GetComponentInChildren<Text>();
+        animator = GetComponent<Animator>();
+    }
 
-        var segment = (RailroadSegment)button.onClick.GetPersistentTarget(0);
-        segment.SelectedRailroadSegmentChanged += isNext1 => text.text = isNext1 ? firstState : secondState;
+    private void Start()
+    {
+        segment = RailroadManager.Instance.GetFirstRailroadSegment();
+    }
+
+    public void SwitchToLeft()
+    {
+        if (!isAnimating)
+        {
+            isAnimating = true;
+            animator.SetTrigger(animator_SwitchToLeft);
+            segment.SwitchToLeft();
+        }
+    }
+
+    public void SwitchToRight()
+    {
+        if (!isAnimating)
+        {
+            isAnimating = true;
+            animator.SetTrigger(animator_SwitchToRight);
+            segment.SwitchToRight();
+        }
+    }
+
+    public void Animator_EndAnimation()
+    {
+        isAnimating = false;
     }
 }

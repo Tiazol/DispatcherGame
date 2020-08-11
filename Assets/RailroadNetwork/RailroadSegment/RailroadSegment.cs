@@ -112,24 +112,40 @@ public class RailroadSegment : MonoBehaviour
 
     public void SwitchSelectedRailroadSegment()
     {
-        if (NextSegment2 == null)
-        {
-            Debug.LogError("This segment doesn't have Next Segment 2");
-            return;
-        }
-
         SelectedRailroadSegment = SelectedRailroadSegment == NextSegment1 ? NextSegment2 : NextSegment1;
 
         if (SelectedRailroadSegment == NextSegment1)
         {
-            NextSegment1.Show();
-            NextSegment2.Hide();
+            SwitchToLeft();
         }
         else
         {
-            NextSegment1.Hide();
-            NextSegment2.Show();
+            SwitchToRight();
         }
+    }
+
+    public void SwitchToLeft()
+    {
+        if (NextSegment2 == null)
+        {
+            throw new Exception("This segment doesn't have Next Segment 2");
+        }
+
+        selectedRailroadSegment = NextSegment1;
+        NextSegment1.Show();
+        NextSegment2.Hide();
+    }
+
+    public void SwitchToRight()
+    {
+        if (NextSegment2 == null)
+        {
+            throw new Exception("This segment doesn't have Next Segment 2");
+        }
+
+        selectedRailroadSegment = NextSegment2;
+        NextSegment1.Hide();
+        NextSegment2.Show();
     }
 
     public RailroadSegment GetNextRailroadSegment()
