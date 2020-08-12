@@ -145,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startSegment: {fileID: 0}
   sprites:
-  - {fileID: 6054132210127953389, guid: 1cdb078fc5c5bcd408cc3bf220219015, type: 3}
+  - {fileID: 21300000, guid: 9a77de1ef0a27ef45b9562cd55a815be, type: 3}
   - {fileID: -2238958045086426632, guid: 1cdb078fc5c5bcd408cc3bf220219015, type: 3}
   - {fileID: 6196545459724446523, guid: 1cdb078fc5c5bcd408cc3bf220219015, type: 3}
   - {fileID: 1530470453883059196, guid: 1cdb078fc5c5bcd408cc3bf220219015, type: 3}

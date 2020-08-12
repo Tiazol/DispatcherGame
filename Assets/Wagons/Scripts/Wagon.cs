@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,16 +7,11 @@ public class Wagon : MonoBehaviour
     public float Speed { get; set; } // Задается в WagonGenerator
 
     private const float distanceDiff = 0.0625f;
-
-    public RailroadSegment startSegment;
-    private RailroadSegment currentSegment;
-
-    private WagonType wagonType;
-
-    private SpriteRenderer sr;
-    public Sprite[] sprites;
-
     private float distance;
+    private WagonType wagonType;
+    private RailroadSegment startSegment;
+    private RailroadSegment currentSegment;
+    private SpriteRenderer sr;
 
     private void Awake()
     {
@@ -26,6 +20,7 @@ public class Wagon : MonoBehaviour
 
     private void Start()
     {
+        startSegment = RailroadManager.Instance.GetFirstRailroadSegment();
         currentSegment = startSegment;
     }
 
@@ -75,10 +70,10 @@ public class Wagon : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void SetWagonType(int index)
+    public void SetWagonType(WagonType type, Sprite sprite)
     {
-        wagonType = (WagonType)index;
-        sr.sprite = sprites[index];
+        wagonType = type;
+        sr.sprite = sprite;
     }
 }
 

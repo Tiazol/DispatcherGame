@@ -18,14 +18,39 @@ public class WagonGenerator : MonoBehaviour
     private float time = 1.0f;
     private WagonType prevType;
 
+    private const string wagonSpritesConstant = "Sprites/Wagons";
+    private Dictionary<WagonType, List<Sprite>> spriteCollection;
+
     private void Awake()
     {
         Instance = this;
+
+        spriteCollection = new Dictionary<WagonType, List<Sprite>>();
+        foreach (var type in System.Enum.GetValues(typeof(WagonType)))
+        {
+            spriteCollection[(WagonType)type] = new List<Sprite>();
+        }
+        MarkUpSprites();
     }
 
     private void Start()
     {
         InvokeRepeating("GenerateWagon", 0f, wagonGeneratorInterval);
+    }
+
+    private void MarkUpSprites()
+    {
+        var sprites = Resources.LoadAll<Sprite>(wagonSpritesConstant);
+        foreach (var sprite in sprites)
+        {
+            foreach (var type in spriteCollection.Keys)
+            {
+                if (sprite.name.Contains(type.ToString()))
+                {
+                    spriteCollection[type].Add(sprite);
+                }
+            }
+        }
     }
 
     private void GenerateWagon()
@@ -55,9 +80,11 @@ public class WagonGenerator : MonoBehaviour
 
         var segment = RailroadManager.Instance.GetFirstRailroadSegment();
         var wagon = Instantiate(wagonPrefab, segment.GetPoint(0), Quaternion.identity, transform);
-        wagon.startSegment = segment;
+
+        var list = spriteCollection[(WagonType)typeIndex];
+        wagon.SetWagonType((WagonType)typeIndex, list[Random.Range(0, list.Count)]);
         wagon.Speed = wagonSpeed;
-        wagon.SetWagonType(typeIndex);
+
         passedWagonsCount++;
         WagonInstantiated?.Invoke();
         yield break;
