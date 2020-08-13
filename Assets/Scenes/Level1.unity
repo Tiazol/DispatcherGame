@@ -158,6 +158,21 @@ PrefabInstance:
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4949247202852301781, guid: 434c9bb26407ca1469b6c1db9922f47a,
+        type: 3}
+      propertyPath: m_LocalAABB.m_Center.y
+      value: 0.5000068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949247202852301781, guid: 434c9bb26407ca1469b6c1db9922f47a,
+        type: 3}
+      propertyPath: m_LocalAABB.m_Extent.x
+      value: 0.20001894
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949247202852301781, guid: 434c9bb26407ca1469b6c1db9922f47a,
+        type: 3}
+      propertyPath: m_LocalAABB.m_Extent.y
+      value: 1.5000091
+      objectReference: {fileID: 0}
     - target: {fileID: 4949247202852301782, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -226,6 +241,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Segment11
+      objectReference: {fileID: 0}
+    - target: {fileID: 178863268701594265, guid: b2da6c2438b0f674aa7407d36f617f78,
+        type: 3}
+      propertyPath: m_LocalAABB.m_Center.y
+      value: 0.500003
+      objectReference: {fileID: 0}
+    - target: {fileID: 178863268701594265, guid: b2da6c2438b0f674aa7407d36f617f78,
+        type: 3}
+      propertyPath: m_LocalAABB.m_Extent.x
+      value: 0.70000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 178863268701594265, guid: b2da6c2438b0f674aa7407d36f617f78,
+        type: 3}
+      propertyPath: m_LocalAABB.m_Extent.y
+      value: 1.5000045
       objectReference: {fileID: 0}
     - target: {fileID: 178863268701594266, guid: b2da6c2438b0f674aa7407d36f617f78,
         type: 3}
@@ -1253,12 +1283,12 @@ PrefabInstance:
     - target: {fileID: 6329736642450545263, guid: ede3097ddeb8a22489ca14f97989ee8b,
         type: 3}
       propertyPath: wagonSpeed
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6329736642450545263, guid: ede3097ddeb8a22489ca14f97989ee8b,
         type: 3}
       propertyPath: totalWagonsCount
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6329736642450545263, guid: ede3097ddeb8a22489ca14f97989ee8b,
         type: 3}
@@ -1298,6 +1328,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_DynamicOccludee
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949247202852301781, guid: 434c9bb26407ca1469b6c1db9922f47a,
+        type: 3}
+      propertyPath: m_LocalAABB.m_Center.y
+      value: 0.5000068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949247202852301781, guid: 434c9bb26407ca1469b6c1db9922f47a,
+        type: 3}
+      propertyPath: m_LocalAABB.m_Extent.x
+      value: 0.20001894
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949247202852301781, guid: 434c9bb26407ca1469b6c1db9922f47a,
+        type: 3}
+      propertyPath: m_LocalAABB.m_Extent.y
+      value: 1.5000091
       objectReference: {fileID: 0}
     - target: {fileID: 4949247202852301782, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}
@@ -1471,6 +1516,26 @@ PrefabInstance:
       propertyPath: nextSegment1
       value: 
       objectReference: {fileID: 280547289}
+    - target: {fileID: 5553101514313386396, guid: 490d38f358dc7e142894913aa9b888ac,
+        type: 3}
+      propertyPath: m_LocalAABB.m_Center.x
+      value: 0.50000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 5553101514313386396, guid: 490d38f358dc7e142894913aa9b888ac,
+        type: 3}
+      propertyPath: m_LocalAABB.m_Center.y
+      value: 0.50000703
+      objectReference: {fileID: 0}
+    - target: {fileID: 5553101514313386396, guid: 490d38f358dc7e142894913aa9b888ac,
+        type: 3}
+      propertyPath: m_LocalAABB.m_Extent.x
+      value: 0.70000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 5553101514313386396, guid: 490d38f358dc7e142894913aa9b888ac,
+        type: 3}
+      propertyPath: m_LocalAABB.m_Extent.y
+      value: 1.5000093
+      objectReference: {fileID: 0}
     - target: {fileID: 5553101514313386399, guid: 490d38f358dc7e142894913aa9b888ac,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1565,6 +1630,21 @@ PrefabInstance:
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4949247202852301781, guid: 434c9bb26407ca1469b6c1db9922f47a,
+        type: 3}
+      propertyPath: m_LocalAABB.m_Center.y
+      value: 0.5000068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949247202852301781, guid: 434c9bb26407ca1469b6c1db9922f47a,
+        type: 3}
+      propertyPath: m_LocalAABB.m_Extent.x
+      value: 0.20001894
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949247202852301781, guid: 434c9bb26407ca1469b6c1db9922f47a,
+        type: 3}
+      propertyPath: m_LocalAABB.m_Extent.y
+      value: 1.5000091
+      objectReference: {fileID: 0}
     - target: {fileID: 4949247202852301782, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1653,6 +1733,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_DynamicOccludee
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949247202852301781, guid: 434c9bb26407ca1469b6c1db9922f47a,
+        type: 3}
+      propertyPath: m_LocalAABB.m_Center.y
+      value: 0.5000068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949247202852301781, guid: 434c9bb26407ca1469b6c1db9922f47a,
+        type: 3}
+      propertyPath: m_LocalAABB.m_Extent.x
+      value: 0.20001894
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949247202852301781, guid: 434c9bb26407ca1469b6c1db9922f47a,
+        type: 3}
+      propertyPath: m_LocalAABB.m_Extent.y
+      value: 1.5000091
       objectReference: {fileID: 0}
     - target: {fileID: 4949247202852301782, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}
@@ -1760,6 +1855,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_DynamicOccludee
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949247202852301781, guid: 434c9bb26407ca1469b6c1db9922f47a,
+        type: 3}
+      propertyPath: m_LocalAABB.m_Center.y
+      value: 0.5000068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949247202852301781, guid: 434c9bb26407ca1469b6c1db9922f47a,
+        type: 3}
+      propertyPath: m_LocalAABB.m_Extent.x
+      value: 0.20001894
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949247202852301781, guid: 434c9bb26407ca1469b6c1db9922f47a,
+        type: 3}
+      propertyPath: m_LocalAABB.m_Extent.y
+      value: 1.5000091
       objectReference: {fileID: 0}
     - target: {fileID: 4949247202852301782, guid: 434c9bb26407ca1469b6c1db9922f47a,
         type: 3}

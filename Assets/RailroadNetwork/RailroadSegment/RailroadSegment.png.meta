@@ -1,16 +1,7 @@
 fileFormatVersion: 2
-guid: 1404d052c90259e45bae25399c88ed6e
+guid: 9abbf1c800baabe45bd4f961b0291929
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -1177496759207761620
-    second: TankCarPurpleSpriteSheet_0
-  - first:
-      213: -8598632600786670334
-    second: TankCarPurpleSpriteSheet_1
-  - first:
-      213: 197338042944464638
-    second: TankCarPurpleSpriteSheet_2
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -49,13 +40,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 50
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 9, z: 0, w: 9}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -118,70 +109,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: TankCarPurpleSpriteSheet_0
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 1
-        width: 16
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c296f37afe0b8afe0800000000000000
-      internalID: -1177496759207761620
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TankCarPurpleSpriteSheet_1
-      rect:
-        serializedVersion: 2
-        x: 19
-        y: 1
-        width: 16
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 20d640405358ba880800000000000000
-      internalID: -8598632600786670334
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TankCarPurpleSpriteSheet_2
-      rect:
-        serializedVersion: 2
-        x: 37
-        y: 1
-        width: 16
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ef6206e87e51db200800000000000000
-      internalID: 197338042944464638
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []

@@ -46,13 +46,10 @@ MonoBehaviour:
   editorData:
     _bezierPath:
       points:
-      - {x: 0.004137069, y: -0.9822538, z: 0}
-      - {x: -0.0011947751, y: -0.0065234303, z: 0}
-      - {x: -0.022982359, y: 0.011898667, z: 0}
-      - {x: 0.50261956, y: 0.50917464, z: 0}
-      - {x: 1.0150509, y: 0.9939898, z: 0}
-      - {x: 1.0119823, y: 1.0001267, z: 0}
-      - {x: 1.0011947, y: 2.0035877, z: 0}
+      - {x: 0, y: -1, z: 0}
+      - {x: 0, y: 0.75, z: 0}
+      - {x: 1, y: 0.25, z: 0}
+      - {x: 1, y: 2, z: 0}
       isClosed: 0
       space: 1
       controlMode: 0
@@ -64,10 +61,9 @@ MonoBehaviour:
       perAnchorNormalsAngle:
       - 0
       - 0
-      - 0
       globalNormalsAngle: 0
       flipNormals: 0
-    vertexPathUpToDate: 1
+    vertexPathUpToDate: 0
     vertexPathMaxAngleError: 0.3
     vertexPathMinVertexSpacing: 0.01
     showTransformTool: 1
@@ -168,8 +164,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 151012afacd48454c9608bd2ae0e2a04, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0.49999997, y: 0.5000032, z: -0.00005}
-    m_Extent: {x: 0.59999996, y: 1.5000044, z: 0.00005}
+    m_Center: {x: 0.50000006, y: 0.50000703, z: -0.00005}
+    m_Extent: {x: 0.70000005, y: 1.5000093, z: 0.00005}
 --- !u!114 &5553101514313386397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,10 +235,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434f15699600d674ea8ef7baac8920d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPoint: {x: 1, y: 2, z: 0}
-  endPoint: {x: 0, y: -1, z: 0}
-  prevSegment: {fileID: 0}
-  nextSegment1: {fileID: 0}
-  nextSegment2: {fileID: 0}
-  ssc: {fileID: 0}
-  pathCreator: {fileID: 7727255179984323198}
+  isVisible: 0
