@@ -8,6 +8,7 @@ public class SwipeController : MonoBehaviour, IDragHandler, IBeginDragHandler
 {
     private ButtonSwitch[] switches;
     private Canvas canvas;
+    private const float distanceToSwitch = 2.0f;
 
     private void Awake()
     {
@@ -24,7 +25,7 @@ public class SwipeController : MonoBehaviour, IDragHandler, IBeginDragHandler
 
             // Если расстояние между нажатием и кнопкой меньше указанного
 
-            if (Vector2.Distance(dragPos, switchPos) < 1f)
+            if (Vector2.Distance(dragPos, switchPos) < distanceToSwitch)
             {
                 // Если свайп "по горизонтали"
 
