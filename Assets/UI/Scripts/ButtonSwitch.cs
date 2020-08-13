@@ -6,16 +6,11 @@ using UnityEngine.UI;
 
 public class ButtonSwitch : MonoBehaviour, IBeginDragHandler, IDragHandler
 {
-    public Image[] switchGraphics;
     public RailroadSegment segment;
-
-    public Vector2 SwipeZoneCentr => transform.TransformPoint(rectTransform.rect.center);
-    public Vector2 SwipeZoneSize => rectTransform.rect.size;
 
     private const string animator_SwitchToLeft = "SwitchToLeft";
     private const string animator_SwitchToRight = "SwitchToRight";
 
-    private RectTransform rectTransform;
     private State state;
     private Animator animator;
     private bool isAnimating;
@@ -23,7 +18,6 @@ public class ButtonSwitch : MonoBehaviour, IBeginDragHandler, IDragHandler
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        rectTransform = GetComponent<RectTransform>();
         state = segment.SelectedRailroadSegment == segment.NextSegment1 ? State.Left : State.Right;
     }
 
@@ -37,7 +31,7 @@ public class ButtonSwitch : MonoBehaviour, IBeginDragHandler, IDragHandler
 
             if (eventData.delta.x > 0)
             {
-                Debug.Log($"{name}, вправо");
+
                 SwitchToRight();
             }
 
@@ -45,8 +39,6 @@ public class ButtonSwitch : MonoBehaviour, IBeginDragHandler, IDragHandler
 
             else
             {
-                Debug.Log($"{name}, влево");
-
                 SwitchToLeft();
             }
         }

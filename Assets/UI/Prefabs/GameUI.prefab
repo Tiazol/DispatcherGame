@@ -1241,7 +1241,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 200}
+  m_SizeDelta: {x: 200, y: 400}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &2850134596360362476
 CanvasRenderer:
@@ -1298,8 +1298,6 @@ MonoBehaviour:
   - {fileID: -2238958045086426632, guid: 1cdb078fc5c5bcd408cc3bf220219015, type: 3}
   - {fileID: 6196545459724446523, guid: 1cdb078fc5c5bcd408cc3bf220219015, type: 3}
   - {fileID: 1530470453883059196, guid: 1cdb078fc5c5bcd408cc3bf220219015, type: 3}
-  notificationsBlinkingAnimation: {fileID: 7400000, guid: 5473688fedef177459188204bf068e3f,
-    type: 2}
 --- !u!95 &6762274401708531610
 Animator:
   serializedVersion: 3
@@ -1354,7 +1352,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 100, y: 175}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6004449464201657848
 CanvasRenderer:
@@ -1383,7 +1381,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 6196545459724446523, guid: 1cdb078fc5c5bcd408cc3bf220219015,
+  m_Sprite: {fileID: 8353806013667307352, guid: f2fbdb64f5707b64e8161e3b35e801f1,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 1
