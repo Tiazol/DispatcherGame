@@ -15,7 +15,7 @@ public class WagonGenerator : MonoBehaviour
     public event System.Action WagonInstantiated;
 
     private int passedWagonsCount;
-    private float time = 1.0f;
+    private float time = 3.0f;
     private WagonType prevType;
 
     private const string wagonSpritesConstant = "Sprites/Wagons";

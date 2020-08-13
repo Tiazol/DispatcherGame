@@ -12,6 +12,8 @@ using UnityEngine.U2D;
 
 public class RailroadSegment : MonoBehaviour
 {
+    public Animator animator;
+
     public RailroadSegment PrevSegment { get; set; }
     public RailroadSegment NextSegment1 { get; set; }
     public RailroadSegment NextSegment2 { get; set; }
@@ -46,54 +48,39 @@ public class RailroadSegment : MonoBehaviour
     private const string animator_Hide = "Hide";
     private const string animator_Show = "Show";
 
-    private bool isVisible;
+    public bool isVisible;
     private RailroadSegment selectedRailroadSegment;
-    private SpriteShapeRenderer ssr;
-    private Animator animator;
     private PathCreator pathCreator;
 
     private void Awake()
     {
-        ssr = GetComponent<SpriteShapeRenderer>();
-        animator = GetComponent<Animator>();
         pathCreator = GetComponentInChildren<PathCreator>();
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (false)
-        {
-            var startP = pathCreator.path.GetPoint(0);
-            var endP = pathCreator.path.GetPoint(pathCreator.path.NumPoints - 1);
-
-            Gizmos.color = Color.blue;
-            Gizmos.DrawSphere(startP, 0.125f);
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(endP, 0.125f);
-        }
     }
 
     public void Show()
     {
-        if (PrevSegment.IsVisible)
+        if (!IsVisible)
         {
-            if (PrevSegment.SelectedRailroadSegment == this)
+            if (PrevSegment.IsVisible)
             {
-                //var color = new Color(ssr.color.r, ssr.color.g, ssr.color.b, 1.0f);
-                //ssr.color = color;
-
-                animator.SetTrigger(animator_Show);
-
-                IsVisible = true;
-
-                if (NextSegment1 != null)
+                if (PrevSegment.SelectedRailroadSegment == this)
                 {
-                    NextSegment1.Show();
-                }
+                    //var color = new Color(ssr.color.r, ssr.color.g, ssr.color.b, 1.0f);
+                    //ssr.color = color;
 
-                if (NextSegment2 != null)
-                {
-                    NextSegment2.Show();
+                    animator.SetTrigger(animator_Show);
+
+                    IsVisible = true;
+
+                    if (NextSegment1 != null)
+                    {
+                        NextSegment1.Show();
+                    }
+
+                    if (NextSegment2 != null)
+                    {
+                        NextSegment2.Show();
+                    }
                 }
             }
         }
@@ -104,25 +91,21 @@ public class RailroadSegment : MonoBehaviour
         //var color = new Color(ssr.color.r, ssr.color.g, ssr.color.b, 0.25f);
         //ssr.color = color;
 
-        if (animator != null)
+        if (IsVisible)
         {
             animator.SetTrigger(animator_Hide);
-        }
-        else
-        {
-            Debug.LogError("Fuck, animator is null", this);
-        }
 
-        IsVisible = false;
+            IsVisible = false;
 
-        if (NextSegment1 != null)
-        {
-            NextSegment1.Hide();
-        }
+            if (NextSegment1 != null)
+            {
+                NextSegment1.Hide();
+            }
 
-        if (NextSegment2 != null)
-        {
-            NextSegment2.Hide();
+            if (NextSegment2 != null)
+            {
+                NextSegment2.Hide();
+            }
         }
     }
 

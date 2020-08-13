@@ -50,3 +50,6 @@ TagManager:
   - name: Wagons
     uniqueID: 24196679
     locked: 0
+  - name: Checkpoints
+    uniqueID: 3163052371
+    locked: 0

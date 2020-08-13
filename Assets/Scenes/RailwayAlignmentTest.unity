@@ -1344,6 +1344,21 @@ PrefabInstance:
       propertyPath: m_LocalAABB.m_Extent.x
       value: 0.19999999
       objectReference: {fileID: 0}
+    - target: {fileID: 8892996027155696537, guid: 043c1c450f927074f8ad2a2c06a28c90,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892996027155696537, guid: 043c1c450f927074f8ad2a2c06a28c90,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892996027155696537, guid: 043c1c450f927074f8ad2a2c06a28c90,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8892996027155696538, guid: 043c1c450f927074f8ad2a2c06a28c90,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1590,12 +1605,12 @@ PrefabInstance:
     - target: {fileID: 6329736642450545263, guid: ede3097ddeb8a22489ca14f97989ee8b,
         type: 3}
       propertyPath: wagonGeneratorInterval
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6329736642450545263, guid: ede3097ddeb8a22489ca14f97989ee8b,
         type: 3}
       propertyPath: wagonSpeed
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6329736642450545263, guid: ede3097ddeb8a22489ca14f97989ee8b,
         type: 3}
@@ -2682,7 +2697,7 @@ PrefabInstance:
     - target: {fileID: 438950376579498733, guid: 55693cd67b2ce63459be4739c948a429,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 48
+      value: 96
       objectReference: {fileID: 0}
     - target: {fileID: 438950376579498733, guid: 55693cd67b2ce63459be4739c948a429,
         type: 3}
