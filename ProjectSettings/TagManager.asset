@@ -44,3 +44,6 @@ TagManager:
   - name: Railroad
     uniqueID: 3346266507
     locked: 0
+  - name: Wagons
+    uniqueID: 24196679
+    locked: 0

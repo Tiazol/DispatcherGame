@@ -50,12 +50,12 @@ PrefabInstance:
     - target: {fileID: 5128653961904664671, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[1].x
-      value: 0.058410138
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5128653961904664671, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[1].y
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5128653961904664671, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
@@ -65,7 +65,7 @@ PrefabInstance:
     - target: {fileID: 5128653961904664671, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[2].y
-      value: 0.75
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5128653961904664671, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
@@ -110,7 +110,7 @@ PrefabInstance:
     - target: {fileID: 5128653961904664671, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: editorData.tabIndex
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5128653961904664671, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
@@ -145,7 +145,7 @@ PrefabInstance:
     - target: {fileID: 5128653961904664671, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: editorData.vertexPathUpToDate
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5604173970496144546, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
@@ -172,6 +172,11 @@ PrefabInstance:
       propertyPath: m_LocalAABB.m_Extent.y
       value: 0.5559199
       objectReference: {fileID: 0}
+    - target: {fileID: 5604173970496144572, guid: bf41c0c09b6bad94494a0141211d4ea9,
+        type: 3}
+      propertyPath: m_ShapeTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: 9abbf1c800baabe45bd4f961b0291929, type: 3}
     - target: {fileID: 5604173970496144573, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: m_Spline.m_ControlPoints.Array.data[1].position.x

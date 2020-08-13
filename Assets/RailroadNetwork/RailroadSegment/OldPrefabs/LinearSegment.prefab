@@ -63,7 +63,7 @@ MonoBehaviour:
       - 0
       globalNormalsAngle: 0
       flipNormals: 0
-    vertexPathUpToDate: 1
+    vertexPathUpToDate: 0
     vertexPathMaxAngleError: 0.3
     vertexPathMinVertexSpacing: 0.01
     showTransformTool: 1
@@ -160,12 +160,12 @@ SpriteShapeRenderer:
   m_SortingOrder: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_MaskInteraction: 0
-  m_ShapeTexture: {fileID: 0}
+  m_ShapeTexture: {fileID: 2800000, guid: 9abbf1c800baabe45bd4f961b0291929, type: 3}
   m_Sprites:
-  - {fileID: 21300000, guid: 151012afacd48454c9608bd2ae0e2a04, type: 3}
+  - {fileID: 21300000, guid: 3916bbc58329228479d63cf3e6366b59, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0.000018954277, y: 0.50000346, z: -0.00005}
-    m_Extent: {x: 0.10001895, y: 1.5000046, z: 0.00005}
+    m_Center: {x: 0.000018954277, y: 0.50000525, z: -0.00005}
+    m_Extent: {x: 0.16001895, y: 1.5000072, z: 0.00005}
 --- !u!114 &4949247202852301780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,11 +226,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434f15699600d674ea8ef7baac8920d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPoint: {x: 1, y: 2, z: 0}
-  endPoint: {x: 0, y: -1, z: 0}
-  prevSegment: {fileID: 0}
-  nextSegment1: {fileID: 0}
-  nextSegment2: {fileID: 0}
-  ssc: {fileID: 0}
-  pathCreator: {fileID: 5640168131546095414}
-  pathCreator2: {fileID: 0}

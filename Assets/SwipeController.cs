@@ -8,7 +8,6 @@ public class SwipeController : MonoBehaviour, IDragHandler, IBeginDragHandler
 {
     private ButtonSwitch[] switches;
     private Canvas canvas;
-    private const float distanceToSwitch = 2.0f;
 
     private void Awake()
     {
@@ -18,14 +17,26 @@ public class SwipeController : MonoBehaviour, IDragHandler, IBeginDragHandler
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        Debug.Log($"drag position = {eventData.position}, drag world position = {eventData.pointerCurrentRaycast.worldPosition}, drag screen position = {eventData.pointerCurrentRaycast.screenPosition}");
+        return;
         foreach (var sw in switches)
         {
-            var dragPos = canvas.worldCamera.ScreenToWorldPoint(eventData.position); // для справки: центр координат eventData.position находится внизу слева
-            var switchPos = new Vector3(sw.transform.position.x, sw.transform.position.y, sw.transform.position.z - 5);
+            // Камера, на которой работает канвас, переведи, пожалуйста, позицию свайпа из экранных координат в координаты игрового мира
 
-            // Если расстояние между нажатием и кнопкой меньше указанного
+            var dragPos = canvas.worldCamera.ScreenToWorldPoint(eventData.position);
+            
+            // Если позиция свайпа попадает в зону свайпа переключателя
 
-            if (Vector2.Distance(dragPos, switchPos) < distanceToSwitch)
+            var xOK = (dragPos.x >= sw.SwipeZoneCentr.x - sw.SwipeZoneSize.x / 2) && (dragPos.x <= sw.SwipeZoneCentr.x + sw.SwipeZoneSize.x / 2);
+            var yOK = (dragPos.y >= sw.SwipeZoneCentr.y - sw.SwipeZoneSize.y / 2) && (dragPos.y <= sw.SwipeZoneCentr.y + sw.SwipeZoneSize.y / 2);
+            
+            if (sw.name == "RailwaySwitch (1)")
+            {
+                //Debug.Log($"{dragPos.x} >= {sw.SwipeZoneCentr.x} - {sw.SwipeZoneSize.x / 2}", this);
+                //Debug.Log($"{dragPos.x} <= {sw.SwipeZoneCentr.x} + {sw.SwipeZoneSize.x / 2}", this);
+            }
+
+            if (xOK && yOK)
             {
                 // Если свайп "по горизонтали"
 

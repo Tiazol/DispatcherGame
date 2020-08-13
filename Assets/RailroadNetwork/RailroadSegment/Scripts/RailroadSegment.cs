@@ -43,14 +43,19 @@ public class RailroadSegment : MonoBehaviour
     public event Action<bool> VisibilityChanged;
     public event Action<bool> SelectedRailroadSegmentChanged;
 
+    private const string animator_Hide = "Hide";
+    private const string animator_Show = "Show";
+
     private bool isVisible;
     private RailroadSegment selectedRailroadSegment;
     private SpriteShapeRenderer ssr;
+    private Animator animator;
     private PathCreator pathCreator;
 
     private void Awake()
     {
         ssr = GetComponent<SpriteShapeRenderer>();
+        animator = GetComponent<Animator>();
         pathCreator = GetComponentInChildren<PathCreator>();
     }
 
@@ -74,8 +79,10 @@ public class RailroadSegment : MonoBehaviour
         {
             if (PrevSegment.SelectedRailroadSegment == this)
             {
-                var color = new Color(ssr.color.r, ssr.color.g, ssr.color.b, 1.0f);
-                ssr.color = color;
+                //var color = new Color(ssr.color.r, ssr.color.g, ssr.color.b, 1.0f);
+                //ssr.color = color;
+
+                animator.SetTrigger(animator_Show);
 
                 IsVisible = true;
 
@@ -94,8 +101,17 @@ public class RailroadSegment : MonoBehaviour
 
     public void Hide()
     {
-        var color = new Color(ssr.color.r, ssr.color.g, ssr.color.b, 0.25f);
-        ssr.color = color;
+        //var color = new Color(ssr.color.r, ssr.color.g, ssr.color.b, 0.25f);
+        //ssr.color = color;
+
+        if (animator != null)
+        {
+            animator.SetTrigger(animator_Hide);
+        }
+        else
+        {
+            Debug.LogError("Fuck, animator is null", this);
+        }
 
         IsVisible = false;
 
