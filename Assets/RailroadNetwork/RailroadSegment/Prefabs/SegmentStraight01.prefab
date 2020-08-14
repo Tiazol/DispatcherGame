@@ -20,7 +20,7 @@ PrefabInstance:
     - target: {fileID: 5128653961904664671, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: editorData.vertexPathUpToDate
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5604173970496144546, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
@@ -31,7 +31,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ShapeTexture
       value: 
-      objectReference: {fileID: 2800000, guid: 9abbf1c800baabe45bd4f961b0291929, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 5604173970496144572, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: m_LocalAABB.m_Center.x
@@ -45,7 +45,7 @@ PrefabInstance:
     - target: {fileID: 5604173970496144572, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: m_LocalAABB.m_Extent.x
-      value: 0.16
+      value: 0.19999999
       objectReference: {fileID: 0}
     - target: {fileID: 5604173970496144572, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}

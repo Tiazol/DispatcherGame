@@ -12,10 +12,12 @@ public class Wagon : MonoBehaviour
     private RailroadSegment startSegment;
     private RailroadSegment currentSegment;
     private SpriteRenderer sr;
+    private AudioSource audioSource;
 
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -42,6 +44,12 @@ public class Wagon : MonoBehaviour
 
             Stop();
         }
+
+        //if (collision.CompareTag("Fishplate"))
+        //{
+        //    var volume = Random.Range(0.75f, 1.0f);
+        //    audioSource.PlayOneShot(audioSource.clip, volume);
+        //}
     }
 
     private void Move()

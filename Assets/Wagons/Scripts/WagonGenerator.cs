@@ -83,7 +83,7 @@ public class WagonGenerator : MonoBehaviour
 
         var list = spriteCollection[(WagonType)typeIndex];
         wagon.SetWagonType((WagonType)typeIndex, list[Random.Range(0, list.Count)]);
-        wagon.Speed = wagonSpeed;
+        wagon.Speed = wagonSpeed * Random.Range(0.9f, 1.1f);;
 
         passedWagonsCount++;
         WagonInstantiated?.Invoke();
