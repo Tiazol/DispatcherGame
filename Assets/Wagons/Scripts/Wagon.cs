@@ -36,20 +36,18 @@ public class Wagon : MonoBehaviour
         if (CheckpointsManager.Instance.Checkpoints.ContainsKey(collision.gameObject))
         {
             var checkpoint = CheckpointsManager.Instance.Checkpoints[collision.gameObject];
-
+            
             if (checkpoint.WType != wagonType)
             {
                 ProgressManager.Instance.WrongWagons++;
             }
-
-            Stop();
         }
 
-        //if (collision.CompareTag("Fishplate"))
-        //{
-        //    var volume = Random.Range(0.75f, 1.0f);
-        //    audioSource.PlayOneShot(audioSource.clip, volume);
-        //}
+        if (collision.CompareTag("WagonDeleter"))
+        {
+            
+            Stop();
+        }
     }
 
     private void Move()

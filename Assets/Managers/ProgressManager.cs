@@ -51,8 +51,8 @@ public class ProgressManager : MonoBehaviour
 
     public void GenerateScore()
     {
-        var successfulWagons = WagonGenerator.Instance.totalWagonsCount - ProgressManager.Instance.WrongWagons;
-        var result = (float)successfulWagons / WagonGenerator.Instance.totalWagonsCount;
+        var successfulWagons = WagonGenerator.Instance.wagonsToLaunch - ProgressManager.Instance.WrongWagons;
+        var result = (float)successfulWagons / WagonGenerator.Instance.wagonsToLaunch;
 
         if (result < 0.5f)
         {
@@ -133,8 +133,8 @@ public class ProgressManager : MonoBehaviour
 
     private void ShowProgress(int score)
     {
-        var successfulWagons = WagonGenerator.Instance.totalWagonsCount - ProgressManager.Instance.WrongWagons;
-        scoreText.text = successfulWagons.ToString() + " / " + WagonGenerator.Instance.totalWagonsCount;
+        var successfulWagons = WagonGenerator.Instance.wagonsToLaunch - ProgressManager.Instance.WrongWagons;
+        scoreText.text = successfulWagons.ToString() + " / " + WagonGenerator.Instance.wagonsToLaunch;
         switch (score)
         {
             case 3:

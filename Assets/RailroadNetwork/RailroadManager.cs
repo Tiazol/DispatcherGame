@@ -19,7 +19,7 @@ public class RailroadManager : MonoBehaviour
         segments = GetComponentsInChildren<RailroadSegment>();
         names = new Dictionary<RailroadSegment, string>();
 
-        AssignSegments();
+        AssignSegments2();
         SetProperties();
     }
 
@@ -48,6 +48,45 @@ public class RailroadManager : MonoBehaviour
         }
     }
 
+    private void AssignSegments2()
+    {
+        foreach (var segment in segments)
+        {
+            foreach (var otherSegment in segments)
+            {
+                if (otherSegment == segment)
+                {
+                    continue;
+                }
+
+                if (segment.FirstPoint == otherSegment.LastPoint)
+                {
+                    segment.PrevSegment = otherSegment;
+                }
+
+                if (segment.LastPoint == otherSegment.FirstPoint)
+                {
+                    if (segment.NextSegment1 == null)
+                    {
+                        segment.NextSegment1 = otherSegment;
+                    }
+                    else
+                    {
+                        if (segment.NextSegment1.LastPoint.x < otherSegment.LastPoint.x)
+                        {
+                            segment.NextSegment2 = otherSegment;
+                        }
+                        else
+                        {
+                            segment.NextSegment2 = segment.NextSegment1;
+                            segment.NextSegment1 = otherSegment;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     private void SetProperties()
     {
         // set start conditions
@@ -72,6 +111,6 @@ public class RailroadManager : MonoBehaviour
 
     public RailroadSegment GetFirstRailroadSegment()
     {
-        return names.FirstOrDefault(n => n.Value == "1").Key;
+        return segments.FirstOrDefault(segment => segment.PrevSegment == null);
     }
 }

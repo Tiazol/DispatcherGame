@@ -9,24 +9,24 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: e04b82aff3fbcf44b919287db7813011
   - enabled: 0
-    path: Assets/Scenes/Level1.unity
+    path: Assets/Scenes/Debug/Level1.unity
     guid: 9bca50ce9597f9348be6ffce821bcb2a
   - enabled: 1
-    path: Assets/Scenes/RailwayAlignmentTest.unity
+    path: Assets/Scenes/Debug/RailwayAlignmentTest.unity
     guid: bfb4ab2cbce5d934e8fbf2c458c32151
   - enabled: 0
-    path: Assets/Scenes/Level2.unity
+    path: Assets/Scenes/Debug/Level2.unity
     guid: 0a8a8bb86c6fb2a4380143552127032f
   - enabled: 0
-    path: Assets/Scenes/Level3.unity
+    path: Assets/Scenes/Debug/Level3.unity
     guid: 5209310cd0f2e08488f0599a06bc5958
   - enabled: 0
-    path: Assets/Scenes/SimpleLevel.unity
+    path: Assets/Scenes/Debug/SimpleLevel.unity
     guid: 05aa961eb301e28499b39098645f0813
   - enabled: 0
-    path: Assets/Scenes/TestScene.unity
+    path: Assets/Scenes/Debug/TestScene.unity
     guid: 63526f2374d35604cac3995ddf9d51a3
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Debug/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

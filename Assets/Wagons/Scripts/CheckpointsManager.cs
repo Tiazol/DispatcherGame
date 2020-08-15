@@ -26,16 +26,17 @@ public class CheckpointsManager : MonoBehaviour
         foreach (var checkpoint in checkpoints)
         {
             Checkpoints.Add(checkpoint.gameObject, checkpoint);
-            checkpoint.WagonCatched += WagonCatched;
+            checkpoint.WagonPassed += WagonPassed;
         }
     }
 
-    private void WagonCatched()
+    private void WagonPassed()
     {
         passedWagonsCount++;
 
-        if (passedWagonsCount == WagonGenerator.Instance.totalWagonsCount)
+        if (passedWagonsCount == WagonGenerator.Instance.wagonsToLaunch)
         {
+            Debug.Log(3);
             AllWagonsPassed?.Invoke();
         }
     }

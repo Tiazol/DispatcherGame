@@ -26,6 +26,7 @@ public class ConstantSound : MonoBehaviour
         var vol = (1 - Mathf.Abs(vRelative)) * (1 - Mathf.Abs(hRelative));
 
         audioSource.panStereo = hRelative;
-
+        audioSource.loop = true;
+        audioSource.PlayOneShot(audioSource.clip, vol);
     }
 }

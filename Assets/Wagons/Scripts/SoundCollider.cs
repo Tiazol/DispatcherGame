@@ -31,8 +31,6 @@ public class SoundCollider : MonoBehaviour
 
             var vol = (1 - Mathf.Abs(vRelative)) * (1 - Mathf.Abs(hRelative));
 
-            Debug.Log($"hrel = {hRelative}, vrel = {vRelative}, vol = {vol}");
-
             audioSource.panStereo = hRelative;
             audioSource.PlayOneShot(wheelSounds[clipIndex], vol * volModif);
         }

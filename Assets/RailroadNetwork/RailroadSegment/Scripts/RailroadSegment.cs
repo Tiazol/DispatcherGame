@@ -12,7 +12,8 @@ using UnityEngine.U2D;
 
 public class RailroadSegment : MonoBehaviour
 {
-    public Animator animator;
+    public PathCreator pathCreator; // задается именно так, потому что если инициализировать его в Awake, то есть опасность, что будут вызваны его свойства в RailroadManager
+    public Animator animator; // задается именно так, потому что если инициализировать его в Awake, то есть опасность, что будет вызван метод Hide() ДО инициализации
 
     public RailroadSegment PrevSegment { get; set; }
     public RailroadSegment NextSegment1 { get; set; }
@@ -40,6 +41,8 @@ public class RailroadSegment : MonoBehaviour
     public float Length => pathCreator.path.length;
     public Vector3 GetPoint(int index) => pathCreator.path.GetPoint(index);
     public Vector3 GetPointAtDistance(float distance) => pathCreator.path.GetPointAtDistance(distance);
+    public Vector3 FirstPoint => pathCreator.path.GetPoint(0);
+    public Vector3 LastPoint => pathCreator.path.GetPoint(pathCreator.path.NumPoints - 1);
     public Quaternion GetRotationAtDistance(float distance) => pathCreator.path.GetRotationAtDistance(distance);
 
     public event Action<bool> VisibilityChanged;
@@ -48,9 +51,8 @@ public class RailroadSegment : MonoBehaviour
     private const string animator_Hide = "Hide";
     private const string animator_Show = "Show";
 
-    public bool isVisible;
+    private bool isVisible;
     private RailroadSegment selectedRailroadSegment;
-    private PathCreator pathCreator;
 
     private void Awake()
     {
@@ -65,9 +67,6 @@ public class RailroadSegment : MonoBehaviour
             {
                 if (PrevSegment.SelectedRailroadSegment == this)
                 {
-                    //var color = new Color(ssr.color.r, ssr.color.g, ssr.color.b, 1.0f);
-                    //ssr.color = color;
-
                     animator.SetTrigger(animator_Show);
 
                     IsVisible = true;
@@ -88,9 +87,6 @@ public class RailroadSegment : MonoBehaviour
 
     public void Hide()
     {
-        //var color = new Color(ssr.color.r, ssr.color.g, ssr.color.b, 0.25f);
-        //ssr.color = color;
-
         if (IsVisible)
         {
             animator.SetTrigger(animator_Hide);

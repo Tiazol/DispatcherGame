@@ -50,7 +50,7 @@ public class GameUI : MonoBehaviour
 
     public void ShowLevelCompletedDialog()
     {
-        GameManager.Instance.PauseGame();
+        //GameManager.Instance.PauseGame();
         ProgressManager.Instance.GenerateScore();
 
         if (ProgressManager.Instance.StarsCount == 0)

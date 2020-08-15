@@ -9,7 +9,7 @@ public class Checkpoint : MonoBehaviour
     public Sprite[] sprites;
     public WagonType WType { get; set; }
     private SpriteRenderer sr;
-    public event System.Action WagonCatched;
+    public event System.Action WagonPassed;
 
     private void Awake()
     {
@@ -29,6 +29,6 @@ public class Checkpoint : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        WagonCatched?.Invoke();
+        WagonPassed?.Invoke();
     }
 }
