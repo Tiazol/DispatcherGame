@@ -149,10 +149,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5857437231118614129}
   - component: {fileID: 5857437231118614131}
-  - component: {fileID: 5857437231118614128}
+  - component: {fileID: 4440565538989092876}
   m_Layer: 0
   m_Name: Checkpoint
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -190,7 +190,7 @@ MonoBehaviour:
   - {fileID: 2241523657965127200, guid: f2fbdb64f5707b64e8161e3b35e801f1, type: 3}
   - {fileID: 7121419804159915150, guid: f2fbdb64f5707b64e8161e3b35e801f1, type: 3}
   - {fileID: -3311170639542406411, guid: f2fbdb64f5707b64e8161e3b35e801f1, type: 3}
---- !u!61 &5857437231118614128
+--- !u!61 &4440565538989092876
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -206,10 +206,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0

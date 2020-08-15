@@ -33,10 +33,20 @@ public class Wagon : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (CheckpointsManager.Instance.Checkpoints.ContainsKey(collision.gameObject))
-        {
-            var checkpoint = CheckpointsManager.Instance.Checkpoints[collision.gameObject];
+        //if (CheckpointsManager.Instance.Checkpoints.ContainsKey(collision.gameObject))
+        //{
+        //    var checkpoint = CheckpointsManager.Instance.Checkpoints[collision.gameObject];
             
+        //    if (checkpoint.WType != wagonType)
+        //    {
+        //        ProgressManager.Instance.WrongWagons++;
+        //    }
+        //}
+
+        if (collision.CompareTag("Finish"))
+        {
+            var checkpoint = collision.GetComponentInParent<Checkpoint>();
+
             if (checkpoint.WType != wagonType)
             {
                 ProgressManager.Instance.WrongWagons++;
@@ -45,7 +55,6 @@ public class Wagon : MonoBehaviour
 
         if (collision.CompareTag("WagonDeleter"))
         {
-            
             Stop();
         }
     }
