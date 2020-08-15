@@ -14,11 +14,13 @@ public class ButtonSwitch : MonoBehaviour, IBeginDragHandler, IDragHandler
     private State state;
     private Animator animator;
     private bool isAnimating;
+    private AudioSource audioSource;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         state = segment.SelectedRailroadSegment == segment.NextSegment1 ? State.Left : State.Right;
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -57,6 +59,7 @@ public class ButtonSwitch : MonoBehaviour, IBeginDragHandler, IDragHandler
             animator.SetTrigger(animator_SwitchToLeft);
             state = State.Left;
             segment.SwitchToLeft();
+            audioSource.Play();
         }
     }
 
@@ -68,6 +71,7 @@ public class ButtonSwitch : MonoBehaviour, IBeginDragHandler, IDragHandler
             animator.SetTrigger(animator_SwitchToRight);
             state = State.Right;
             segment.SwitchToRight();
+            audioSource.Play();
         }
     }
 

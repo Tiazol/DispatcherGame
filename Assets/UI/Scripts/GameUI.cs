@@ -24,7 +24,7 @@ public class GameUI : MonoBehaviour
         CheckpointsManager.Instance.AllWagonsPassed += ShowLevelCompletedDialog;
     }
 
-    public void OnNextButtonPressed()
+    public void OnNextOrRetryButtonPressed()
     {
         if (ProgressManager.Instance.StarsCount == 0)
         {

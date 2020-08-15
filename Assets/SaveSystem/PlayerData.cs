@@ -18,12 +18,20 @@ public class PlayerData
         statuses = new bool[progress.Count];
         stars = new int[progress.Count];
 
-        for (int i = 0; i < progress.Count; i++)
+        //for (int i = 0; i < progress.Count; i++)
+        //{
+        //    int key = i + 1;
+        //    levels[i] = key;
+        //    statuses[i] = progress[key].Item1;
+        //    stars[i] = progress[key].Item2;
+        //}
+        int index = 0;
+        foreach (var level in progress)
         {
-            int key = i + 1;
-            levels[i] = key;
-            statuses[i] = progress[key].Item1;
-            stars[i] = progress[key].Item2;
+            levels[index] = level.Key;
+            statuses[index] = progress[level.Key].Item1;
+            stars[index] = progress[level.Key].Item2;
+            index++;
         }
     }
 }

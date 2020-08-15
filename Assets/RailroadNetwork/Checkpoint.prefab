@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5220205733712772161}
   - component: {fileID: 7712883684032924560}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WagonDeleter
   m_TagString: WagonDeleter
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 5857437231118614129}
   - component: {fileID: 5857437231118614131}
   - component: {fileID: 4440565538989092876}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Checkpoint
   m_TagString: Finish
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}

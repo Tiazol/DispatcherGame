@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2434019767337109338}
   - component: {fileID: 361760140826967404}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SoundTrigger
   m_TagString: Fishplate
   m_Icon: {fileID: 0}
@@ -107,12 +107,12 @@ PrefabInstance:
     - target: {fileID: 5128653961904664671, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[1].x
-      value: 0
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5128653961904664671, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[1].y
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5128653961904664671, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
@@ -122,7 +122,7 @@ PrefabInstance:
     - target: {fileID: 5128653961904664671, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[2].y
-      value: 0.75
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5128653961904664671, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
@@ -157,6 +157,11 @@ PrefabInstance:
     - target: {fileID: 5128653961904664671, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: editorData._bezierPath.bounds.m_Extent.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5128653961904664671, guid: bf41c0c09b6bad94494a0141211d4ea9,
+        type: 3}
+      propertyPath: editorData.vertexPathUpToDate
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5604173970496144546, guid: bf41c0c09b6bad94494a0141211d4ea9,

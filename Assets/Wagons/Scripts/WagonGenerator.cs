@@ -7,9 +7,9 @@ public class WagonGenerator : MonoBehaviour
     public static WagonGenerator Instance { get; private set; }
 
     public Wagon wagonPrefab;
-    [Range(2f, 60f)]
+    [Range(1f, 10f)]
     public float createInterval;
-    [Range(2f, 60f)]
+    [Range(1f, 10f)]
     public float launchInterval;
     //public float wagonGeneratorInterval;
     [Range(1f, 10f)]

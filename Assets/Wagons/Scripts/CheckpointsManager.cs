@@ -36,7 +36,6 @@ public class CheckpointsManager : MonoBehaviour
 
         if (passedWagonsCount == WagonGenerator.Instance.wagonsToLaunch)
         {
-            Debug.Log(3);
             AllWagonsPassed?.Invoke();
         }
     }

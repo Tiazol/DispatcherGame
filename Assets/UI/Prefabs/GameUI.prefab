@@ -828,8 +828,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 163.33334, y: -175.5}
-  m_SizeDelta: {x: 226.66667, y: 251}
+  m_AnchoredPosition: {x: 162.53674, y: -175.5}
+  m_SizeDelta: {x: 225.07349, y: 251}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8229841224232804901
 CanvasRenderer:
@@ -988,7 +988,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7879884317754430287}
-        m_MethodName: OnNextButtonPressed
+        m_MethodName: OnNextOrRetryButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1298,6 +1298,7 @@ MonoBehaviour:
   - {fileID: 2241523657965127200, guid: f2fbdb64f5707b64e8161e3b35e801f1, type: 3}
   - {fileID: 7121419804159915150, guid: f2fbdb64f5707b64e8161e3b35e801f1, type: 3}
   - {fileID: -3311170639542406411, guid: f2fbdb64f5707b64e8161e3b35e801f1, type: 3}
+  wagonGenerator: {fileID: 0}
 --- !u!95 &6762274401708531610
 Animator:
   serializedVersion: 3
@@ -1501,8 +1502,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 716.6667, y: -175.5}
-  m_SizeDelta: {x: 226.66667, y: 251}
+  m_AnchoredPosition: {x: 716.377, y: -175.5}
+  m_SizeDelta: {x: 227.24602, y: 251}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3904944281692963890
 CanvasRenderer:
@@ -1531,7 +1532,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bf981006b39c14949a84911eaa5b704b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 80cef841ebf70b64e96f00a6e2948e26, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1728,8 +1729,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 440.00003, y: -175.5}
-  m_SizeDelta: {x: 226.66667, y: 251}
+  m_AnchoredPosition: {x: 438.91376, y: -175.5}
+  m_SizeDelta: {x: 227.68051, y: 251}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5830508449904493742
 CanvasRenderer:
@@ -1758,7 +1759,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bf981006b39c14949a84911eaa5b704b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b87545fba5659cf4887722a0f6031faf, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2144,7 +2145,7 @@ GameObject:
   - component: {fileID: 7879884317754430284}
   - component: {fileID: 7879884317754430291}
   - component: {fileID: 7879884317754430287}
-  - component: {fileID: 5027499833965093841}
+  - component: {fileID: 5359567755870024845}
   m_Layer: 5
   m_Name: GameUI
   m_TagString: Untagged
@@ -2161,7 +2162,7 @@ RectTransform:
   m_GameObject: {fileID: 7879884317754430290}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1427857805724136326}
   - {fileID: 7879884317837880728}
@@ -2169,7 +2170,7 @@ RectTransform:
   - {fileID: 8314840256043278788}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.13100001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 540, y: 960}
@@ -2250,7 +2251,7 @@ MonoBehaviour:
   quitConfirmation: {fileID: 7879884317837880735}
   levelCompletedDialog: {fileID: 39787506377590120}
   nextButton: {fileID: 5834098027311378490}
---- !u!114 &5027499833965093841
+--- !u!114 &5359567755870024845
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2263,12 +2264,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreStars:
-  - {fileID: 6625934713161098045}
-  - {fileID: 8272603136577016697}
-  - {fileID: 142973540357754671}
+  - {fileID: 940726013864634754}
+  - {fileID: 5770833096706066103}
+  - {fileID: 8310641776777076786}
   starSprites:
   - {fileID: 21300000, guid: bf981006b39c14949a84911eaa5b704b, type: 3}
   - {fileID: 21300000, guid: b87545fba5659cf4887722a0f6031faf, type: 3}
+  - {fileID: 21300000, guid: 80cef841ebf70b64e96f00a6e2948e26, type: 3}
   scoreText: {fileID: 5423163742100486463}
 --- !u!1 &7879884317758897898
 GameObject:

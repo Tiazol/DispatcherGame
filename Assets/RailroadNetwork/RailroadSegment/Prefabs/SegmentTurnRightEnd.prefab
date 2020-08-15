@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4882320161521462740}
   - component: {fileID: 4109875253078225299}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SoundTrigger
   m_TagString: Fishplate
   m_Icon: {fileID: 0}
