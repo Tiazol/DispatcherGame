@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class NotificationsManager : MonoBehaviour
 {
     public Image image;
+    public Text levelNumber;
     public Text wagonsCount;
     public Sprite[] sprites;
     public WagonGenerator wagonGenerator;
@@ -20,6 +21,7 @@ public class NotificationsManager : MonoBehaviour
         wagonGenerator.WagonPrepared += StartBlinking;
         wagonGenerator.WagonLaunched += StopBlinking;
 
+        levelNumber.text = $"LVL {GameManager.Instance.GetCurrentLevelNumber()}";
         wagonsCount.text = $"0 / {wagonGenerator.wagonsToLaunch}";
     }
 
