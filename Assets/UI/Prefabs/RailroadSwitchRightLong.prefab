@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 6430924685783100662}
   - component: {fileID: 7807095444821830054}
   m_Layer: 5
-  m_Name: RailroadSwitchRight (2)
+  m_Name: RailroadSwitchRightLong
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -198,7 +198,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6b6629ccf3d9eb446be253c356eca505, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

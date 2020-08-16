@@ -6,7 +6,7 @@ public class Wagon : MonoBehaviour
 {
     public float Speed { get; set; } // Задается в WagonGenerator
 
-    private const float distanceDiff = 0.0625f;
+    private const float distanceDiff = 0.01f;
     private float distance;
     private WagonType wagonType;
     private RailroadSegment startingSegment;
