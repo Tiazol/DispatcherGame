@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 public class WagonGenerator : MonoBehaviour
@@ -21,7 +22,8 @@ public class WagonGenerator : MonoBehaviour
 
     public int PassedWagonsCount { get; private set; }
     protected WagonType currentType;
-    private WagonType prevType;
+    private List<WagonType> prevTypes;
+    private const int prevTypesLimit = 2;
     private const string wagonSpritesConstant = "Sprites/Wagons";
     protected Dictionary<WagonType, List<Sprite>> spriteCollection;
 
@@ -37,6 +39,8 @@ public class WagonGenerator : MonoBehaviour
         LoadSprites();
 
         SetRandomIntervals();
+
+        prevTypes = new List<WagonType>();
     }
 
     private void Start()
@@ -71,17 +75,36 @@ public class WagonGenerator : MonoBehaviour
             yield break;
         }
 
-        bool ok;
+        bool tooManySuchTypes = true;
         do
         {
             currentType = (WagonType)Random.Range(0, System.Enum.GetNames(typeof(WagonType)).Length);
-            ok = CheckpointsManager.Instance.UsedWagonTypes.Contains(currentType) && (currentType != prevType);
-        } while (!ok);
+            if (!CheckpointsManager.Instance.UsedWagonTypes.Contains(currentType))
+            {
+                continue;
+            }
+
+            if (prevTypes.Count == 0)
+            {
+                prevTypes.Add(currentType);
+                tooManySuchTypes = false;
+            }
+            else if (prevTypes[0] != currentType)
+            {
+                prevTypes.Clear();
+                prevTypes.Add(currentType);
+                tooManySuchTypes = false;
+            }
+            else if (prevTypes.Count < prevTypesLimit)
+            {
+                prevTypes.Add(currentType);
+                tooManySuchTypes = false;
+            }
+
+        } while (tooManySuchTypes);
 
         WagonPrepared?.Invoke(currentType);
-        prevType = currentType;
 
-        //yield return null; // а нужно ли?
         yield return new WaitForSeconds(launchInterval);
         yield return StartCoroutine(LaunchWagon());
     }
@@ -99,7 +122,6 @@ public class WagonGenerator : MonoBehaviour
         PassedWagonsCount++;
         WagonLaunched?.Invoke();
 
-        //yield return null; // а нужно ли?
         yield return new WaitForSeconds(createInterval);
         yield return StartCoroutine(PrepareWagon());
     }
