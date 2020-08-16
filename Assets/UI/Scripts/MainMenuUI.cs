@@ -25,13 +25,13 @@ public class MainMenuUI : MonoBehaviour
 
     public void ShowLevelSelection()
     {
-        mainMenu.SetActive(false);
+        //mainMenu.SetActive(false);
         levelSelection.SetActive(true);
     }
 
     public void ShowMainMenu()
     {
         levelSelection.SetActive(false);
-        mainMenu.SetActive(true);
+        //mainMenu.SetActive(true);
     }
 }
