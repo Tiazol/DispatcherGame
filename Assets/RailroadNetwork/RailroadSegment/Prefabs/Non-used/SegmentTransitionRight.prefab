@@ -80,7 +80,7 @@ PrefabInstance:
     - target: {fileID: 5604173970496144546, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: m_Name
-      value: SegmentTransitionToRight
+      value: SegmentTransitionRight
       objectReference: {fileID: 0}
     - target: {fileID: 5604173970496144572, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
@@ -90,17 +90,17 @@ PrefabInstance:
     - target: {fileID: 5604173970496144572, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: m_LocalAABB.m_Center.y
-      value: 1.0000038
+      value: 1.0000048
       objectReference: {fileID: 0}
     - target: {fileID: 5604173970496144572, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: m_LocalAABB.m_Extent.x
-      value: 0.6600001
+      value: 0.70000005
       objectReference: {fileID: 0}
     - target: {fileID: 5604173970496144572, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: m_LocalAABB.m_Extent.y
-      value: 1.000006
+      value: 1.0000074
       objectReference: {fileID: 0}
     - target: {fileID: 5604173970496144573, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
