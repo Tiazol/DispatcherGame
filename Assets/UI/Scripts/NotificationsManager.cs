@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class NotificationsManager : MonoBehaviour
 {
     public Image image;
+    public Text wagonsCount;
     public Sprite[] sprites;
     public WagonGenerator wagonGenerator;
 
@@ -18,6 +19,8 @@ public class NotificationsManager : MonoBehaviour
 
         wagonGenerator.WagonPrepared += StartBlinking;
         wagonGenerator.WagonLaunched += StopBlinking;
+
+        wagonsCount.text = $"0 / {wagonGenerator.wagonsToLaunch}";
     }
 
     //private void Start()
@@ -35,5 +38,6 @@ public class NotificationsManager : MonoBehaviour
     private void StopBlinking()
     {
         animator.SetBool("IsBlinking", false);
+        wagonsCount.text = $"{wagonGenerator.PassedWagonsCount} / {wagonGenerator.wagonsToLaunch}";
     }
 }

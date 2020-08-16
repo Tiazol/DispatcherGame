@@ -19,7 +19,7 @@ public class WagonGenerator : MonoBehaviour
     public event System.Action<WagonType> WagonPrepared;
     public event System.Action WagonLaunched;
 
-    private int passedWagonsCount;
+    public int PassedWagonsCount { get; private set; }
     protected WagonType currentType;
     private WagonType prevType;
     private const string wagonSpritesConstant = "Sprites/Wagons";
@@ -66,7 +66,7 @@ public class WagonGenerator : MonoBehaviour
 
     protected virtual IEnumerator PrepareWagon()
     {
-        if (passedWagonsCount == wagonsToLaunch)
+        if (PassedWagonsCount == wagonsToLaunch)
         {
             yield break;
         }
@@ -96,7 +96,7 @@ public class WagonGenerator : MonoBehaviour
         wagon.SetStartingSegment(segment);
         wagon.Speed = wagonSpeed * Random.Range(0.9f, 1.1f);
 
-        passedWagonsCount++;
+        PassedWagonsCount++;
         WagonLaunched?.Invoke();
 
         //yield return null; // а нужно ли?
