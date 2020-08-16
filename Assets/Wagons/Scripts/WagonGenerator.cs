@@ -11,21 +11,19 @@ public class WagonGenerator : MonoBehaviour
     public float createInterval;
     [Range(1f, 10f)]
     public float launchInterval;
-    //public float wagonGeneratorInterval;
     [Range(1f, 10f)]
     public float wagonSpeed;
-    [Range(1f, 100f)]
+    [Range(0f, 100f)] // 0 означает бесконечность
     public int wagonsToLaunch;
 
     public event System.Action<WagonType> WagonPrepared;
     public event System.Action WagonLaunched;
 
     private int passedWagonsCount;
-    //private float time = 3.0f;
-    private WagonType currentType;
+    protected WagonType currentType;
     private WagonType prevType;
     private const string wagonSpritesConstant = "Sprites/Wagons";
-    private Dictionary<WagonType, List<Sprite>> spriteCollection;
+    protected Dictionary<WagonType, List<Sprite>> spriteCollection;
 
     private void Awake()
     {
@@ -37,12 +35,12 @@ public class WagonGenerator : MonoBehaviour
             spriteCollection[(WagonType)type] = new List<Sprite>();
         }
         LoadSprites();
+
+        SetRandomIntervals();
     }
 
     private void Start()
     {
-        //InvokeRepeating("GenerateWagon", 0f, wagonGeneratorInterval);
-
         StartCoroutine(PrepareWagon());
     }
 
@@ -61,7 +59,12 @@ public class WagonGenerator : MonoBehaviour
         }
     }
 
-    private IEnumerator PrepareWagon()
+    public virtual void SetRandomIntervals()
+    {
+
+    }
+
+    protected virtual IEnumerator PrepareWagon()
     {
         if (passedWagonsCount == wagonsToLaunch)
         {
@@ -78,64 +81,26 @@ public class WagonGenerator : MonoBehaviour
         WagonPrepared?.Invoke(currentType);
         prevType = currentType;
 
-        yield return null;
+        //yield return null; // а нужно ли?
         yield return new WaitForSeconds(launchInterval);
         yield return StartCoroutine(LaunchWagon());
     }
 
-    private IEnumerator LaunchWagon()
+    protected virtual IEnumerator LaunchWagon()
     {
         var segment = RailroadManager.Instance.GetFirstRailroadSegment();
-        var wagon = Instantiate(wagonPrefab, segment.GetPoint(0), Quaternion.identity, transform);
-
+        var wagon = Instantiate(wagonPrefab, segment.FirstPoint, Quaternion.identity, transform);
         var list = spriteCollection[currentType];
-        wagon.SetWagonType(currentType, list[Random.Range(0, list.Count)]);
-        wagon.Speed = wagonSpeed * Random.Range(0.9f, 1.1f); ;
+
+        wagon.SetType(currentType, list[Random.Range(0, list.Count)]);
+        wagon.SetStartingSegment(segment);
+        wagon.Speed = wagonSpeed * Random.Range(0.9f, 1.1f);
 
         passedWagonsCount++;
         WagonLaunched?.Invoke();
 
-        yield return null;
+        //yield return null; // а нужно ли?
         yield return new WaitForSeconds(createInterval);
         yield return StartCoroutine(PrepareWagon());
     }
-
-
-
-    //private void GenerateWagon()
-    //{
-    //    if (passedWagonsCount == wagonsToLaunch)
-    //    {
-    //        return;
-    //    }
-
-    //    var typesCount = System.Enum.GetNames(typeof(WagonType)).Length;
-    //    int typeIndex;
-    //    bool ok;
-    //    do
-    //    {
-    //        typeIndex = Random.Range(0, typesCount); // warning! max int is EXCLUSIVE!
-    //        ok = CheckpointsManager.Instance.UsedWagonTypes.Contains((WagonType)typeIndex) && ((WagonType)typeIndex != prevType);
-    //    } while (!ok);
-
-    //    WagonPrepared?.Invoke((WagonType)typeIndex);
-    //    prevType = (WagonType)typeIndex;
-    //    StartCoroutine(InstantiateWagon(typeIndex));
-    //}
-
-    //private IEnumerator InstantiateWagon(int typeIndex)
-    //{
-    //    yield return new WaitForSeconds(time);
-
-    //    var segment = RailroadManager.Instance.GetFirstRailroadSegment();
-    //    var wagon = Instantiate(wagonPrefab, segment.GetPoint(0), Quaternion.identity, transform);
-
-    //    var list = spriteCollection[(WagonType)typeIndex];
-    //    wagon.SetWagonType((WagonType)typeIndex, list[Random.Range(0, list.Count)]);
-    //    wagon.Speed = wagonSpeed * Random.Range(0.9f, 1.1f);;
-
-    //    passedWagonsCount++;
-    //    WagonLaunched?.Invoke();
-    //    yield break;
-    //}
 }

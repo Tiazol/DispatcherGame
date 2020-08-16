@@ -113,4 +113,17 @@ public class RailroadManager : MonoBehaviour
     {
         return segments.FirstOrDefault(segment => segment.PrevSegment == null);
     }
+
+    public RailroadSegment GetRailroadSegmentForPosition(Vector3 position)
+    {
+        foreach(var segment in segments)
+        {
+            if (segment.transform.position == position)
+            {
+                return segment;
+            }
+        }
+
+        return null;
+    }
 }

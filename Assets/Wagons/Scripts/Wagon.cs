@@ -9,7 +9,7 @@ public class Wagon : MonoBehaviour
     private const float distanceDiff = 0.0625f;
     private float distance;
     private WagonType wagonType;
-    private RailroadSegment startSegment;
+    private RailroadSegment startingSegment;
     private RailroadSegment currentSegment;
     private SpriteRenderer sr;
     private AudioSource audioSource;
@@ -18,12 +18,6 @@ public class Wagon : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
-    }
-
-    private void Start()
-    {
-        startSegment = RailroadManager.Instance.GetFirstRailroadSegment();
-        currentSegment = startSegment;
     }
 
     private void FixedUpdate()
@@ -68,7 +62,7 @@ public class Wagon : MonoBehaviour
 
             if (currentSegment == null)
             {
-                currentSegment = startSegment;
+                currentSegment = startingSegment;
             }
         }
 
@@ -85,10 +79,15 @@ public class Wagon : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void SetWagonType(WagonType type, Sprite sprite)
+    public void SetType(WagonType type, Sprite sprite)
     {
         wagonType = type;
         sr.sprite = sprite;
+    }
+
+    public void SetStartingSegment(RailroadSegment segment)
+    {
+        currentSegment = startingSegment = segment;
     }
 }
 
