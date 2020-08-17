@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1313197301269262859}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &361760140826967404
 BoxCollider2D:
@@ -57,36 +57,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.125, y: 0.125}
   m_EdgeRadius: 0
---- !u!1 &7137785604934614408
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7542571059739037624}
-  m_Layer: 0
-  m_Name: P
-  m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7542571059739037624
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7137785604934614408}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1313197301269262859}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6917370098094061236
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -107,12 +77,12 @@ PrefabInstance:
     - target: {fileID: 5128653961904664671, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[1].x
-      value: -0.1
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: 5128653961904664671, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[1].y
-      value: 0.1
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 5128653961904664671, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
@@ -177,22 +147,22 @@ PrefabInstance:
     - target: {fileID: 5604173970496144572, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: m_LocalAABB.m_Center.x
-      value: -0.27849063
+      value: -0.27883527
       objectReference: {fileID: 0}
     - target: {fileID: 5604173970496144572, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: m_LocalAABB.m_Center.y
-      value: 0.4300998
+      value: 0.42974895
       objectReference: {fileID: 0}
     - target: {fileID: 5604173970496144572, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: m_LocalAABB.m_Extent.x
-      value: 0.42150936
+      value: 0.42116472
       objectReference: {fileID: 0}
     - target: {fileID: 5604173970496144572, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: m_LocalAABB.m_Extent.y
-      value: 0.5699055
+      value: 0.57025635
       objectReference: {fileID: 0}
     - target: {fileID: 5604173970496144573, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
@@ -227,6 +197,21 @@ PrefabInstance:
     - target: {fileID: 5604173970496144573, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: m_Spline.m_ControlPoints.Array.data[0].mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5604173970496144573, guid: bf41c0c09b6bad94494a0141211d4ea9,
+        type: 3}
+      propertyPath: m_Spline.m_ControlPoints.Array.data[1].leftTangent.x
+      value: -0.25139606
+      objectReference: {fileID: 0}
+    - target: {fileID: 5604173970496144573, guid: bf41c0c09b6bad94494a0141211d4ea9,
+        type: 3}
+      propertyPath: m_Spline.m_ControlPoints.Array.data[1].leftTangent.y
+      value: 0.25465605
+      objectReference: {fileID: 0}
+    - target: {fileID: 5604173970496144573, guid: bf41c0c09b6bad94494a0141211d4ea9,
+        type: 3}
+      propertyPath: m_Spline.m_ControlPoints.Array.data[1].mode
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5604173970496144575, guid: bf41c0c09b6bad94494a0141211d4ea9,

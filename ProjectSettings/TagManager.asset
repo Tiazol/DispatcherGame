@@ -47,6 +47,9 @@ TagManager:
   - name: Environment
     uniqueID: 3855357287
     locked: 0
+  - name: Switch
+    uniqueID: 2039551607
+    locked: 0
   - name: Railroad
     uniqueID: 3346266507
     locked: 0

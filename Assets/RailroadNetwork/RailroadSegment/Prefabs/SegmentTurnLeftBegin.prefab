@@ -1,35 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3990001117454536680
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2736363487398413244}
-  m_Layer: 0
-  m_Name: P
-  m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2736363487398413244
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3990001117454536680}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4825293412892568332}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6976288503356972133
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4825293412892568332}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1665057001019823863
 BoxCollider2D:
@@ -117,12 +87,12 @@ PrefabInstance:
     - target: {fileID: 5128653961904664671, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[2].x
-      value: -0.4
+      value: -0.49
       objectReference: {fileID: 0}
     - target: {fileID: 5128653961904664671, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[2].y
-      value: 0.9
+      value: 0.99
       objectReference: {fileID: 0}
     - target: {fileID: 5128653961904664671, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
@@ -182,22 +152,22 @@ PrefabInstance:
     - target: {fileID: 5604173970496144572, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: m_LocalAABB.m_Center.y
-      value: 0.5698989
+      value: 0.5709433
       objectReference: {fileID: 0}
     - target: {fileID: 5604173970496144572, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: m_LocalAABB.m_Extent.y
-      value: 0.56991374
+      value: 0.57095814
       objectReference: {fileID: 0}
     - target: {fileID: 5604173970496144572, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: m_LocalAABB.m_Center.x
-      value: -0.22150588
+      value: -0.2204698
       objectReference: {fileID: 0}
     - target: {fileID: 5604173970496144572, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: m_LocalAABB.m_Extent.x
-      value: 0.42150587
+      value: 0.4204698
       objectReference: {fileID: 0}
     - target: {fileID: 5604173970496144573, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
@@ -222,6 +192,21 @@ PrefabInstance:
     - target: {fileID: 5604173970496144573, guid: bf41c0c09b6bad94494a0141211d4ea9,
         type: 3}
       propertyPath: m_Spline.m_ControlPoints.Array.data[1].mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5604173970496144573, guid: bf41c0c09b6bad94494a0141211d4ea9,
+        type: 3}
+      propertyPath: m_Spline.m_ControlPoints.Array.data[0].rightTangent.x
+      value: 0.24669671
+      objectReference: {fileID: 0}
+    - target: {fileID: 5604173970496144573, guid: bf41c0c09b6bad94494a0141211d4ea9,
+        type: 3}
+      propertyPath: m_Spline.m_ControlPoints.Array.data[0].rightTangent.y
+      value: -0.2450245
+      objectReference: {fileID: 0}
+    - target: {fileID: 5604173970496144573, guid: bf41c0c09b6bad94494a0141211d4ea9,
+        type: 3}
+      propertyPath: m_Spline.m_ControlPoints.Array.data[0].mode
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5604173970496144575, guid: bf41c0c09b6bad94494a0141211d4ea9,
