@@ -11,6 +11,15 @@ TextureImporter:
   - first:
       213: 197338042944464638
     second: TankCarPurpleSpriteSheet_2
+  - first:
+      213: -6605357189200313082
+    second: TankCarPurpleSpriteSheet_0
+  - first:
+      213: 5533344900704649330
+    second: TankCarPurpleSpriteSheet_1
+  - first:
+      213: -1988786447274902575
+    second: TankCarPurpleSpriteSheet_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -134,8 +143,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c296f37afe0b8afe0800000000000000
-      internalID: -1177496759207761620
+      spriteID: 605842312ae0554a0800000000000000
+      internalID: -6605357189200313082
       vertices: []
       indices: 
       edges: []
@@ -155,8 +164,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 20d640405358ba880800000000000000
-      internalID: -8598632600786670334
+      spriteID: 270483aced36acc40800000000000000
+      internalID: 5533344900704649330
       vertices: []
       indices: 
       edges: []
@@ -176,8 +185,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef6206e87e51db200800000000000000
-      internalID: 197338042944464638
+      spriteID: 1db711463496664e0800000000000000
+      internalID: -1988786447274902575
       vertices: []
       indices: 
       edges: []
