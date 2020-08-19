@@ -21,6 +21,8 @@ public class ProgressManager : MonoBehaviour
     public int WrongWagons { get; set; }
     public int StarsCount { get; private set; }
 
+    public event Action ProgressResetted;
+
     private void Awake()
     {
         Instance = this;
@@ -170,5 +172,17 @@ public class ProgressManager : MonoBehaviour
     public int GetScoreOfLevel(int level)
     {
         return Progress.ContainsKey(level) ? Progress[level].Item2 : 0;
+    }
+
+    public void ResetProgress()
+    {
+        Progress = new Dictionary<int, (bool, int)>();
+        Progress.Add(1, (true, 0));
+        for (int i = 2; i <= TotalLevelsCount; i++)
+        {
+            Progress.Add(i, (false, 0));
+        }
+        SaveProgress();
+        ProgressResetted?.Invoke();
     }
 }

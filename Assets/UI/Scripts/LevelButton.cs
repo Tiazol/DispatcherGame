@@ -42,7 +42,7 @@ public class LevelButton : MonoBehaviour
         //}
 
 
-        if (ProgressManager.Instance.Progress.ContainsKey(levelNumber))
+        if (ProgressManager.Instance.Progress[levelNumber].Item2 > 0)
         {
             starBoxes[0].sprite = ProgressManager.Instance.Progress[levelNumber].Item2 >= 1 ? starSprites[1] : starSprites[0];
             starBoxes[1].sprite = ProgressManager.Instance.Progress[levelNumber].Item2 >= 2 ? starSprites[1] : starSprites[0];
@@ -50,9 +50,7 @@ public class LevelButton : MonoBehaviour
         }
         else
         {
-            starBoxes[0].color = new Color(starBoxes[0].color.r, starBoxes[0].color.b, starBoxes[0].color.a, 0f);
-            starBoxes[1].color = new Color(starBoxes[1].color.r, starBoxes[1].color.b, starBoxes[1].color.a, 0f);
-            starBoxes[2].color = new Color(starBoxes[2].color.r, starBoxes[2].color.b, starBoxes[2].color.a, 0f);
+            starBoxes[0].color = starBoxes[1].color = starBoxes[2].color = new Color(1f, 1f, 1f, 0f);
         }
     }
 }
