@@ -1,0 +1,4 @@
+language=en
+play=PLAY
+settings=SETTINGS
+quit=QUIT

@@ -86,6 +86,11 @@ public class MainMenuUI : MonoBehaviour
         settings.SetActive(false);
         mainMenu.SetActive(true);
     }
+
+    public void OnClickChangeLanguage(string language)
+    {
+        LocalizationManager.Instance.ChangeLanguageTo(language);
+    }
     #endregion Settings
 
     #region ConfirmationResetProgress

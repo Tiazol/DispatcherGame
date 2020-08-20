@@ -24,7 +24,7 @@ public class WagonGenerator : MonoBehaviour
     protected WagonType currentType;
     private List<WagonType> prevTypes;
     private const int prevTypesLimit = 2;
-    private const string wagonSpritesConstant = "Sprites/Wagons";
+    private const string spritesPath = "Sprites/Wagons";
     protected Dictionary<WagonType, List<Sprite>> spriteCollection;
 
     private void Awake()
@@ -50,7 +50,7 @@ public class WagonGenerator : MonoBehaviour
 
     private void LoadSprites()
     {
-        var sprites = Resources.LoadAll<Sprite>(wagonSpritesConstant);
+        var sprites = Resources.LoadAll<Sprite>(spritesPath);
         foreach (var sprite in sprites)
         {
             foreach (var type in spriteCollection.Keys)

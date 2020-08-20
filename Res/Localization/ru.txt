@@ -1,0 +1,4 @@
+language=ru
+play=ИГРАТЬ
+settings=НАСТРОЙКИ
+quit=ВЫЙТИ
