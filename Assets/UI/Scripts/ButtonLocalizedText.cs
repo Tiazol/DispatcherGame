@@ -16,7 +16,7 @@ public class ButtonLocalizedText : MonoBehaviour
 
     private void Start()
     {
-        //LoadString();
+        LoadString();
         LocalizationManager.Instance.LanguageChanged += LoadString;
     }
 
