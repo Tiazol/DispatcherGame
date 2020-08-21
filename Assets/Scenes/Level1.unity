@@ -1460,7 +1460,7 @@ PrefabInstance:
     - target: {fileID: 6329736642450545263, guid: ede3097ddeb8a22489ca14f97989ee8b,
         type: 3}
       propertyPath: wagonsToLaunch
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ede3097ddeb8a22489ca14f97989ee8b, type: 3}

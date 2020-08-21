@@ -6,16 +6,18 @@ public class Wagon : MonoBehaviour
 {
     public float Speed { get; set; } // Задается в WagonGenerator
 
-    private const float distanceDiff = 0.05f;
+    private const float distanceDiff = 0.04f;
     private float distance;
     private WagonType wagonType;
     private RailroadSegment startingSegment;
     private RailroadSegment currentSegment;
+    private Rigidbody2D rb;
     private SpriteRenderer sr;
     private AudioSource audioSource;
 
     private void Awake()
     {
+        rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
     }
@@ -66,10 +68,15 @@ public class Wagon : MonoBehaviour
             }
         }
 
-        transform.position = currentSegment.GetPointAtDistance(distance);
+        //transform.position = currentSegment.GetPointAtDistance(distance);
+        var currentPos = transform.position;
+        Debug.Log($"my prev pos is {currentPos}");
+        rb.MovePosition(currentSegment.GetPointAtDistance(distance));
+        Debug.Log($"my last pos is {transform.position}");
 
         var rot = currentSegment.GetRotationAtDistance(distance);
-        transform.rotation = Quaternion.Euler(0, rot.eulerAngles.y + 90, rot.eulerAngles.x + 90);
+        //transform.rotation = Quaternion.Euler(0, rot.eulerAngles.y + 90, rot.eulerAngles.x + 90);
+        rb.MoveRotation(Quaternion.Euler(0, rot.eulerAngles.y + 90, rot.eulerAngles.x + 90));
 
         distance += Time.deltaTime * Speed;
     }

@@ -2581,6 +2581,49 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6d0f960d4255c94987cacd14ba546ef, type: 3}
+--- !u!1 &1092182676
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1092182678}
+  - component: {fileID: 1092182677}
+  m_Layer: 0
+  m_Name: LocalizationManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1092182677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092182676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1302d6bedc2cc547895936d951251c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1092182678
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092182676}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1093042203 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8786056273472788344, guid: e6d0f960d4255c94987cacd14ba546ef,
@@ -2662,7 +2705,7 @@ PrefabInstance:
     - target: {fileID: 6329736642450545263, guid: ede3097ddeb8a22489ca14f97989ee8b,
         type: 3}
       propertyPath: wagonSpeed
-      value: 1.73
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6329736642450545263, guid: ede3097ddeb8a22489ca14f97989ee8b,
         type: 3}
@@ -2692,7 +2735,7 @@ PrefabInstance:
     - target: {fileID: 6329736642450545263, guid: ede3097ddeb8a22489ca14f97989ee8b,
         type: 3}
       propertyPath: wagonsToLaunch
-      value: 11
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ede3097ddeb8a22489ca14f97989ee8b, type: 3}
