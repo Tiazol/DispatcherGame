@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonLocalizedText : MonoBehaviour
+public class LocalizedText : MonoBehaviour
 {
     public string stringID;
 
@@ -11,7 +11,7 @@ public class ButtonLocalizedText : MonoBehaviour
 
     private void Awake()
     {
-        text = GetComponentInChildren<Text>();
+        text = GetComponent<Text>();
     }
 
     private void Start()

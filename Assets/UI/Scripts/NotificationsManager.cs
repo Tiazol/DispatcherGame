@@ -20,16 +20,13 @@ public class NotificationsManager : MonoBehaviour
 
         wagonGenerator.WagonPrepared += StartBlinking;
         wagonGenerator.WagonLaunched += StopBlinking;
-
-        levelNumber.text = $"LVL {GameManager.Instance.GetCurrentLevelNumber()}";
-        wagonsCount.text = $"0 / {wagonGenerator.wagonsToLaunch}";
     }
 
-    //private void Start()
-    //{
-    //    WagonGenerator.Instance.WagonPrepared += StartBlinking;
-    //    WagonGenerator.Instance.WagonLaunched += StopBlinking;
-    //}
+    private void Start()
+    {
+        levelNumber.text = $"{LocalizationManager.Instance.GetLocalizedString("level")} {GameManager.Instance.GetCurrentLevelNumber()}";
+        wagonsCount.text = $"0 / {wagonGenerator.wagonsToLaunch}";
+    }
 
     private void StartBlinking(WagonType type)
     {

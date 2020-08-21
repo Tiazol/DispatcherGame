@@ -15,6 +15,10 @@ public class ButtonClickSound : MonoBehaviour
 
     public void OnClick()
     {
+        if (click == null)
+        {
+            Debug.Log("click is null", this);
+        }
         audioSource.PlayOneShot(click);
     }
 }

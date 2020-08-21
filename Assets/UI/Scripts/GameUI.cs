@@ -10,9 +10,7 @@ public class GameUI : MonoBehaviour
     public GameObject quitConfirmation;
     public GameObject levelCompletedDialog;
     public Button nextButton;
-
-    private const string retryText = "Retry";
-    private const string nextText = "Next";
+    public Text levelCompletedText;
 
     private void Awake()
     {
@@ -22,7 +20,13 @@ public class GameUI : MonoBehaviour
     private void Start()
     {
         CheckpointsManager.Instance.AllWagonsPassed += ShowLevelCompletedDialog;
+        //LocalizationManager.Instance.LanguageChanged += LoadLocalization;
     }
+
+    //private void LoadLocalization()
+    //{
+    //    levelCompletedText.text = LocalizationManager.Instance.GetLocalizedString("levelCompleted");
+    //}
 
     public void OnNextOrRetryButtonPressed()
     {
@@ -55,11 +59,13 @@ public class GameUI : MonoBehaviour
 
         if (ProgressManager.Instance.StarsCount == 0)
         {
-            nextButton.GetComponentInChildren<Text>().text = retryText;
+            levelCompletedText.text = LocalizationManager.Instance.GetLocalizedString("levelNotCompleted");
+            nextButton.GetComponentInChildren<Text>().text = LocalizationManager.Instance.GetLocalizedString("retry");
         }
         else
         {
-            nextButton.GetComponentInChildren<Text>().text = nextText;
+            levelCompletedText.text = LocalizationManager.Instance.GetLocalizedString("levelCompleted");
+            nextButton.GetComponentInChildren<Text>().text = LocalizationManager.Instance.GetLocalizedString("next");
         }
 
         levelCompletedDialog.SetActive(true);
