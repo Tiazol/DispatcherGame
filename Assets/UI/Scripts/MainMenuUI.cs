@@ -16,7 +16,7 @@ public class MainMenuUI : MonoBehaviour
     private void Start()
     {
         CreateLevelButtons();
-        soundToggle.isOn = AudioManager.Instance.CurrentSoundState == SoundState.On ? true : false;
+        soundToggle.isOn = AudioManager.Instance.CurrentSoundState == SoundState.On;
         soundToggle.onValueChanged.AddListener(isOn => OnClickSwitchSoundButton(isOn));
     }
 
