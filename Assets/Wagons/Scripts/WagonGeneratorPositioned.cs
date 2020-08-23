@@ -6,8 +6,8 @@ public class WagonGeneratorPositioned : WagonGenerator
 {
     public override void SetRandomIntervals()
     {
-        createInterval = Random.Range(2f, 4f);
-        launchInterval = Random.Range(2f, 4f);
+        createInterval = Random.Range(2f, 10f);
+        launchInterval = Random.Range(2f, 10f);
     }
 
     protected override IEnumerator PrepareWagon()

@@ -59,6 +59,7 @@ public class GameUI : MonoBehaviour
 
         if (ProgressManager.Instance.StarsCount == 0)
         {
+            Debug.Log("wo", levelCompletedText);
             levelCompletedText.text = LocalizationManager.Instance.GetLocalizedString("levelNotCompleted");
             nextButton.GetComponentInChildren<Text>().text = LocalizationManager.Instance.GetLocalizedString("retry");
         }

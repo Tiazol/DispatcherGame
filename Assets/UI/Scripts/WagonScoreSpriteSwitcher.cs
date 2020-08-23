@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SpriteSwitcher : MonoBehaviour
+public class WagonScoreSpriteSwitcher : MonoBehaviour
 {
     public Sprite[] defaultCarSprites;
 
     private Image image;
     private int index;
-    private const float switchTime = 1f;
+    private const float switchTime = 2f;
 
     private void Awake()
     {

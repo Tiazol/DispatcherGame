@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 using UnityEngine;
@@ -17,18 +18,18 @@ public class ProgressManager : MonoBehaviour
 
     public int TotalLevelsCount { get; private set; }
     public Dictionary<int, (bool, int)> Progress { get; private set; }
-    public int UnlockedLevels { get; private set; }
+    //public int UnlockedLevels { get; private set; }
     public int WrongWagons { get; set; }
     public int StarsCount { get; private set; }
 
-    public event Action ProgressResetted;
+    public event Action ProgressChanged;
 
     private void Awake()
     {
         Instance = this;
         TotalLevelsCount = SceneManager.sceneCountInBuildSettings - 1;
         LoadProgress();
-        CalculateUnlockedLevels();
+        //CalculateUnlockedLevels();
     }
 
     private void Start()
@@ -37,6 +38,11 @@ public class ProgressManager : MonoBehaviour
         {
             CheckpointsManager.Instance.AllWagonsPassed += GenerateScore;
         }
+    }
+
+    private void SaveProgress()
+    {
+        SaveSystem.SaveData(new PlayerData(Progress));
     }
 
     private void LoadProgress()
@@ -51,7 +57,6 @@ public class ProgressManager : MonoBehaviour
             {
                 Progress.Add(i, (false, 0));
             }
-            SaveProgress();
         }
         else
         {
@@ -62,18 +67,18 @@ public class ProgressManager : MonoBehaviour
         }
     }
 
-    public void CalculateUnlockedLevels()
-    {
-        int k = 0;
-        foreach (var level in Progress)
-        {
-            if (level.Value.Item1)
-            {
-                k++;
-            }
-        }
-        UnlockedLevels = k;
-    }
+    //public void CalculateUnlockedLevels()
+    //{
+    //    int k = 0;
+    //    foreach (var level in Progress)
+    //    {
+    //        if (level.Value.Item1)
+    //        {
+    //            k++;
+    //        }
+    //    }
+    //    UnlockedLevels = k;
+    //}
 
     public void GenerateScore()
     {
@@ -125,13 +130,9 @@ public class ProgressManager : MonoBehaviour
             }
         }
 
-        SaveProgress();
         ShowProgress(StarsCount);
-    }
-
-    private void SaveProgress()
-    {
-        SaveSystem.SaveData(new PlayerData(Progress));
+        SaveProgress();
+        ProgressChanged?.Invoke();
     }
 
     private void ShowProgress(int score)
@@ -142,31 +143,9 @@ public class ProgressManager : MonoBehaviour
         var successfulWagons = WagonGenerator.Instance.wagonsToLaunch - WrongWagons;
         scoreText.text = successfulWagons + " / " + WagonGenerator.Instance.wagonsToLaunch;
 
-
-
         scoreStars[2].sprite = score == 3 ? starSprites[1] : savedStars == 3 ? starSprites[2] : starSprites[0];
         scoreStars[1].sprite = score >= 2 ? starSprites[1] : savedStars >= 2 ? starSprites[2] : starSprites[0];
         scoreStars[0].sprite = score >= 1 ? starSprites[1] : savedStars >= 1 ? starSprites[2] : starSprites[0];
-
-
-
-        //switch (score)
-        //{
-        //    case 3:
-        //        scoreStars[0].sprite = scoreStars[1].sprite = scoreStars[2].sprite = starSprites[1];
-        //        break;
-        //    case 2:
-        //        scoreStars[0].sprite = scoreStars[1].sprite = starSprites[1];
-        //        scoreStars[2].sprite = (score >= savedStars) ? starSprites[0] : starSprites[2];
-        //        break;
-        //    case 1:
-        //        scoreStars[0].sprite = starSprites[1];
-        //        scoreStars[2].sprite = scoreStars[1].sprite = starSprites[0];
-        //        break;
-        //    case 0:
-        //        scoreStars[0].sprite = scoreStars[1].sprite = scoreStars[2].sprite = starSprites[0];
-        //        break;
-        //}
     }
 
     public int GetScoreOfLevel(int level)
@@ -177,12 +156,16 @@ public class ProgressManager : MonoBehaviour
     public void ResetProgress()
     {
         Progress = new Dictionary<int, (bool, int)>();
-        Progress.Add(1, (true, 0));
-        for (int i = 2; i <= TotalLevelsCount; i++)
+
+        int levelNumber = 1;
+        Progress.Add(levelNumber, (true, 0));
+
+        for (levelNumber = 2; levelNumber <= TotalLevelsCount; levelNumber++)
         {
-            Progress.Add(i, (false, 0));
+            Progress.Add(levelNumber, (false, 0));
         }
+
         SaveProgress();
-        ProgressResetted?.Invoke();
+        ProgressChanged?.Invoke();
     }
 }

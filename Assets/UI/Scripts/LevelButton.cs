@@ -9,13 +9,23 @@ public class LevelButton : MonoBehaviour
     public Image[] starBoxes;
     public Sprite[] starSprites;
 
-    private void Start()
+    private Button button;
+
+    private void Awake()
     {
-        ShowStars();
+        button = GetComponent<Button>();
     }
 
-    private void ShowStars()
+    private void Start()
     {
+        UpdateState();
+        ProgressManager.Instance.ProgressChanged += UpdateState;
+    }
+
+    private void UpdateState()
+    {
+        button.interactable = ProgressManager.Instance.Progress[levelNumber].Item1;
+
         if (ProgressManager.Instance.Progress[levelNumber].Item2 > 0)
         {
             starBoxes[0].sprite = ProgressManager.Instance.Progress[levelNumber].Item2 >= 1 ? starSprites[1] : starSprites[0];

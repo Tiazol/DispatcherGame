@@ -69,14 +69,11 @@ public class Wagon : MonoBehaviour
         }
 
         //transform.position = currentSegment.GetPointAtDistance(distance);
-        var currentPos = transform.position;
-        Debug.Log($"my prev pos is {currentPos}");
         rb.MovePosition(currentSegment.GetPointAtDistance(distance));
-        Debug.Log($"my last pos is {transform.position}");
 
         var rot = currentSegment.GetRotationAtDistance(distance);
-        //transform.rotation = Quaternion.Euler(0, rot.eulerAngles.y + 90, rot.eulerAngles.x + 90);
-        rb.MoveRotation(Quaternion.Euler(0, rot.eulerAngles.y + 90, rot.eulerAngles.x + 90));
+        transform.rotation = Quaternion.Euler(0, rot.eulerAngles.y + 90, rot.eulerAngles.x + 90);
+        //rb.MoveRotation(Quaternion.Euler(0, rot.eulerAngles.y + 90, rot.eulerAngles.x + 90));
 
         distance += Time.deltaTime * Speed;
     }

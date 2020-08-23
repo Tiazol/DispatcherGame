@@ -12,7 +12,12 @@ public class MainMenuUI : MonoBehaviour
     public GameObject confirmationResetProgress;
     public Button levelButtonPrefab;
 
-    private void AssignLevelButtons()
+    private void Start()
+    {
+        CreateLevelButtons();
+    }
+
+    private void CreateLevelButtons()
     {
         for (int i = 1; i <= ProgressManager.Instance.TotalLevelsCount; i++)
         {
@@ -21,25 +26,12 @@ public class MainMenuUI : MonoBehaviour
             button.GetComponentInChildren<Text>().text = level.ToString();
             button.GetComponent<LevelButton>().levelNumber = level;
             button.onClick.AddListener(() => OnClickLevelButton(level));
-            button.interactable = level <= ProgressManager.Instance.UnlockedLevels;
-        }
-    }
-
-    // TODO: optimize
-    private void ClearLevelButtons()
-    {
-        var levels = levelButtons.GetComponentsInChildren<LevelButton>();
-        for (int i = 0; i < levels.Length; i++)
-        {
-            Destroy(levels[i]);
         }
     }
 
     #region MainMenu
     public void OnClickPlayButton()
     {
-        ClearLevelButtons();
-        AssignLevelButtons();
         mainMenu.SetActive(false);
         levelSelection.SetActive(true);
     }
@@ -72,7 +64,7 @@ public class MainMenuUI : MonoBehaviour
     #region Settings
     public void OnClickSwitchSoundButton()
     {
-
+        AudioManager.Instance.SwitchCurrentSoundState();
     }
 
     public void OnClickResetProgressButton()
