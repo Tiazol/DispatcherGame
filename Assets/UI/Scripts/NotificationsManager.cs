@@ -10,7 +10,7 @@ public class NotificationsManager : MonoBehaviour
     public Text levelNumber;
     public Text wagonsCount;
     public Sprite[] sprites;
-    public WagonGenerator wagonGenerator;
+    //public WagonGenerator wagonGenerator;
 
     private Animator animator;
 
@@ -18,14 +18,17 @@ public class NotificationsManager : MonoBehaviour
     {
         animator = GetComponent<Animator>();
 
-        wagonGenerator.WagonPrepared += StartBlinking;
-        wagonGenerator.WagonLaunched += StopBlinking;
+        //wagonGenerator.WagonPrepared += StartBlinking;
+        //wagonGenerator.WagonLaunched += StopBlinking;
     }
 
     private void Start()
     {
-        levelNumber.text = $"{LocalizationManager.Instance.GetLocalizedString("level")} {GameManager.Instance.GetCurrentLevelNumber()}";
-        wagonsCount.text = $"0 / {wagonGenerator.wagonsToLaunch}";
+        WagonGenerator.Instance.WagonPrepared += StartBlinking;
+        WagonGenerator.Instance.WagonLaunched += StopBlinking;
+
+        levelNumber.text = $"{LocalizationManager.Instance.GetLocalizedString("level")} {GameManager.Instance.CurrentLevelNumber}";
+        wagonsCount.text = $"0 / {WagonGenerator.Instance.wagonsToLaunch}";
     }
 
     private void StartBlinking(WagonType type)
@@ -37,6 +40,6 @@ public class NotificationsManager : MonoBehaviour
     private void StopBlinking()
     {
         animator.SetBool("IsBlinking", false);
-        wagonsCount.text = $"{wagonGenerator.PassedWagonsCount} / {wagonGenerator.wagonsToLaunch}";
+        wagonsCount.text = $"{WagonGenerator.Instance.PassedWagonsCount} / {WagonGenerator.Instance.wagonsToLaunch}";
     }
 }

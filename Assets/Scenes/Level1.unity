@@ -630,16 +630,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7879884317754430284, guid: cee7580fde3e06445822421956dd51b4,
-        type: 3}
-      propertyPath: m_MatchWidthOrHeight
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7879884317754430284, guid: cee7580fde3e06445822421956dd51b4,
-        type: 3}
-      propertyPath: m_ScreenMatchMode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7879884317754430285, guid: cee7580fde3e06445822421956dd51b4,
         type: 3}
       propertyPath: m_Camera
@@ -755,11 +745,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameUI
       objectReference: {fileID: 0}
-    - target: {fileID: 8332991146175308599, guid: cee7580fde3e06445822421956dd51b4,
-        type: 3}
-      propertyPath: wagonGenerator
-      value: 
-      objectReference: {fileID: 1204147732}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cee7580fde3e06445822421956dd51b4, type: 3}
 --- !u!4 &408502001 stripped
@@ -1567,18 +1552,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6d0f960d4255c94987cacd14ba546ef, type: 3}
---- !u!114 &1204147732 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6329736642450545263, guid: ede3097ddeb8a22489ca14f97989ee8b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1113278032}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e891524c33e26c748a450315b90af016, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1204350845 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8786056273472788344, guid: e6d0f960d4255c94987cacd14ba546ef,

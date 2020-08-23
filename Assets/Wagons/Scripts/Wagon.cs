@@ -43,9 +43,9 @@ public class Wagon : MonoBehaviour
         {
             var checkpoint = collision.GetComponentInParent<Checkpoint>();
 
-            if (checkpoint.WType != wagonType)
+            if (checkpoint.WType == wagonType)
             {
-                ProgressManager.Instance.WrongWagons++;
+                ProgressManager.Instance.SuccessfulWagons++;
             }
         }
 

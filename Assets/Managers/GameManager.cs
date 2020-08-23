@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public bool GamePaused { get; private set; }
+    public int TotalLevelsCount => SceneManager.sceneCountInBuildSettings - 1;
+    public int CurrentLevelNumber => SceneManager.GetActiveScene().buildIndex;
 
     private void Awake()
     {
@@ -47,13 +49,8 @@ public class GameManager : MonoBehaviour
     public void LoadNextLevel()
     {
         var currentScene = SceneManager.GetActiveScene().buildIndex;
-        var newScene = currentScene < ProgressManager.Instance.TotalLevelsCount ? currentScene + 1 : 0;
+        var newScene = currentScene < TotalLevelsCount ? currentScene + 1 : 0;
         SceneManager.LoadScene(newScene);
-    }
-
-    public int GetCurrentLevelNumber()
-    {
-        return SceneManager.GetActiveScene().buildIndex;
     }
 
     public void PauseGame()

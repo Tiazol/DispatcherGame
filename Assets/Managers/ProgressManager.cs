@@ -10,162 +10,158 @@ using UnityEngine.UI;
 
 public class ProgressManager : MonoBehaviour
 {
+    #region public
     public static ProgressManager Instance { get; private set; }
 
-    public Image[] scoreStars;
-    public Sprite[] starSprites;
-    public Text scoreText;
-
-    public int TotalLevelsCount { get; private set; }
-    public Dictionary<int, (bool, int)> Progress { get; private set; }
-    //public int UnlockedLevels { get; private set; }
-    public int WrongWagons { get; set; }
-    public int StarsCount { get; private set; }
+    public int SuccessfulWagons { get; set; }
+    public int TotalWagons => WagonGenerator.Instance.wagonsToLaunch;
+    public int CurrentStarsCount => GetStarsCount(SuccessfulWagons, WagonGenerator.Instance.wagonsToLaunch);
+    public int SavedStarsCount => GetSavedStarsCountOfLevel(GameManager.Instance.CurrentLevelNumber, progress);
 
     public event Action ProgressChanged;
+    public event Action LevelCompleted;
+
+    public bool IsLevelAvailable(int level)
+    {
+        return progress[level].Item1;
+    }
+
+    public int GetSavedStarsCountForLevel(int level)
+    {
+        return progress[level].Item2;
+    }
+
+    public void ResetProgress()
+    {
+        var progress = new Dictionary<int, (bool, int)>();
+
+        int levelNumber = 1;
+        progress.Add(levelNumber, (true, 0));
+
+        for (levelNumber = 2; levelNumber <= GameManager.Instance.TotalLevelsCount; levelNumber++)
+        {
+            progress.Add(levelNumber, (false, 0));
+        }
+
+        this.progress = progress;
+        SaveProgress(progress);
+        ProgressChanged?.Invoke();
+    }
+    #endregion public
+
+    #region private
+    private Dictionary<int, (bool, int)> progress;
 
     private void Awake()
     {
         Instance = this;
-        TotalLevelsCount = SceneManager.sceneCountInBuildSettings - 1;
-        LoadProgress();
-        //CalculateUnlockedLevels();
+        progress = LoadProgress();
     }
 
     private void Start()
     {
         if (CheckpointsManager.Instance != null)
         {
-            CheckpointsManager.Instance.AllWagonsPassed += GenerateScore;
+            CheckpointsManager.Instance.AllWagonsPassed += OnAllWagonsPassed;
         }
     }
 
-    private void SaveProgress()
+    private void OnAllWagonsPassed()
     {
-        SaveSystem.SaveData(new PlayerData(Progress));
+        progress = UpdateLevelProgress(GameManager.Instance.CurrentLevelNumber, CurrentStarsCount, progress);
+        ProgressChanged?.Invoke();
+        LevelCompleted?.Invoke();
     }
 
-    private void LoadProgress()
+    private void SaveProgress(Dictionary<int, (bool, int)> progress)
     {
-        Progress = new Dictionary<int, (bool, int)>();
+        SaveSystem.SaveData(new PlayerData(progress));
+    }
+
+    private Dictionary<int, (bool, int)> LoadProgress()
+    {
+        var progress = new Dictionary<int, (bool, int)>();
         var data = SaveSystem.LoadData();
 
         if (data == null)
         {
-            Progress.Add(1, (true, 0));
-            for (int i = 2; i <= TotalLevelsCount; i++)
+            progress.Add(1, (true, 0));
+            for (int i = 2; i <= GameManager.Instance.TotalLevelsCount; i++)
             {
-                Progress.Add(i, (false, 0));
+                progress.Add(i, (false, 0));
             }
         }
         else
         {
             for (int i = 0; i < data.LevelsCount; i++)
             {
-                Progress.Add(data.levels[i], (data.statuses[i], data.stars[i]));
+                progress.Add(data.levels[i], (data.statuses[i], data.stars[i]));
             }
         }
+
+        return progress;
     }
 
-    //public void CalculateUnlockedLevels()
-    //{
-    //    int k = 0;
-    //    foreach (var level in Progress)
-    //    {
-    //        if (level.Value.Item1)
-    //        {
-    //            k++;
-    //        }
-    //    }
-    //    UnlockedLevels = k;
-    //}
-
-    public void GenerateScore()
+    private int GetStarsCount(int successfulWagons, int totalWagons)
     {
-        var successfulWagons = WagonGenerator.Instance.wagonsToLaunch - WrongWagons;
-        var result = (float)successfulWagons / WagonGenerator.Instance.wagonsToLaunch;
+        int starsCount = 0;
+        var result = (float)successfulWagons / totalWagons;
 
-        if (result < 0.5f)
+        if (result >= 0.5f && result < 0.75f)
         {
-            StarsCount = 0;
-        }
-        else if (result >= 0.5f && result < 0.75f)
-        {
-            StarsCount = 1;
+            starsCount = 1;
         }
         else if (result >= 0.75f && result < 1.0f)
         {
-            StarsCount = 2;
+            starsCount = 2;
         }
-        else
+        else if (result == 1.0f)
         {
-            StarsCount = 3;
+            starsCount = 3;
         }
 
-        var currentLevel = GameManager.Instance.GetCurrentLevelNumber();
+        return starsCount;
+    }
 
-        if (Progress.ContainsKey(currentLevel))
+    private int GetSavedStarsCountOfLevel(int level, Dictionary<int, (bool, int)> progress)
+    {
+        return progress.ContainsKey(level) ? progress[level].Item2 : 0;
+    }
+
+    private Dictionary<int, (bool, int)> UpdateLevelProgress(int currentLevel, int currentStarsCount, Dictionary<int, (bool, int)> progress)
+    {
+        if (progress.ContainsKey(currentLevel))
         {
-            if (Progress[currentLevel].Item2 < StarsCount)
+            if (progress[currentLevel].Item2 < currentStarsCount)
             {
-                Progress.Remove(currentLevel);
-                Progress.Add(currentLevel, (true, StarsCount));
+                progress.Remove(currentLevel);
+                progress.Add(currentLevel, (true, currentStarsCount));
             }
         }
         else
         {
-            Progress.Add(currentLevel, (true, StarsCount));
+            progress.Add(currentLevel, (true, currentStarsCount));
         }
 
-        if (Progress.ContainsKey(currentLevel + 1))
+        if (currentStarsCount > 0)
         {
-            Progress.Remove(currentLevel + 1);
-            Progress.Add(currentLevel + 1, (true, 0));
-        }
-        else
-        {
-            if (currentLevel + 1 <= TotalLevelsCount)
+            if (progress.ContainsKey(currentLevel + 1))
             {
-                Progress.Add(currentLevel + 1, (true, 0));
+                progress.Remove(currentLevel + 1);
+                progress.Add(currentLevel + 1, (true, 0));
+            }
+            else
+            {
+                if (currentLevel + 1 <= GameManager.Instance.TotalLevelsCount)
+                {
+                    progress.Add(currentLevel + 1, (true, 0));
+                }
             }
         }
 
-        ShowProgress(StarsCount);
-        SaveProgress();
-        ProgressChanged?.Invoke();
+        SaveProgress(progress);
+
+        return progress;
     }
-
-    private void ShowProgress(int score)
-    {
-        var currentLevel = GameManager.Instance.GetCurrentLevelNumber();
-        var savedStars = Progress[currentLevel].Item2;
-
-        var successfulWagons = WagonGenerator.Instance.wagonsToLaunch - WrongWagons;
-        scoreText.text = successfulWagons + " / " + WagonGenerator.Instance.wagonsToLaunch;
-
-        scoreStars[2].sprite = score == 3 ? starSprites[1] : savedStars == 3 ? starSprites[2] : starSprites[0];
-        scoreStars[1].sprite = score >= 2 ? starSprites[1] : savedStars >= 2 ? starSprites[2] : starSprites[0];
-        scoreStars[0].sprite = score >= 1 ? starSprites[1] : savedStars >= 1 ? starSprites[2] : starSprites[0];
-    }
-
-    public int GetScoreOfLevel(int level)
-    {
-        return Progress.ContainsKey(level) ? Progress[level].Item2 : 0;
-    }
-
-    public void ResetProgress()
-    {
-        Progress = new Dictionary<int, (bool, int)>();
-
-        int levelNumber = 1;
-        Progress.Add(levelNumber, (true, 0));
-
-        for (levelNumber = 2; levelNumber <= TotalLevelsCount; levelNumber++)
-        {
-            Progress.Add(levelNumber, (false, 0));
-        }
-
-        SaveProgress();
-        ProgressChanged?.Invoke();
-    }
+    #endregion private
 }

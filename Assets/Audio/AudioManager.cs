@@ -20,12 +20,13 @@ public class AudioManager : MonoBehaviour
         private set
         {
             currentSoundState = value;
-            var intValue = currentSoundState == SoundState.On ? 0 : -80;
-            mainGroup.audioMixer.SetFloat("MasterVolume", intValue);
-            PlayerPrefs.SetInt(pp_soundState, intValue);
+            var volume = GetIntFromSoundState(currentSoundState);
+            mainGroup.audioMixer.SetFloat("MasterVolume", volume);
+            PlayerPrefs.SetInt(pp_soundState, volume);
             SoundStateChanged?.Invoke(currentSoundState);
         }
     }
+
     public event System.Action<SoundState> SoundStateChanged;
 
     public void SwitchOnSound()
@@ -38,9 +39,14 @@ public class AudioManager : MonoBehaviour
         CurrentSoundState = SoundState.Off;
     }
 
-    public void SwitchCurrentSoundState()
+    //public void SwitchCurrentSoundState()
+    //{
+    //    CurrentSoundState = CurrentSoundState == SoundState.On ? SoundState.Off : SoundState.On;
+    //}
+
+    public void SwitchSoundToState(bool state)
     {
-        CurrentSoundState = CurrentSoundState == SoundState.On ? SoundState.Off : SoundState.On;
+        CurrentSoundState = state ? SoundState.On : SoundState.Off;
     }
 
     private const string pp_soundState = "SoundState";
@@ -50,14 +56,20 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
 
-        if (PlayerPrefs.HasKey(pp_soundState))
-        {
-            CurrentSoundState = PlayerPrefs.GetInt(pp_soundState) == 1 ? SoundState.On : SoundState.Off;
-        }
-        else
-        {
-            CurrentSoundState = SoundState.On;
-        }
+    private void Start()
+    {
+        CurrentSoundState = PlayerPrefs.HasKey(pp_soundState) ? GetSoundStateFromInt(PlayerPrefs.GetInt(pp_soundState)) : SoundState.On;
+    }
+
+    private int GetIntFromSoundState(SoundState state)
+    {
+        return state == SoundState.On ? 0 : -80;
+    }
+
+    private SoundState GetSoundStateFromInt(int value)
+    {
+        return value == 0 ? SoundState.On : SoundState.Off;
     }
 }

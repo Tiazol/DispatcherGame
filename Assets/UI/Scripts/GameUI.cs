@@ -7,10 +7,19 @@ public class GameUI : MonoBehaviour
 {
     public static GameUI Instance { get; private set; }
 
-    public GameObject quitConfirmation;
-    public GameObject levelCompletedDialog;
-    public Button nextButton;
-    public Text levelCompletedText;
+    [Header("Stars")]
+    [SerializeField] private Image[] slots;
+    [SerializeField] private Sprite emptyStar;
+    [SerializeField] private Sprite fullStar;
+    [SerializeField] private Sprite pickedUpStar;
+    [Header("Texts")]
+    [SerializeField] private Text wagonsCount;
+    [SerializeField] private Text levelCompletedText;
+    [Header("Buttons")]
+    [SerializeField] private Button nextButton;
+    [Header("Panels")]
+    [SerializeField] private GameObject quitConfirmation;
+    [SerializeField] private GameObject levelCompletedDialog;
 
     private void Awake()
     {
@@ -19,24 +28,18 @@ public class GameUI : MonoBehaviour
 
     private void Start()
     {
-        CheckpointsManager.Instance.AllWagonsPassed += ShowLevelCompletedDialog;
-        //LocalizationManager.Instance.LanguageChanged += LoadLocalization;
+        ProgressManager.Instance.LevelCompleted += ShowLevelCompletedDialog;
     }
-
-    //private void LoadLocalization()
-    //{
-    //    levelCompletedText.text = LocalizationManager.Instance.GetLocalizedString("levelCompleted");
-    //}
 
     public void OnNextOrRetryButtonPressed()
     {
-        if (ProgressManager.Instance.StarsCount == 0)
+        if (ProgressManager.Instance.CurrentStarsCount == 0)
         {
-            LoadThisLevel();
+            GameManager.Instance.LoadThisLevel();
         }
         else
         {
-            LoadNextLevel();
+            GameManager.Instance.LoadNextLevel();
         }
     }
 
@@ -54,34 +57,29 @@ public class GameUI : MonoBehaviour
 
     public void ShowLevelCompletedDialog()
     {
-        //GameManager.Instance.PauseGame();
-        ProgressManager.Instance.GenerateScore();
-
-        if (ProgressManager.Instance.StarsCount == 0)
+        var currentStars = ProgressManager.Instance.CurrentStarsCount;
+        var savedStars = ProgressManager.Instance.SavedStarsCount;
+        
+        if (currentStars == 0)
         {
-            Debug.Log("wo", levelCompletedText);
             levelCompletedText.text = LocalizationManager.Instance.GetLocalizedString("levelNotCompleted");
             nextButton.GetComponentInChildren<Text>().text = LocalizationManager.Instance.GetLocalizedString("retry");
+
+            slots[0].sprite = slots[1].sprite = slots[2].sprite = emptyStar;
         }
         else
         {
             levelCompletedText.text = LocalizationManager.Instance.GetLocalizedString("levelCompleted");
             nextButton.GetComponentInChildren<Text>().text = LocalizationManager.Instance.GetLocalizedString("next");
+
+            slots[0].sprite = currentStars >= 1 ? fullStar : savedStars >= 1 ? pickedUpStar : emptyStar;
+            slots[1].sprite = currentStars >= 2 ? fullStar : savedStars >= 2 ? pickedUpStar : emptyStar;
+            slots[2].sprite = currentStars >= 3 ? fullStar : savedStars >= 3 ? pickedUpStar : emptyStar;
         }
 
+        wagonsCount.text = $"{ProgressManager.Instance.SuccessfulWagons} / {ProgressManager.Instance.TotalWagons}";
+
         levelCompletedDialog.SetActive(true);
-    }
-
-    public void LoadThisLevel()
-    {
-        GameManager.Instance.ResumeGame();
-        GameManager.Instance.LoadThisLevel();
-    }
-
-    public void LoadNextLevel()
-    {
-        GameManager.Instance.ResumeGame();
-        GameManager.Instance.LoadNextLevel();
     }
 
     public void QuitToMainMenu()
