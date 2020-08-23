@@ -20,7 +20,7 @@ public class WagonGeneratorPositioned : WagonGenerator
 
     protected override IEnumerator LaunchWagon()
     {
-        var segment = RailroadManager.Instance.GetRailroadSegmentForPosition(transform.position);
+        var segment = RailroadManager.Instance.GetRailroadSegmentAtCenterPosition(transform.position);
         var wagon = Instantiate(wagonPrefab, segment.FirstPoint, Quaternion.identity, transform);
         var list = spriteCollection[currentType];
 

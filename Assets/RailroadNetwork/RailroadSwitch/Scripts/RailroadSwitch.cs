@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ButtonSwitch : MonoBehaviour, IBeginDragHandler, IDragHandler
+public class RailroadSwitch : MonoBehaviour, IBeginDragHandler, IDragHandler
 {
     public RailroadSegment segment;
 
@@ -23,6 +23,12 @@ public class ButtonSwitch : MonoBehaviour, IBeginDragHandler, IDragHandler
         audioSource = GetComponent<AudioSource>();
     }
 
+    private void Start()
+    {
+        // TODO
+        //segment = RailroadManager.Instance.GetRailroadSegmentAtTopPosition()
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         // Если свайп "по горизонтали"
@@ -33,7 +39,6 @@ public class ButtonSwitch : MonoBehaviour, IBeginDragHandler, IDragHandler
 
             if (eventData.delta.x > 0)
             {
-
                 SwitchToRight();
             }
 
