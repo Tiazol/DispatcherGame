@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Application.platform == RuntimePlatform.Android) // TODO оптимизировать с помощью событий?
+        if (/*Application.platform == RuntimePlatform.Android*/true) // TODO оптимизировать с помощью событий?
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
