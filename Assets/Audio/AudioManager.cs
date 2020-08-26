@@ -56,10 +56,7 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-    }
 
-    private void Start()
-    {
         CurrentSoundState = PlayerPrefs.HasKey(pp_soundState) ? GetSoundStateFromInt(PlayerPrefs.GetInt(pp_soundState)) : SoundState.On;
     }
 
