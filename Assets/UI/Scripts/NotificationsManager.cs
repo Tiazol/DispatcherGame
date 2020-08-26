@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -11,6 +12,8 @@ public class NotificationsManager : MonoBehaviour
     public Text wagonsCount;
     public Sprite[] sprites;
     //public WagonGenerator wagonGenerator;
+
+    public event Action Prepared;
 
     private Animator animator;
 
@@ -26,6 +29,7 @@ public class NotificationsManager : MonoBehaviour
     {
         WagonGenerator.Instance.WagonPrepared += StartBlinking;
         WagonGenerator.Instance.WagonLaunched += StopBlinking;
+        Prepared?.Invoke();
 
         levelNumber.text = $"{LocalizationManager.Instance.GetLocalizedString("level")} {GameManager.Instance.CurrentLevelNumber}";
         wagonsCount.text = $"0 / {WagonGenerator.Instance.wagonsToLaunch}";

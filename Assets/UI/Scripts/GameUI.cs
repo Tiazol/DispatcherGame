@@ -21,9 +21,13 @@ public class GameUI : MonoBehaviour
     [SerializeField] private GameObject quitConfirmation;
     [SerializeField] private GameObject levelCompletedDialog;
 
+    public NotificationsManager NotificationsManager { get; private set; }
+
     private void Awake()
     {
         Instance = this;
+
+        NotificationsManager = GetComponentInChildren<NotificationsManager>();
     }
 
     private void Start()
