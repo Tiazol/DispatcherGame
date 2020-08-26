@@ -45,7 +45,12 @@ public class WagonGenerator : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(PrepareWagon());
+        var gameUI = FindObjectOfType<GameUI>();
+
+        if (gameUI != null)
+        {
+            GameUI.Instance.NotificationsManager.Prepared += () => StartCoroutine(PrepareWagon());
+        }
     }
 
     private void LoadSprites()
