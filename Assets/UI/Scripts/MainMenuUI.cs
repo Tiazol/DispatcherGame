@@ -12,13 +12,17 @@ public class MainMenuUI : MonoBehaviour
     public GameObject confirmationResetProgress;
     public Button levelButtonPrefab;
     public Toggle soundToggle;
+    public Toggle musicToggle;
 
     private void Start()
     {
         CreateLevelButtons();
-        var x = AudioManager.Instance.CurrentSoundState == SoundState.On;
+
         soundToggle.isOn = AudioManager.Instance.CurrentSoundState == SoundState.On;
         soundToggle.onValueChanged.AddListener(isOn => OnClickSwitchSoundButton(isOn));
+
+        musicToggle.isOn = AudioManager.Instance.CurrentMusicState == MusicState.On;
+        musicToggle.onValueChanged.AddListener(isOn => OnClickSwitchMusicButton(isOn));
     }
 
     private void CreateLevelButtons()
@@ -69,7 +73,11 @@ public class MainMenuUI : MonoBehaviour
     public void OnClickSwitchSoundButton(bool isOn)
     {
         AudioManager.Instance.SwitchSoundToState(isOn);
-        Debug.Log(isOn);
+    }
+
+    private void OnClickSwitchMusicButton(bool isOn)
+    {
+        AudioManager.Instance.SwitchMusicToState(isOn);
     }
 
     public void OnClickResetProgressButton()

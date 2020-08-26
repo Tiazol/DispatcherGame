@@ -4,6 +4,7 @@ settings=Settings
 quit=Quit
 back=Back
 switchSound=Sound
+switchMusic=Music
 resetProgress=Reset
 confirmResetProgress=Progress will be reset. Are you sure?
 no=No
