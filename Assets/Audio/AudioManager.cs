@@ -90,6 +90,7 @@ public class AudioManager : MonoBehaviour
         Instance = this;
 
         CurrentSoundState = PlayerPrefs.HasKey(pp_soundState) ? GetSoundStateFromInt(PlayerPrefs.GetInt(pp_soundState)) : SoundState.On;
+        CurrentMusicState = PlayerPrefs.HasKey(pp_musicState) ? GetMusicStateFromInt(PlayerPrefs.GetInt(pp_musicState)) : MusicState.On;
     }
 
     private int GetIntFromSoundState(SoundState state)
