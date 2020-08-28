@@ -33,7 +33,7 @@ public class RailroadSwitch : MonoBehaviour, IBeginDragHandler, IDragHandler
     {
         // Если свайп "по горизонтали"
 
-        if (Mathf.Abs(eventData.delta.x) > Mathf.Abs(eventData.delta.y))
+        if (/*Mathf.Abs(eventData.delta.x) > Mathf.Abs(eventData.delta.y)*/ true)
         {
             // Если смещение вправо
 
