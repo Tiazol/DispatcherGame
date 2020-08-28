@@ -33,19 +33,31 @@ public class ProgressManager : MonoBehaviour
 
     public void ResetProgress()
     {
-        var progress = new Dictionary<int, (bool, int)>();
+        var p = new Dictionary<int, (bool, int)>();
 
         int levelNumber = 1;
-        progress.Add(levelNumber, (true, 0));
+        p.Add(levelNumber, (true, 0));
 
         for (levelNumber = 2; levelNumber <= GameManager.Instance.TotalLevelsCount; levelNumber++)
         {
-            progress.Add(levelNumber, (false, 0));
+            p.Add(levelNumber, (false, 0));
         }
 
-        this.progress = progress;
-        SaveProgress(progress);
+        progress = p;
+        SaveProgress(p);
         ProgressChanged?.Invoke();
+    }
+
+    public void UnlockAllLevels()
+    {
+        var p = new Dictionary<int, (bool, int)>();
+
+        foreach (var level in progress)
+        {
+            p.Add(level.Key, (true, level.Value.Item2));
+        }
+
+        progress = p;
     }
     #endregion public
 
