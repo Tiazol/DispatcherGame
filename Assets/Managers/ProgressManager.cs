@@ -55,11 +55,12 @@ public class ProgressManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        progress = LoadProgress();
     }
 
     private void Start()
     {
+        progress = LoadProgress();
+
         if (CheckpointsManager.Instance != null)
         {
             CheckpointsManager.Instance.AllWagonsPassed += OnAllWagonsPassed;
@@ -86,6 +87,7 @@ public class ProgressManager : MonoBehaviour
         if (data == null)
         {
             progress.Add(1, (true, 0));
+
             for (int i = 2; i <= GameManager.Instance.TotalLevelsCount; i++)
             {
                 progress.Add(i, (false, 0));
