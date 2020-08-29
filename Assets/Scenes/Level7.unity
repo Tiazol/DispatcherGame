@@ -2111,7 +2111,7 @@ PrefabInstance:
     - target: {fileID: 6329736642450545263, guid: ede3097ddeb8a22489ca14f97989ee8b,
         type: 3}
       propertyPath: wagonSpeed
-      value: 2.05
+      value: 2.55
       objectReference: {fileID: 0}
     - target: {fileID: 6329736642450545263, guid: ede3097ddeb8a22489ca14f97989ee8b,
         type: 3}
@@ -2131,17 +2131,17 @@ PrefabInstance:
     - target: {fileID: 6329736642450545263, guid: ede3097ddeb8a22489ca14f97989ee8b,
         type: 3}
       propertyPath: createInterval
-      value: 1.45
+      value: 0.73
       objectReference: {fileID: 0}
     - target: {fileID: 6329736642450545263, guid: ede3097ddeb8a22489ca14f97989ee8b,
         type: 3}
       propertyPath: launchInterval
-      value: 1.91
+      value: 1.73
       objectReference: {fileID: 0}
     - target: {fileID: 6329736642450545263, guid: ede3097ddeb8a22489ca14f97989ee8b,
         type: 3}
       propertyPath: wagonsToLaunch
-      value: 11
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ede3097ddeb8a22489ca14f97989ee8b, type: 3}
