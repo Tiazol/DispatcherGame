@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class WagonGeneratorPositioned : WagonGenerator
 {
+    protected override void Start()
+    {
+        StartCoroutine(PrepareWagon());
+    }
+
     public override void SetRandomIntervals()
     {
         createInterval = Random.Range(2f, 10f);

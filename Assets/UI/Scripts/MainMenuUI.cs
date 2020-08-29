@@ -14,6 +14,11 @@ public class MainMenuUI : MonoBehaviour
     public Toggle soundToggle;
     public Toggle musicToggle;
 
+    private void Awake()
+    {
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+    }
+
     private void Start()
     {
         CreateLevelButtons();

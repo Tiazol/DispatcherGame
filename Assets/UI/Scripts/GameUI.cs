@@ -27,6 +27,8 @@ public class GameUI : MonoBehaviour
     {
         Instance = this;
 
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
         NotificationsManager = GetComponentInChildren<NotificationsManager>();
     }
 

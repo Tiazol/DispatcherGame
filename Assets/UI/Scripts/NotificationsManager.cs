@@ -29,7 +29,7 @@ public class NotificationsManager : MonoBehaviour
     {
         WagonGenerator.Instance.WagonPrepared += StartBlinking;
         WagonGenerator.Instance.WagonLaunched += StopBlinking;
-        Prepared?.Invoke();
+        WagonGenerator.Instance.StartWorking();
 
         levelNumber.text = $"{LocalizationManager.Instance.GetLocalizedString("level")} {GameManager.Instance.CurrentLevelNumber}";
         wagonsCount.text = $"0 / {WagonGenerator.Instance.wagonsToLaunch}";

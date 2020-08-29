@@ -43,18 +43,9 @@ public class WagonGenerator : MonoBehaviour
         prevTypes = new List<WagonType>();
     }
 
-    private void Start()
+    protected virtual void Start()
     {
-        var gameUI = FindObjectOfType<GameUI>();
 
-        if (gameUI != null)
-        {
-            GameUI.Instance.NotificationsManager.Prepared += () => StartCoroutine(PrepareWagon());
-        }
-        else
-        {
-            StartCoroutine(PrepareWagon());
-        }
     }
 
     private void LoadSprites()
@@ -75,6 +66,11 @@ public class WagonGenerator : MonoBehaviour
     public virtual void SetRandomIntervals()
     {
 
+    }
+
+    public void StartWorking()
+    {
+        StartCoroutine(PrepareWagon());
     }
 
     protected virtual IEnumerator PrepareWagon()

@@ -1699,7 +1699,7 @@ PrefabInstance:
     - target: {fileID: 6329736642450545263, guid: ede3097ddeb8a22489ca14f97989ee8b,
         type: 3}
       propertyPath: wagonSpeed
-      value: 1.33
+      value: 1.68
       objectReference: {fileID: 0}
     - target: {fileID: 6329736642450545263, guid: ede3097ddeb8a22489ca14f97989ee8b,
         type: 3}
@@ -1719,7 +1719,7 @@ PrefabInstance:
     - target: {fileID: 6329736642450545263, guid: ede3097ddeb8a22489ca14f97989ee8b,
         type: 3}
       propertyPath: createInterval
-      value: 2.64
+      value: 1.82
       objectReference: {fileID: 0}
     - target: {fileID: 6329736642450545263, guid: ede3097ddeb8a22489ca14f97989ee8b,
         type: 3}
@@ -2236,10 +2236,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4825293412892568335, guid: a178a4b698375434ebd59fddf22a7b06,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4825293412892568337, guid: a178a4b698375434ebd59fddf22a7b06,
         type: 3}
       propertyPath: m_Name
       value: SegmentTurnLeftBegin
+      objectReference: {fileID: 0}
+    - target: {fileID: 4825293412892568337, guid: a178a4b698375434ebd59fddf22a7b06,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a178a4b698375434ebd59fddf22a7b06, type: 3}
