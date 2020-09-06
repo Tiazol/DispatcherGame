@@ -1,10 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
+public enum WagonType
+{
+    Red, Green, Blue, Purple
+}
 
 public class Wagon : MonoBehaviour
 {
-    public float Speed { get; set; } // Задается в WagonGenerator
+    public float Speed { get; set; }
 
     private const float distanceDiff = 0.04f;
     private float distance;
@@ -13,13 +16,22 @@ public class Wagon : MonoBehaviour
     private RailroadSegment currentSegment;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
-    private AudioSource audioSource;
+
+    public void SetType(WagonType type, Sprite sprite)
+    {
+        wagonType = type;
+        sr.sprite = sprite;
+    }
+
+    public void SetStartingSegment(RailroadSegment segment)
+    {
+        currentSegment = startingSegment = segment;
+    }
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -29,16 +41,6 @@ public class Wagon : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if (CheckpointsManager.Instance.Checkpoints.ContainsKey(collision.gameObject))
-        //{
-        //    var checkpoint = CheckpointsManager.Instance.Checkpoints[collision.gameObject];
-            
-        //    if (checkpoint.WType != wagonType)
-        //    {
-        //        ProgressManager.Instance.WrongWagons++;
-        //    }
-        //}
-
         if (collision.CompareTag("Finish"))
         {
             var checkpoint = collision.GetComponentInParent<Checkpoint>();
@@ -68,12 +70,10 @@ public class Wagon : MonoBehaviour
             }
         }
 
-        //transform.position = currentSegment.GetPointAtDistance(distance);
         rb.MovePosition(currentSegment.GetPointAtDistance(distance));
 
         var rot = currentSegment.GetRotationAtDistance(distance);
         transform.rotation = Quaternion.Euler(0, rot.eulerAngles.y + 90, rot.eulerAngles.x + 90);
-        //rb.MoveRotation(Quaternion.Euler(0, rot.eulerAngles.y + 90, rot.eulerAngles.x + 90));
 
         distance += Time.deltaTime * Speed;
     }
@@ -82,20 +82,4 @@ public class Wagon : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
-    public void SetType(WagonType type, Sprite sprite)
-    {
-        wagonType = type;
-        sr.sprite = sprite;
-    }
-
-    public void SetStartingSegment(RailroadSegment segment)
-    {
-        currentSegment = startingSegment = segment;
-    }
-}
-
-public enum WagonType
-{
-    Red, Green, Blue, Purple
 }

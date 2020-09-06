@@ -1,12 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
+
+public enum State
+{
+    Left,
+    Right
+}
 
 public class RailroadSwitch : MonoBehaviour, IBeginDragHandler, IDragHandler
 {
-    public RailroadSegment segment;
+    [SerializeField] private RailroadSegment segment;
 
     private const string animator_SwitchToLeft = "SwitchToLeft";
     private const string animator_SwitchToRight = "SwitchToRight";
@@ -23,31 +26,15 @@ public class RailroadSwitch : MonoBehaviour, IBeginDragHandler, IDragHandler
         audioSource = GetComponent<AudioSource>();
     }
 
-    private void Start()
-    {
-        // TODO
-        //segment = RailroadManager.Instance.GetRailroadSegmentAtTopPosition()
-    }
-
     public void OnBeginDrag(PointerEventData eventData)
     {
-        // Если свайп "по горизонтали"
-
-        if (/*Mathf.Abs(eventData.delta.x) > Mathf.Abs(eventData.delta.y)*/ true)
+        if (eventData.delta.x > 0)
         {
-            // Если смещение вправо
-
-            if (eventData.delta.x > 0)
-            {
-                SwitchToRight();
-            }
-
-            // Если смещение влево
-
-            else
-            {
-                SwitchToLeft();
-            }
+            SwitchToRight();
+        }
+        else
+        {
+            SwitchToLeft();
         }
     }
 
@@ -84,10 +71,4 @@ public class RailroadSwitch : MonoBehaviour, IBeginDragHandler, IDragHandler
     {
         isAnimating = false;
     }
-}
-
-public enum State
-{
-    Left,
-    Right
 }

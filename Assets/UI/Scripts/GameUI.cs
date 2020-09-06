@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
@@ -21,15 +19,9 @@ public class GameUI : MonoBehaviour
     [SerializeField] private GameObject quitConfirmation;
     [SerializeField] private GameObject levelCompletedDialog;
 
-    public NotificationsManager NotificationsManager { get; private set; }
-
     private void Awake()
     {
         Instance = this;
-
-        Screen.sleepTimeout = SleepTimeout.NeverSleep;
-
-        NotificationsManager = GetComponentInChildren<NotificationsManager>();
     }
 
     private void Start()
@@ -65,7 +57,7 @@ public class GameUI : MonoBehaviour
     {
         var currentStars = ProgressManager.Instance.CurrentStarsCount;
         var savedStars = ProgressManager.Instance.SavedStarsCount;
-        
+
         if (currentStars == 0)
         {
             levelCompletedText.text = LocalizationManager.Instance.GetLocalizedString("levelNotCompleted");
@@ -90,7 +82,7 @@ public class GameUI : MonoBehaviour
 
     public void QuitToMainMenu()
     {
-        GameManager.Instance.ResumeGame(); // а точно нужно?
+        GameManager.Instance.ResumeGame();
         GameManager.Instance.LoadLevel(0);
     }
 }

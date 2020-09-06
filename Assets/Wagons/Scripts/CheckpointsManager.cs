@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 using UnityEngine;
 
@@ -34,7 +32,7 @@ public class CheckpointsManager : MonoBehaviour
     {
         passedWagonsCount++;
 
-        if (passedWagonsCount == WagonGenerator.Instance.wagonsToLaunch)
+        if (passedWagonsCount == WagonGenerator.Instance.WagonsToLaunch)
         {
             AllWagonsPassed?.Invoke();
         }

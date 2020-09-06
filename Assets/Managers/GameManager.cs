@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -9,28 +6,28 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public bool GamePaused { get; private set; }
+
     public int TotalLevelsCount => SceneManager.sceneCountInBuildSettings - 1;
     public int CurrentLevelNumber => SceneManager.GetActiveScene().buildIndex;
 
     private void Awake()
     {
         Instance = this;
+
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
 
     private void Update()
     {
-        if (/*Application.platform == RuntimePlatform.Android*/true) // TODO оптимизировать с помощью событий?
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (SceneManager.GetActiveScene().buildIndex == 0)
             {
-                if (SceneManager.GetActiveScene().buildIndex == 0)
-                {
-                    Quit();
-                }
-                else
-                {
-                    GameUI.Instance.ShowQuitConfirmation();
-                }
+                Quit();
+            }
+            else
+            {
+                GameUI.Instance.ShowQuitConfirmation();
             }
         }
     }

@@ -1,18 +1,18 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class WagonGeneratorPositioned : WagonGenerator
 {
-    protected override void Start()
-    {
-        StartCoroutine(PrepareWagon());
-    }
-
-    public override void SetRandomIntervals()
+    protected override void SetRandomIntervals()
     {
         createInterval = Random.Range(2f, 10f);
         launchInterval = Random.Range(2f, 10f);
+    }
+
+    protected override void Start()
+    {
+        StartCoroutine(PrepareWagon());
     }
 
     protected override IEnumerator PrepareWagon()

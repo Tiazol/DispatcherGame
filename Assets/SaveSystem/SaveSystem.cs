@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.IO;
+﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+
+using UnityEngine;
 
 public static class SaveSystem
 {
@@ -13,7 +12,7 @@ public static class SaveSystem
         var formatter = new BinaryFormatter();
         var path = Application.persistentDataPath + filename;
         var stream = new FileStream(path, FileMode.Create);
-        
+
         formatter.Serialize(stream, data);
         stream.Close();
     }

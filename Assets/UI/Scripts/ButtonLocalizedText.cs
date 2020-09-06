@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class ButtonLocalizedText : MonoBehaviour
 {
-    public string stringID;
+    [SerializeField] private string stringID;
 
     private Text text;
 

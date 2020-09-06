@@ -1,11 +1,11 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
 
 public class WagonScoreSpriteSwitcher : MonoBehaviour
 {
-    public Sprite[] defaultCarSprites;
+    [SerializeField] private Sprite[] defaultCarSprites;
 
     private Image image;
     private int index;

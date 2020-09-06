@@ -1,46 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
-    public GameObject mainMenu; 
-    public GameObject levelSelection;
-    public GameObject levelButtons;
-    public GameObject settings;
-    public GameObject confirmationResetProgress;
-    public Button levelButtonPrefab;
-    public Toggle soundToggle;
-    public Toggle musicToggle;
-
-    private void Awake()
-    {
-        Screen.sleepTimeout = SleepTimeout.NeverSleep;
-    }
-
-    private void Start()
-    {
-        CreateLevelButtons();
-
-        soundToggle.isOn = AudioManager.Instance.CurrentSoundState == SoundState.On;
-        soundToggle.onValueChanged.AddListener(isOn => OnClickSwitchSoundButton(isOn));
-
-        musicToggle.isOn = AudioManager.Instance.CurrentMusicState == MusicState.On;
-        musicToggle.onValueChanged.AddListener(isOn => OnClickSwitchMusicButton(isOn));
-    }
-
-    private void CreateLevelButtons()
-    {
-        for (int i = 1; i <= GameManager.Instance.TotalLevelsCount; i++)
-        {
-            var level = i; // замыкание
-            var button = Instantiate(levelButtonPrefab, levelButtons.transform);
-            button.GetComponentInChildren<Text>().text = level.ToString();
-            button.GetComponent<LevelButton>().LevelNumber = level;
-            button.onClick.AddListener(() => OnClickLevelButton(level));
-        }
-    }
+    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject levelSelection;
+    [SerializeField] private GameObject levelButtons;
+    [SerializeField] private GameObject settings;
+    [SerializeField] private GameObject confirmationResetProgress;
+    [SerializeField] private Button levelButtonPrefab;
+    [SerializeField] private Toggle soundToggle;
+    [SerializeField] private Toggle musicToggle;
 
     #region MainMenu
     public void OnClickPlayButton()
@@ -117,4 +87,32 @@ public class MainMenuUI : MonoBehaviour
         settings.SetActive(true);
     }
     #endregion ConfirmationResetProgress
+
+    private void Awake()
+    {
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+    }
+
+    private void Start()
+    {
+        CreateLevelButtons();
+
+        soundToggle.isOn = AudioManager.Instance.CurrentSoundState == SoundState.On;
+        soundToggle.onValueChanged.AddListener(isOn => OnClickSwitchSoundButton(isOn));
+
+        musicToggle.isOn = AudioManager.Instance.CurrentMusicState == MusicState.On;
+        musicToggle.onValueChanged.AddListener(isOn => OnClickSwitchMusicButton(isOn));
+    }
+
+    private void CreateLevelButtons()
+    {
+        for (int i = 1; i <= GameManager.Instance.TotalLevelsCount; i++)
+        {
+            var level = i;
+            var button = Instantiate(levelButtonPrefab, levelButtons.transform);
+            button.GetComponentInChildren<Text>().text = level.ToString();
+            button.GetComponent<LevelButton>().LevelNumber = level;
+            button.onClick.AddListener(() => OnClickLevelButton(level));
+        }
+    }
 }

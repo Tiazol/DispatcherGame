@@ -7,25 +7,41 @@ public class WagonGenerator : MonoBehaviour
 {
     public static WagonGenerator Instance { get; private set; }
 
-    public Wagon wagonPrefab;
-    [Range(0.1f, 10f)]
-    public float createInterval;
-    [Range(0.1f, 10f)]
-    public float launchInterval;
-    [Range(1f, 10f)]
-    public float wagonSpeed;
-    [Range(0f, 100f)] // 0 означает бесконечность
-    public int wagonsToLaunch;
+    public int PassedWagonsCount { get; private set; }
+    public int WagonsToLaunch
+    {
+        get => wagonsToLaunch;
+        set => wagonsToLaunch = value;
+    }
 
     public event System.Action<WagonType> WagonPrepared;
     public event System.Action WagonLaunched;
 
-    public int PassedWagonsCount { get; private set; }
+    [SerializeField] protected Wagon wagonPrefab;
+    [Range(0.1f, 10f)]
+    [SerializeField] protected float createInterval;
+    [Range(0.1f, 10f)]
+    [SerializeField] protected float launchInterval;
+    [Range(1f, 10f)]
+    [SerializeField] protected float wagonSpeed;
+    [Range(0f, 100f)]
+    [SerializeField] private int wagonsToLaunch;
+
     protected WagonType currentType;
     private List<WagonType> prevTypes;
     private const int prevTypesLimit = 2;
     private const string spritesPath = "Sprites/Wagons";
     protected Dictionary<WagonType, List<Sprite>> spriteCollection;
+
+    protected virtual void SetRandomIntervals()
+    {
+
+    }
+
+    public void StartWorking()
+    {
+        StartCoroutine(PrepareWagon());
+    }
 
     private void Awake()
     {
@@ -61,16 +77,6 @@ public class WagonGenerator : MonoBehaviour
                 }
             }
         }
-    }
-
-    public virtual void SetRandomIntervals()
-    {
-
-    }
-
-    public void StartWorking()
-    {
-        StartCoroutine(PrepareWagon());
     }
 
     protected virtual IEnumerator PrepareWagon()

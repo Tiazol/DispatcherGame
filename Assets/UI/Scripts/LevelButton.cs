@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class LevelButton : MonoBehaviour
@@ -9,7 +7,7 @@ public class LevelButton : MonoBehaviour
 
     private Button button;
     [SerializeField] private Image[] starBoxes;
-    [Header("StarSprites")  ]
+    [Header("StarSprites")]
     [SerializeField] private Sprite emptyStar;
     [SerializeField] private Sprite fullStar;
     [SerializeField] private Sprite pickedUpStar;

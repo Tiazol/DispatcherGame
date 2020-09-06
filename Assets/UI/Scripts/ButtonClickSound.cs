@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class ButtonClickSound : MonoBehaviour
 {
-    public AudioClip click;
+    [SerializeField] private AudioClip click;
 
     private AudioSource audioSource;
 

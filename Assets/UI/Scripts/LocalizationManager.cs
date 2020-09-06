@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
-using UnityEngine.UI;
 
 public class LocalizationManager : MonoBehaviour
 {
@@ -25,6 +24,26 @@ public class LocalizationManager : MonoBehaviour
     private const string pp_language = "Language";
     private const string localizationPath = "Localization";
     private SystemLanguage currentLanguage;
+
+    public void ChangeLanguageTo(string language)
+    {
+        CurrentLanguage = (SystemLanguage)Enum.Parse(typeof(SystemLanguage), language);
+    }
+
+    public string GetLocalizedString(string id)
+    {
+        var str = id;
+
+        if (LocalizationDictionary.ContainsKey(CurrentLanguage))
+        {
+            if (LocalizationDictionary[CurrentLanguage].ContainsKey(id))
+            {
+                str = LocalizationDictionary[CurrentLanguage][id];
+            }
+        }
+
+        return str;
+    }
 
     private void Awake()
     {
@@ -51,18 +70,6 @@ public class LocalizationManager : MonoBehaviour
     {
         var texts = Resources.LoadAll<TextAsset>(localizationPath);
 
-        /*
-         * текущий формат:
-         * 
-         * language=English
-         * play=PLAY
-         * quit=QUIT
-         * 
-         * language=Russian
-         * play=ИГРАТЬ
-         * quit=ВЫЙТИ
-         */
-
         foreach (var text in texts)
         {
             var separators = new char[] { '\r', '\n' };
@@ -77,25 +84,5 @@ public class LocalizationManager : MonoBehaviour
             var language = (SystemLanguage)Enum.Parse(typeof(SystemLanguage), lines[0].Split('=')[1]);
             LocalizationDictionary.Add(language, dictionary);
         }
-    }
-
-    public void ChangeLanguageTo(string language)
-    {
-        CurrentLanguage = (SystemLanguage)Enum.Parse(typeof(SystemLanguage), language);
-    }
-
-    public string GetLocalizedString(string id)
-    {
-        var str = id;
-
-        if (LocalizationDictionary.ContainsKey(CurrentLanguage))
-        {
-            if (LocalizationDictionary[CurrentLanguage].ContainsKey(id))
-            {
-                str = LocalizationDictionary[CurrentLanguage][id];
-            }
-        }
-
-        return str;
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 
 using UnityEngine;
 
@@ -62,7 +60,6 @@ public class RailroadManager : MonoBehaviour
     private void SetProperties()
     {
         // set start conditions
-
         foreach (var segment in segments)
         {
             segment.IsVisible = true;
@@ -70,7 +67,6 @@ public class RailroadManager : MonoBehaviour
         }
 
         // hide all next2
-
         foreach (var segment in segments)
         {
             if (segment.NextSegment2 != null)
@@ -87,7 +83,7 @@ public class RailroadManager : MonoBehaviour
 
     public RailroadSegment GetRailroadSegmentAtCenterPosition(Vector3 position)
     {
-        foreach(var segment in segments)
+        foreach (var segment in segments)
         {
             if (segment.transform.position == position)
             {

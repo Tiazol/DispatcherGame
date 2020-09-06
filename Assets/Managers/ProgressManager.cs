@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
 
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class ProgressManager : MonoBehaviour
 {
@@ -14,8 +9,8 @@ public class ProgressManager : MonoBehaviour
     public static ProgressManager Instance { get; private set; }
 
     public int SuccessfulWagons { get; set; }
-    public int TotalWagons => WagonGenerator.Instance.wagonsToLaunch;
-    public int CurrentStarsCount => GetStarsCount(SuccessfulWagons, WagonGenerator.Instance.wagonsToLaunch);
+    public int TotalWagons => WagonGenerator.Instance.WagonsToLaunch;
+    public int CurrentStarsCount => GetStarsCount(SuccessfulWagons, WagonGenerator.Instance.WagonsToLaunch);
     public int SavedStarsCount => GetSavedStarsCountOfLevel(GameManager.Instance.CurrentLevelNumber, progress);
 
     public event Action ProgressChanged;

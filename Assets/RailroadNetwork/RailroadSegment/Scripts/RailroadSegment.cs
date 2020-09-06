@@ -1,20 +1,11 @@
 ﻿using PathCreation;
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 
 using UnityEngine;
-using UnityEngine.U2D;
 
 public class RailroadSegment : MonoBehaviour
 {
-    public PathCreator pathCreator; // задается именно так, потому что если инициализировать его в Awake, то есть опасность, что будут вызваны его свойства в RailroadManager
-    public Animator animator; // задается именно так, потому что если инициализировать его в Awake, то есть опасность, что будет вызван метод Hide() ДО инициализации
-
     public RailroadSegment PrevSegment { get; set; }
     public RailroadSegment NextSegment1 { get; set; }
     public RailroadSegment NextSegment2 { get; set; }
@@ -27,7 +18,6 @@ public class RailroadSegment : MonoBehaviour
             SelectedRailroadSegmentChanged?.Invoke(value == NextSegment1);
         }
     }
-
     public bool IsVisible
     {
         get => isVisible;
@@ -37,7 +27,6 @@ public class RailroadSegment : MonoBehaviour
             VisibilityChanged?.Invoke(isVisible);
         }
     }
-
     public float Length => pathCreator.path.length;
     public Vector3 GetPoint(int index) => pathCreator.path.GetPoint(index);
     public Vector3 GetPointAtDistance(float distance) => pathCreator.path.GetPointAtDistance(distance);
@@ -54,10 +43,8 @@ public class RailroadSegment : MonoBehaviour
     private bool isVisible;
     private RailroadSegment selectedRailroadSegment;
 
-    private void Awake()
-    {
-        pathCreator = GetComponentInChildren<PathCreator>();
-    }
+    [SerializeField] private PathCreator pathCreator;
+    [SerializeField] private Animator animator;
 
     public void Show()
     {
