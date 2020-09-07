@@ -134,6 +134,11 @@ public class ProgressManager : MonoBehaviour
 
     private int GetSavedStarsCountOfLevel(int level, Dictionary<int, (bool, int)> progress)
     {
+        if (progress == null)
+        {
+            progress = LoadProgress();
+        }
+
         return progress.ContainsKey(level) ? progress[level].Item2 : 0;
     }
 
