@@ -1,6 +1,4 @@
-﻿using System;
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class NotificationsManager : MonoBehaviour
@@ -11,7 +9,6 @@ public class NotificationsManager : MonoBehaviour
     [SerializeField] private Sprite[] sprites;
 
     private Animator animator;
-    private WagonGenerator wagonGenerator;
 
     private void Awake()
     {
@@ -20,17 +17,30 @@ public class NotificationsManager : MonoBehaviour
 
     private void Start()
     {
-        wagonGenerator = FindObjectOfType<WagonGenerator>();
+        var tutorial = FindObjectOfType<SwipeAnimationTutorial>();
+        var wagonGenerator = FindObjectOfType<WagonGenerator>();
 
         if (wagonGenerator != null)
         {
-            wagonGenerator.WagonPrepared += StartBlinking;
-            wagonGenerator.WagonLaunched += StopBlinking;
-            wagonGenerator.StartWorking();
+            if (tutorial == null)
+            {
+                LaunchWagonGenerator(wagonGenerator);
+            }
+            else
+            {
+                tutorial.SwipeAnimationCompleted += () => LaunchWagonGenerator(wagonGenerator);
+            }
         }
 
         levelNumber.text = $"{LocalizationManager.Instance.GetLocalizedString("level")} {GameManager.Instance.CurrentLevelNumber}";
         wagonsCount.text = $"0 / {WagonGenerator.Instance.WagonsToLaunch}";
+    }
+
+    private void LaunchWagonGenerator(WagonGenerator wagonGenerator)
+    {
+        wagonGenerator.WagonPrepared += StartBlinking;
+        wagonGenerator.WagonLaunched += StopBlinking;
+        wagonGenerator.StartWorking();
     }
 
     private void StartBlinking(WagonType type)

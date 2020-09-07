@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 public enum State
@@ -9,6 +11,8 @@ public enum State
 
 public class RailroadSwitch : MonoBehaviour, IBeginDragHandler, IDragHandler
 {
+    public event Action<State> StateChanged;
+
     [SerializeField] private RailroadSegment segment;
 
     private const string animator_SwitchToLeft = "SwitchToLeft";
@@ -18,13 +22,6 @@ public class RailroadSwitch : MonoBehaviour, IBeginDragHandler, IDragHandler
     private Animator animator;
     private bool isAnimating;
     private AudioSource audioSource;
-
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-        state = segment.SelectedRailroadSegment == segment.NextSegment1 ? State.Left : State.Right;
-        audioSource = GetComponent<AudioSource>();
-    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -52,6 +49,7 @@ public class RailroadSwitch : MonoBehaviour, IBeginDragHandler, IDragHandler
             state = State.Left;
             segment.SwitchToLeft();
             audioSource.Play();
+            StateChanged?.Invoke(state);
         }
     }
 
@@ -64,11 +62,19 @@ public class RailroadSwitch : MonoBehaviour, IBeginDragHandler, IDragHandler
             state = State.Right;
             segment.SwitchToRight();
             audioSource.Play();
+            StateChanged?.Invoke(state);
         }
     }
 
     public void Animator_EndAnimation()
     {
         isAnimating = false;
+    }
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+        state = segment.SelectedRailroadSegment == segment.NextSegment1 ? State.Left : State.Right;
+        audioSource = GetComponent<AudioSource>();
     }
 }
