@@ -29,6 +29,7 @@ public class NotificationsManager : MonoBehaviour
             else
             {
                 tutorial.SwipeAnimationCompleted += () => LaunchWagonGenerator(wagonGenerator);
+                tutorial.StartWork();
             }
         }
 

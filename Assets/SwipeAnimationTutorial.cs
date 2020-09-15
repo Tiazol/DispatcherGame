@@ -23,17 +23,14 @@ public class SwipeAnimationTutorial : MonoBehaviour
         rSwitch.StateChanged += state => switched = true;
     }
 
-    private void Start()
+    public void StartWork()
     {
         if (ProgressManager.Instance.SavedStarsCount > 0)
         {
             SwipeAnimationCompleted?.Invoke();
             Destroy(gameObject);
         }
-    }
 
-    private void Update()
-    {
         StartCoroutine(ShowFirstTutorial());
     }
 
@@ -52,6 +49,7 @@ public class SwipeAnimationTutorial : MonoBehaviour
         else
         {
             yield return new WaitForEndOfFrame();
+            StartCoroutine(ShowFirstTutorial());
         }
     }
 }
