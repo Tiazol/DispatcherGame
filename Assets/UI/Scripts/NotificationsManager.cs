@@ -46,7 +46,9 @@ public class NotificationsManager : MonoBehaviour
 
     private void StartBlinking(WagonType type)
     {
+        image.enabled = true;
         image.sprite = sprites[(int)type];
+        
         animator.SetBool("IsBlinking", true);
     }
 
